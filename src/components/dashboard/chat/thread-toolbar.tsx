@@ -17,7 +17,6 @@ import { Phone as PhoneIcon } from '@phosphor-icons/react/dist/ssr/Phone';
 import { Prohibit as ProhibitIcon } from '@phosphor-icons/react/dist/ssr/Prohibit';
 import { Trash as TrashIcon } from '@phosphor-icons/react/dist/ssr/Trash';
 
-import type { User } from '@/types/user';
 import { usePopover } from '@/hooks/use-popover';
 
 import type { Thread } from './types';
@@ -27,7 +26,7 @@ const user = {
   name: 'Sofia Rivers',
   avatar: '/assets/avatar.png',
   email: 'sofia@devias.io',
-} satisfies User;
+} as const;
 
 export interface ThreadToolbarProps {
   thread: Thread;

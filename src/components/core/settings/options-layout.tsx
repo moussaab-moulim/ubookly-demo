@@ -1,6 +1,6 @@
 'use client';
 
-import * as React from 'react';
+import type * as React from 'react';
 import Box from '@mui/material/Box';
 import InputLabel from '@mui/material/InputLabel';
 import Stack from '@mui/material/Stack';
@@ -8,11 +8,11 @@ import Tooltip from '@mui/material/Tooltip';
 import Typography from '@mui/material/Typography';
 import { Info as InfoIcon } from '@phosphor-icons/react/dist/ssr/Info';
 
-import type { Layout } from '@/types/settings';
+import type { DashboardLayout } from '@/types/settings';
 
 export interface OptionsLayoutProps {
-  onChange?: (value: Layout) => void;
-  value?: Layout;
+  onChange?: (value: DashboardLayout) => void;
+  value?: DashboardLayout;
 }
 
 export function OptionsLayout({ onChange, value }: OptionsLayoutProps): React.JSX.Element {
@@ -29,7 +29,7 @@ export function OptionsLayout({ onChange, value }: OptionsLayoutProps): React.JS
           [
             { label: 'Vertical', value: 'vertical', icon: <VerticalIcon /> },
             { label: 'Horizontal', value: 'horizontal', icon: <HorizontalIcon /> },
-          ] satisfies { label: string; value: Layout; icon: React.ReactElement }[]
+          ] satisfies { label: string; value: DashboardLayout; icon: React.ReactElement }[]
         ).map((option) => (
           <Stack key={option.value} spacing={1}>
             <Box

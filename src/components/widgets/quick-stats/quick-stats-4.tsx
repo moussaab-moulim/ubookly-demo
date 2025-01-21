@@ -1,4 +1,4 @@
-import * as React from 'react';
+import type * as React from 'react';
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import Chip from '@mui/material/Chip';
@@ -30,7 +30,7 @@ export function QuickStats4(): React.JSX.Element {
                   style: 'currency',
                   currency: 'USD',
                   maximumFractionDigits: 0,
-                }).format(54355)}
+                }).format(54_355)}
               </Typography>
               <Chip color="success" label="+25%" size="small" variant="soft" />
             </Stack>
@@ -55,7 +55,7 @@ export function QuickStats4(): React.JSX.Element {
                   style: 'currency',
                   currency: 'USD',
                   maximumFractionDigits: 0,
-                }).format(13250)}
+                }).format(13_250)}
               </Typography>
               <Chip color="success" label="+12%" size="small" variant="soft" />
             </Stack>
@@ -70,7 +70,7 @@ export function QuickStats4(): React.JSX.Element {
                   style: 'currency',
                   currency: 'USD',
                   maximumFractionDigits: 0,
-                }).format(41105)}
+                }).format(41_105)}
               </Typography>
               <Chip color="error" label="-20%" size="small" variant="soft" />
             </Stack>

@@ -8,7 +8,7 @@ import type { Selection } from '@/hooks/use-selection';
 import type { Customer } from './customers-table';
 
 function noop(): void {
-  return undefined;
+  // No operation
 }
 
 export interface CustomersSelectionContextValue extends Selection {}

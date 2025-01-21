@@ -1,4 +1,4 @@
-import * as React from 'react';
+import type * as React from 'react';
 
 import { dayjs } from '@/lib/dayjs';
 import { MailProvider } from '@/components/dashboard/mail/mail-context';
@@ -114,7 +114,8 @@ Your flight is coming up soon. Please don't forget to check in for your schedule
     from: { name: 'Carson Darrin', avatar: '/assets/avatar-3.png', email: 'carson.darrin@domain.com' },
     to: [{ name: 'Sofia Rivers', avatar: '/assets/avatar.png', email: 'sofia@devias.io' }],
     subject: 'Possible candidates for the position',
-    message: `My market leading client has another fantastic opportunity for an experienced Software Developer to join them on a heavily remote basis`,
+    message:
+      'My market leading client has another fantastic opportunity for an experienced Software Developer to join them on a heavily remote basis',
     folder: 'trash',
     labels: ['personal'],
     isImportant: false,
@@ -126,11 +127,11 @@ Your flight is coming up soon. Please don't forget to check in for your schedule
 
 interface LayoutProps {
   children: React.ReactNode;
-  params: { labelId: string };
+  params: Promise<{ labelId: string }>;
 }
 
-export default function Layout({ children, params }: LayoutProps): React.JSX.Element {
-  const { labelId } = params;
+export default async function Layout({ children, params }: LayoutProps): Promise<React.JSX.Element> {
+  const { labelId } = await params;
 
   const filteredThreads = filterThreads(threads, labelId);
 

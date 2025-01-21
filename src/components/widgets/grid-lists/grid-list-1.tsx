@@ -1,13 +1,13 @@
-import * as React from 'react';
+import type * as React from 'react';
 import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import CardMedia from '@mui/material/CardMedia';
 import Chip from '@mui/material/Chip';
+import Grid from '@mui/material/Grid2';
 import Link from '@mui/material/Link';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
-import Grid from '@mui/material/Unstable_Grid2';
 
 import { dayjs } from '@/lib/dayjs';
 
@@ -63,7 +63,14 @@ export function GridList1(): React.JSX.Element {
     <Box sx={{ bgcolor: 'var(--mui-palette-background-level1)', p: 3 }}>
       <Grid container spacing={3}>
         {posts.map((post) => (
-          <Grid key={post.id} md={4} sm={6} xs={12}>
+          <Grid
+            key={post.id}
+            size={{
+              md: 4,
+              sm: 6,
+              xs: 12,
+            }}
+          >
             <Card sx={{ height: '100%' }}>
               <Stack spacing={2} sx={{ p: 2 }}>
                 <Box sx={{ pt: 'calc(100% * 4 / 4)', position: 'relative' }}>

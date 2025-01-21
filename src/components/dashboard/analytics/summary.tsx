@@ -1,4 +1,4 @@
-import * as React from 'react';
+import type * as React from 'react';
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import Stack from '@mui/material/Stack';
@@ -26,7 +26,7 @@ export function Summary(): React.JSX.Element {
           }}
         >
           <Typography color="text.secondary">Sessions</Typography>
-          <Typography variant="h3">{new Intl.NumberFormat('en-US').format(16500)}</Typography>
+          <Typography variant="h3">{new Intl.NumberFormat('en-US').format(16_500)}</Typography>
           <Stack direction="row" spacing={1} sx={{ alignItems: 'center' }}>
             <TrendUpIcon color="var(--mui-palette-success-main)" fontSize="var(--icon-fontSize-md)" />
             <Typography color="text.secondary" variant="body2">

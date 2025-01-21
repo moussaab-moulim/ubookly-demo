@@ -1,4 +1,4 @@
-import * as React from 'react';
+import type * as React from 'react';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 
 const codeStyle: Record<string, React.CSSProperties> = {

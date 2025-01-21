@@ -1,14 +1,14 @@
-import * as React from 'react';
+import type * as React from 'react';
 import type { Metadata } from 'next';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 
-import { config } from '@/config';
+import { appConfig } from '@/config/app';
 import { dayjs } from '@/lib/dayjs';
 import { Invoices } from '@/components/dashboard/settings/invoices';
 import { Plans } from '@/components/dashboard/settings/plans';
 
-export const metadata = { title: `Billing | Settings | Dashboard | ${config.site.name}` } satisfies Metadata;
+export const metadata = { title: `Billing | Settings | Dashboard | ${appConfig.name}` } satisfies Metadata;
 
 export default function Page(): React.JSX.Element {
   return (

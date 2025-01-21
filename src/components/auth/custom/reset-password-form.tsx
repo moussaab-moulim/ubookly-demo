@@ -16,7 +16,7 @@ import { Controller, useForm } from 'react-hook-form';
 import { z as zod } from 'zod';
 
 import { paths } from '@/paths';
-import { authClient } from '@/lib/auth/custom/client';
+import { resetPassword } from '@/lib/custom-auth/actions';
 import { DynamicLogo } from '@/components/core/logo';
 
 const schema = zod.object({ email: zod.string().min(1, { message: 'Email is required' }).email() });
@@ -39,7 +39,7 @@ export function ResetPasswordForm(): React.JSX.Element {
     async (values: Values): Promise<void> => {
       setIsPending(true);
 
-      const { error } = await authClient.resetPassword(values);
+      const { error } = await resetPassword(values);
 
       if (error) {
         setError('root', { type: 'server', message: error });

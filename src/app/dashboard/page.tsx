@@ -1,10 +1,10 @@
-import * as React from 'react';
+import type * as React from 'react';
 import type { Metadata } from 'next';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
+import Grid from '@mui/material/Grid2';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
-import Grid from '@mui/material/Unstable_Grid2';
 import { ArrowRight as ArrowRightIcon } from '@phosphor-icons/react/dist/ssr/ArrowRight';
 import { Briefcase as BriefcaseIcon } from '@phosphor-icons/react/dist/ssr/Briefcase';
 import { FileCode as FileCodeIcon } from '@phosphor-icons/react/dist/ssr/FileCode';
@@ -14,7 +14,7 @@ import { Plus as PlusIcon } from '@phosphor-icons/react/dist/ssr/Plus';
 import { Users as UsersIcon } from '@phosphor-icons/react/dist/ssr/Users';
 import { Warning as WarningIcon } from '@phosphor-icons/react/dist/ssr/Warning';
 
-import { config } from '@/config';
+import { appConfig } from '@/config/app';
 import { dayjs } from '@/lib/dayjs';
 import { AppChat } from '@/components/dashboard/overview/app-chat';
 import { AppLimits } from '@/components/dashboard/overview/app-limits';
@@ -24,7 +24,7 @@ import { HelperWidget } from '@/components/dashboard/overview/helper-widget';
 import { Subscriptions } from '@/components/dashboard/overview/subscriptions';
 import { Summary } from '@/components/dashboard/overview/summary';
 
-export const metadata = { title: `Overview | Dashboard | ${config.site.name}` } satisfies Metadata;
+export const metadata = { title: `Overview | Dashboard | ${appConfig.name}` } satisfies Metadata;
 
 export default function Page(): React.JSX.Element {
   return (
@@ -48,16 +48,36 @@ export default function Page(): React.JSX.Element {
           </div>
         </Stack>
         <Grid container spacing={4}>
-          <Grid md={4} xs={12}>
+          <Grid
+            size={{
+              md: 4,
+              xs: 12,
+            }}
+          >
             <Summary amount={31} diff={15} icon={ListChecksIcon} title="Tickets" trend="up" />
           </Grid>
-          <Grid md={4} xs={12}>
+          <Grid
+            size={{
+              md: 4,
+              xs: 12,
+            }}
+          >
             <Summary amount={240} diff={5} icon={UsersIcon} title="Sign ups" trend="down" />
           </Grid>
-          <Grid md={4} xs={12}>
+          <Grid
+            size={{
+              md: 4,
+              xs: 12,
+            }}
+          >
             <Summary amount={21} diff={12} icon={WarningIcon} title="Open issues" trend="up" />
           </Grid>
-          <Grid md={8} xs={12}>
+          <Grid
+            size={{
+              md: 8,
+              xs: 12,
+            }}
+          >
             <AppUsage
               data={[
                 { name: 'Jan', v1: 36, v2: 19 },
@@ -75,7 +95,12 @@ export default function Page(): React.JSX.Element {
               ]}
             />
           </Grid>
-          <Grid md={4} xs={12}>
+          <Grid
+            size={{
+              md: 4,
+              xs: 12,
+            }}
+          >
             <Subscriptions
               subscriptions={[
                 {
@@ -121,7 +146,12 @@ export default function Page(): React.JSX.Element {
               ]}
             />
           </Grid>
-          <Grid md={4} xs={12}>
+          <Grid
+            size={{
+              md: 4,
+              xs: 12,
+            }}
+          >
             <AppChat
               messages={[
                 {
@@ -157,7 +187,12 @@ export default function Page(): React.JSX.Element {
               ]}
             />
           </Grid>
-          <Grid md={4} xs={12}>
+          <Grid
+            size={{
+              md: 4,
+              xs: 12,
+            }}
+          >
             <Events
               events={[
                 {
@@ -187,10 +222,20 @@ export default function Page(): React.JSX.Element {
               ]}
             />
           </Grid>
-          <Grid md={4} xs={12}>
+          <Grid
+            size={{
+              md: 4,
+              xs: 12,
+            }}
+          >
             <AppLimits usage={80} />
           </Grid>
-          <Grid md={4} xs={12}>
+          <Grid
+            size={{
+              md: 4,
+              xs: 12,
+            }}
+          >
             <HelperWidget
               action={
                 <Button color="secondary" endIcon={<ArrowRightIcon />} size="small">
@@ -203,7 +248,12 @@ export default function Page(): React.JSX.Element {
               title="Find your dream job"
             />
           </Grid>
-          <Grid md={4} xs={12}>
+          <Grid
+            size={{
+              md: 4,
+              xs: 12,
+            }}
+          >
             <HelperWidget
               action={
                 <Button color="secondary" endIcon={<ArrowRightIcon />} size="small">
@@ -216,7 +266,12 @@ export default function Page(): React.JSX.Element {
               title="Need help figuring things out?"
             />
           </Grid>
-          <Grid md={4} xs={12}>
+          <Grid
+            size={{
+              md: 4,
+              xs: 12,
+            }}
+          >
             <HelperWidget
               action={
                 <Button color="secondary" endIcon={<ArrowRightIcon />} size="small">

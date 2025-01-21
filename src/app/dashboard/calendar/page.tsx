@@ -1,14 +1,14 @@
-import * as React from 'react';
+import type * as React from 'react';
 import type { Metadata } from 'next';
 import Box from '@mui/material/Box';
 
-import { config } from '@/config';
+import { appConfig } from '@/config/app';
 import { dayjs } from '@/lib/dayjs';
 import { CalendarProvider } from '@/components/dashboard/calendar/calendar-context';
 import { CalendarView } from '@/components/dashboard/calendar/calendar-view';
 import type { Event, ViewMode } from '@/components/dashboard/calendar/types';
 
-export const metadata = { title: `Calendar | Dashboard | ${config.site.name}` } satisfies Metadata;
+export const metadata = { title: `Calendar | Dashboard | ${appConfig.name}` } satisfies Metadata;
 
 const events = [
   {
@@ -73,11 +73,11 @@ const events = [
 ] satisfies Event[];
 
 interface PageProps {
-  searchParams: { view?: ViewMode };
+  searchParams: Promise<{ view?: ViewMode }>;
 }
 
-export default function Page({ searchParams }: PageProps): React.JSX.Element {
-  const { view = 'dayGridMonth' } = searchParams;
+export default async function Page({ searchParams }: PageProps): Promise<React.JSX.Element> {
+  const { view = 'dayGridMonth' } = await searchParams;
 
   return (
     <Box

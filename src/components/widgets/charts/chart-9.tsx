@@ -1,6 +1,6 @@
 'use client';
 
-import * as React from 'react';
+import type * as React from 'react';
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
@@ -16,9 +16,9 @@ import { Cell, Pie, PieChart, Tooltip } from 'recharts';
 import { NoSsr } from '@/components/core/no-ssr';
 
 const data = [
-  { name: 'Strategy', value: 14859, color: 'var(--mui-palette-primary-main)' },
-  { name: 'Outsourcing', value: 35690, color: 'var(--mui-palette-info-main)' },
-  { name: 'Marketing', value: 45120, color: 'var(--mui-palette-warning-main)' },
+  { name: 'Strategy', value: 14_859, color: 'var(--mui-palette-primary-main)' },
+  { name: 'Outsourcing', value: 35_690, color: 'var(--mui-palette-info-main)' },
+  { name: 'Marketing', value: 45_120, color: 'var(--mui-palette-warning-main)' },
 ] satisfies { name: string; value: number; color: string }[];
 
 export function Chart9(): React.JSX.Element {

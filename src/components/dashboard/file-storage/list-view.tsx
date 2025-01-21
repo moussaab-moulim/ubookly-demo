@@ -33,7 +33,7 @@ export function ListView(): React.JSX.Element {
             </TableRow>
           </TableHead>
           <TableBody>
-            {Array.from(items.values()).map((item) => (
+            {[...items.values()].map((item) => (
               <ItemRow
                 item={item}
                 key={item.id}

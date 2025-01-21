@@ -12,12 +12,12 @@ import CardContent from '@mui/material/CardContent';
 import Divider from '@mui/material/Divider';
 import FormControl from '@mui/material/FormControl';
 import FormHelperText from '@mui/material/FormHelperText';
+import Grid from '@mui/material/Grid2';
 import InputLabel from '@mui/material/InputLabel';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import Select from '@mui/material/Select';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
-import Grid from '@mui/material/Unstable_Grid2';
 import type { EditorEvents } from '@tiptap/react';
 import { Controller, useForm } from 'react-hook-form';
 import { z as zod } from 'zod';
@@ -63,8 +63,8 @@ export function ProductCreateForm(): React.JSX.Element {
         // Make API request
         toast.success('Product created');
         router.push(paths.dashboard.products.list);
-      } catch (err) {
-        logger.error(err);
+      } catch (error) {
+        logger.error(error);
         toast.error('Something went wrong!');
       }
     },
@@ -79,7 +79,12 @@ export function ProductCreateForm(): React.JSX.Element {
             <Stack spacing={3}>
               <Typography variant="h6">Basic information</Typography>
               <Grid container spacing={3}>
-                <Grid md={6} xs={12}>
+                <Grid
+                  size={{
+                    md: 6,
+                    xs: 12,
+                  }}
+                >
                   <Controller
                     control={control}
                     name="name"
@@ -92,7 +97,12 @@ export function ProductCreateForm(): React.JSX.Element {
                     )}
                   />
                 </Grid>
-                <Grid md={6} xs={12}>
+                <Grid
+                  size={{
+                    md: 6,
+                    xs: 12,
+                  }}
+                >
                   <Controller
                     control={control}
                     name="handle"
@@ -105,7 +115,12 @@ export function ProductCreateForm(): React.JSX.Element {
                     )}
                   />
                 </Grid>
-                <Grid md={6} xs={12}>
+                <Grid
+                  size={{
+                    md: 6,
+                    xs: 12,
+                  }}
+                >
                   <Controller
                     control={control}
                     name="category"
@@ -123,7 +138,12 @@ export function ProductCreateForm(): React.JSX.Element {
                     )}
                   />
                 </Grid>
-                <Grid md={6} xs={12}>
+                <Grid
+                  size={{
+                    md: 6,
+                    xs: 12,
+                  }}
+                >
                   <Controller
                     control={control}
                     name="type"
@@ -140,7 +160,7 @@ export function ProductCreateForm(): React.JSX.Element {
                     )}
                   />
                 </Grid>
-                <Grid xs={12}>
+                <Grid size={12}>
                   <Controller
                     control={control}
                     name="description"
@@ -163,16 +183,16 @@ export function ProductCreateForm(): React.JSX.Element {
                     )}
                   />
                 </Grid>
-                <Grid xs={12}>
+                <Grid size={12}>
                   <Controller
                     control={control}
                     name="tags"
                     render={({ field }) => (
-                      <FormControl error={Boolean(errors.name)} fullWidth>
+                      <FormControl error={Boolean(errors.tags)} fullWidth>
                         <InputLabel>Tags</InputLabel>
                         <OutlinedInput {...field} placeholder="e.g Modern, Clean, etc" />
-                        {errors.name ? (
-                          <FormHelperText>{errors.name.message}</FormHelperText>
+                        {errors.tags ? (
+                          <FormHelperText>{errors.tags.message}</FormHelperText>
                         ) : (
                           <FormHelperText>Tags must be separated by comma</FormHelperText>
                         )}

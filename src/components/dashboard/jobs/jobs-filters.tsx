@@ -1,6 +1,6 @@
 'use client';
 
-import * as React from 'react';
+import type * as React from 'react';
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import Checkbox from '@mui/material/Checkbox';
@@ -76,7 +76,7 @@ export function JobsFilters(): React.JSX.Element {
         sx={{ px: 3, py: 2 }}
       />
       <Divider />
-      {chips.length ? (
+      {chips.length > 0 ? (
         <Stack direction="row" spacing={1} sx={{ alignItems: 'center', flexWrap: 'wrap', p: 2 }}>
           {chips.map((chip) => (
             <Chip

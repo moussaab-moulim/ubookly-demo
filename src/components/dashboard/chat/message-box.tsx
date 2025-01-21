@@ -1,4 +1,4 @@
-import * as React from 'react';
+import type * as React from 'react';
 import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
@@ -7,7 +7,6 @@ import Link from '@mui/material/Link';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 
-import type { User } from '@/types/user';
 import { dayjs } from '@/lib/dayjs';
 
 import type { Message } from './types';
@@ -17,7 +16,7 @@ const user = {
   name: 'Sofia Rivers',
   avatar: '/assets/avatar.png',
   email: 'sofia@devias.io',
-} satisfies User;
+} as const;
 
 export interface MessageBoxProps {
   message: Message;

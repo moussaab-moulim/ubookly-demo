@@ -21,8 +21,8 @@ import { Controller, useForm } from 'react-hook-form';
 import { z as zod } from 'zod';
 
 import { paths } from '@/paths';
-import { authClient } from '@/lib/auth/custom/client';
-import { useUser } from '@/hooks/use-user';
+import { signInWithOAuth, signInWithPassword } from '@/lib/custom-auth/actions';
+import { useAuth } from '@/components/auth/custom/auth-context';
 import { DynamicLogo } from '@/components/core/logo';
 import { toast } from '@/components/core/toaster';
 
@@ -48,11 +48,8 @@ const defaultValues = { email: '', password: '' } satisfies Values;
 
 export function SignInForm(): React.JSX.Element {
   const router = useRouter();
-
-  const { checkSession } = useUser();
-
+  const auth = useAuth();
   const [showPassword, setShowPassword] = React.useState<boolean>();
-
   const [isPending, setIsPending] = React.useState<boolean>(false);
 
   const {
@@ -65,7 +62,7 @@ export function SignInForm(): React.JSX.Element {
   const onAuth = React.useCallback(async (providerId: OAuthProvider['id']): Promise<void> => {
     setIsPending(true);
 
-    const { error } = await authClient.signInWithOAuth({ provider: providerId });
+    const { error } = await signInWithOAuth({ provider: providerId });
 
     if (error) {
       setIsPending(false);
@@ -82,7 +79,7 @@ export function SignInForm(): React.JSX.Element {
     async (values: Values): Promise<void> => {
       setIsPending(true);
 
-      const { error } = await authClient.signInWithPassword(values);
+      const { data, error } = await signInWithPassword(values);
 
       if (error) {
         setError('root', { type: 'server', message: error });
@@ -90,14 +87,13 @@ export function SignInForm(): React.JSX.Element {
         return;
       }
 
-      // Refresh the auth state
-      await checkSession?.();
+      // Update the user in the auth context so client components that depend on it can re-render.
+      auth.setUser(data!.user);
 
-      // UserProvider, for this case, will not refresh the router
-      // After refresh, GuestGuard will handle the redirect
+      // On router refresh the sign-in page component will automatically redirect to the dashboard.
       router.refresh();
     },
-    [checkSession, router, setError]
+    [auth, router, setError]
   );
 
   return (
@@ -179,7 +175,6 @@ export function SignInForm(): React.JSX.Element {
                           />
                         )
                       }
-                      label="Password"
                       type={showPassword ? 'text' : 'password'}
                     />
                     {errors.password ? <FormHelperText>{errors.password.message}</FormHelperText> : null}

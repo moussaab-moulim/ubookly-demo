@@ -141,7 +141,6 @@ export function Testimonails(): React.JSX.Element {
               <Stack direction="row" spacing={1} sx={{ flex: '1 1 auto', justifyContent: 'center' }}>
                 {scrollSnaps.map((_, index) => (
                   <Box
-                    // eslint-disable-next-line react/no-array-index-key -- index is unique
                     key={index}
                     onClick={() => {
                       scrollTo(index);

@@ -1,18 +1,18 @@
-import * as React from 'react';
+import type * as React from 'react';
 import type { Metadata } from 'next';
 
-import { config } from '@/config';
+import { appConfig } from '@/config/app';
 import { ThreadView } from '@/components/dashboard/chat/thread-view';
 import type { ThreadType } from '@/components/dashboard/chat/types';
 
-export const metadata = { title: `Thread | Chat | Dashboard | ${config.site.name}` } satisfies Metadata;
+export const metadata = { title: `Thread | Chat | Dashboard | ${appConfig.name}` } satisfies Metadata;
 
 interface PageProps {
-  params: { threadId: string; threadType: ThreadType };
+  params: Promise<{ threadId: string; threadType: ThreadType }>;
 }
 
-export default function Page({ params }: PageProps): React.JSX.Element {
-  const { threadId, threadType } = params;
+export default async function Page({ params }: PageProps): Promise<React.JSX.Element> {
+  const { threadId, threadType } = await params;
 
   return <ThreadView threadId={threadId} threadType={threadType} />;
 }

@@ -8,25 +8,29 @@ import Tooltip from '@mui/material/Tooltip';
 import { GearSix as GearSixIcon } from '@phosphor-icons/react/dist/ssr/GearSix';
 
 import type { Settings } from '@/types/settings';
-import { config } from '@/config';
-import { setSettings as setPersistedSettings } from '@/lib/settings/set-settings';
-import { useSettings } from '@/hooks/use-settings';
+import { appConfig } from '@/config/app';
+import { dashboardConfig } from '@/config/dashboard';
+import { setSettings as setPersistedSettings } from '@/lib/settings';
+import { useSettings } from '@/components/core/settings/settings-context';
+import type { Mode } from '@/styles/theme/types';
 
 import { SettingsDrawer } from './settings-drawer';
 
 export function SettingsButton(): React.JSX.Element {
   const { settings } = useSettings();
-  const { setColorScheme } = useColorScheme();
+  const { mode, setMode } = useColorScheme();
   const router = useRouter();
 
   const [openDrawer, setOpenDrawer] = React.useState<boolean>(false);
 
-  const handleUpdate = async (values: Partial<Settings>): Promise<void> => {
-    if (values.colorScheme) {
-      setColorScheme(values.colorScheme);
+  const handleUpdate = async (values: Partial<Settings> & { theme?: Mode }): Promise<void> => {
+    const { theme, ...other } = values;
+
+    if (theme) {
+      setMode(theme);
     }
 
-    const updatedSettings = { ...settings, ...values } satisfies Settings;
+    const updatedSettings = { ...settings, ...other } satisfies Settings;
 
     await setPersistedSettings(updatedSettings);
 
@@ -35,7 +39,7 @@ export function SettingsButton(): React.JSX.Element {
   };
 
   const handleReset = async (): Promise<void> => {
-    setColorScheme(config.site.colorScheme);
+    setMode(null);
 
     await setPersistedSettings({});
 
@@ -81,7 +85,13 @@ export function SettingsButton(): React.JSX.Element {
         onReset={handleReset}
         onUpdate={handleUpdate}
         open={openDrawer}
-        values={settings}
+        values={{
+          direction: settings.direction ?? appConfig.direction,
+          theme: mode,
+          primaryColor: settings.primaryColor ?? appConfig.primaryColor,
+          dashboardLayout: settings.dashboardLayout ?? dashboardConfig.layout,
+          dashboardNavColor: settings.dashboardNavColor ?? dashboardConfig.navColor,
+        }}
       />
     </React.Fragment>
   );

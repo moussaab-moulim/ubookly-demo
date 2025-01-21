@@ -1,7 +1,7 @@
-import * as React from 'react';
+import type * as React from 'react';
 import type { Metadata } from 'next';
 
-import { config } from '@/config';
+import { appConfig } from '@/config/app';
 import { GroupedList1 } from '@/components/widgets/grouped-lists/grouped-list-1';
 import { GroupedList2 } from '@/components/widgets/grouped-lists/grouped-list-2';
 import { GroupedList3 } from '@/components/widgets/grouped-lists/grouped-list-3';
@@ -16,7 +16,7 @@ import { GroupedList11 } from '@/components/widgets/grouped-lists/grouped-list-1
 import { Layout } from '@/components/widgets/layout';
 import type { Component } from '@/components/widgets/layout';
 
-export const metadata = { title: `Grouped lists | Components | ${config.site.name}` } satisfies Metadata;
+export const metadata = { title: `Grouped lists | Components | ${appConfig.name}` } satisfies Metadata;
 
 const components = [
   { title: 'Grouped list 1', element: <GroupedList1 /> },

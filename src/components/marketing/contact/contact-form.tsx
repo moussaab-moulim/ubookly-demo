@@ -1,13 +1,13 @@
-import * as React from 'react';
+import type * as React from 'react';
 import Button from '@mui/material/Button';
 import FormControl from '@mui/material/FormControl';
+import Grid from '@mui/material/Grid2';
 import InputLabel from '@mui/material/InputLabel';
 import Link from '@mui/material/Link';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import Select from '@mui/material/Select';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
-import Grid from '@mui/material/Unstable_Grid2';
 
 import { Option } from '@/components/core/option';
 
@@ -15,31 +15,56 @@ export function ContactForm(): React.JSX.Element {
   return (
     <Stack spacing={3}>
       <Grid container spacing={3}>
-        <Grid sm={6} xs={12}>
+        <Grid
+          size={{
+            sm: 6,
+            xs: 12,
+          }}
+        >
           <FormControl fullWidth>
             <InputLabel required>Name</InputLabel>
             <OutlinedInput name="name" />
           </FormControl>
         </Grid>
-        <Grid sm={6} xs={12}>
+        <Grid
+          size={{
+            sm: 6,
+            xs: 12,
+          }}
+        >
           <FormControl fullWidth>
             <InputLabel required>Company</InputLabel>
             <OutlinedInput name="companyName" />
           </FormControl>
         </Grid>
-        <Grid sm={6} xs={12}>
+        <Grid
+          size={{
+            sm: 6,
+            xs: 12,
+          }}
+        >
           <FormControl fullWidth>
             <InputLabel required>Email address</InputLabel>
             <OutlinedInput name="email" type="email" />
           </FormControl>
         </Grid>
-        <Grid sm={6} xs={12}>
+        <Grid
+          size={{
+            sm: 6,
+            xs: 12,
+          }}
+        >
           <FormControl fullWidth>
             <InputLabel required>Phone number</InputLabel>
             <OutlinedInput name="phone" />
           </FormControl>
         </Grid>
-        <Grid sm={6} xs={12}>
+        <Grid
+          size={{
+            sm: 6,
+            xs: 12,
+          }}
+        >
           <FormControl fullWidth>
             <InputLabel>Company size</InputLabel>
             <Select defaultValue="1-10" name="companySize">
@@ -49,7 +74,12 @@ export function ContactForm(): React.JSX.Element {
             </Select>
           </FormControl>
         </Grid>
-        <Grid sm={6} xs={12}>
+        <Grid
+          size={{
+            sm: 6,
+            xs: 12,
+          }}
+        >
           <FormControl fullWidth>
             <InputLabel>Team</InputLabel>
             <Select defaultValue="" name="team">
@@ -58,16 +88,21 @@ export function ContactForm(): React.JSX.Element {
             </Select>
           </FormControl>
         </Grid>
-        <Grid sm={6} xs={12}>
+        <Grid
+          size={{
+            sm: 6,
+            xs: 12,
+          }}
+        >
           <FormControl fullWidth>
             <InputLabel>Project budget</InputLabel>
             <Select defaultValue="20000" name="budget">
-              <Option value={20000}>$20,000+</Option>
-              <Option value={50000}>$50,000+</Option>
+              <Option value={20_000}>$20,000+</Option>
+              <Option value={50_000}>$50,000+</Option>
             </Select>
           </FormControl>
         </Grid>
-        <Grid xs={12}>
+        <Grid size={12}>
           <FormControl fullWidth>
             <InputLabel>Message</InputLabel>
             <OutlinedInput minRows={3} multiline name="message" />

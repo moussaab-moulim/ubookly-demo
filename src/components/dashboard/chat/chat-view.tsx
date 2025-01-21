@@ -34,7 +34,7 @@ export function ChatView({ children }: ChatViewProps): React.JSX.Element {
 
   // The layout does not have a direct access to the current thread id param, we need to extract it from the pathname.
   const segments = pathname.split('/').filter(Boolean);
-  const currentThreadId = segments.length === 4 ? segments[segments.length - 1] : undefined;
+  const currentThreadId = segments.length === 4 ? segments.at(-1) : undefined;
 
   const mdDown = useMediaQuery('down', 'md');
 

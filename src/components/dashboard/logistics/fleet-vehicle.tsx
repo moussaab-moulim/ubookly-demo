@@ -29,10 +29,10 @@ export interface FleetVehicleProps {
 
 export function FleetVehicle({ onDeselect, onSelect, selected, vehicle }: FleetVehicleProps): React.JSX.Element {
   const handleToggle = React.useCallback(() => {
-    if (!selected) {
-      onSelect?.(vehicle.id);
-    } else {
+    if (selected) {
       onDeselect?.();
+    } else {
+      onSelect?.(vehicle.id);
     }
   }, [onDeselect, onSelect, selected, vehicle]);
 

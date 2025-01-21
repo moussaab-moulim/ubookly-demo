@@ -1,4 +1,4 @@
-import * as React from 'react';
+import type * as React from 'react';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Card from '@mui/material/Card';
@@ -6,10 +6,10 @@ import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Divider from '@mui/material/Divider';
+import Grid from '@mui/material/Grid2';
 import IconButton from '@mui/material/IconButton';
 import Tooltip from '@mui/material/Tooltip';
 import Typography from '@mui/material/Typography';
-import Grid from '@mui/material/Unstable_Grid2';
 import { DotsThree as DotsThreeIcon } from '@phosphor-icons/react/dist/ssr/DotsThree';
 import { File as FileIcon } from '@phosphor-icons/react/dist/ssr/File';
 
@@ -47,7 +47,14 @@ export function GridList3(): React.JSX.Element {
           const isImage = asset.mimeType.includes('image/');
 
           return (
-            <Grid key={asset.id} md={4} sm={6} xs={12}>
+            <Grid
+              key={asset.id}
+              size={{
+                md: 4,
+                sm: 6,
+                xs: 12,
+              }}
+            >
               <Card>
                 {isImage ? (
                   <CardMedia image={asset.url} sx={{ height: '140px' }} />

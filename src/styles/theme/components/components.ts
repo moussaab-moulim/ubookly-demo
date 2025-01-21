@@ -2,6 +2,7 @@ import type { Components } from '@mui/material/styles';
 
 import type { Theme } from '../types';
 import { MuiAlert } from './alert';
+import { MuiAutocomplete } from './autocomplete';
 import { MuiAvatar } from './avatar';
 import { MuiBackdrop } from './backdrop';
 import { MuiButton } from './button';
@@ -51,6 +52,7 @@ import { MuiTooltip } from './tooltip';
 
 export const components = {
   MuiAlert,
+  MuiAutocomplete,
   MuiAvatar,
   MuiBackdrop,
   MuiButton,

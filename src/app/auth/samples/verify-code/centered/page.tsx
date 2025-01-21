@@ -1,4 +1,4 @@
-import * as React from 'react';
+import type * as React from 'react';
 import type { Metadata } from 'next';
 import RouterLink from 'next/link';
 import Box from '@mui/material/Box';
@@ -13,12 +13,12 @@ import OutlinedInput from '@mui/material/OutlinedInput';
 import Stack from '@mui/material/Stack';
 import { ArrowLeft as ArrowLeftIcon } from '@phosphor-icons/react/dist/ssr/ArrowLeft';
 
-import { config } from '@/config';
+import { appConfig } from '@/config/app';
 import { paths } from '@/paths';
 import { CenteredLayout } from '@/components/auth/centered-layout';
 import { DynamicLogo } from '@/components/core/logo';
 
-export const metadata: Metadata = { title: `Verify code | Samples | Auth | ${config.site.name}` };
+export const metadata = { title: `Verify code | Samples | Auth | ${appConfig.name}` } satisfies Metadata;
 
 export default function Page(): React.JSX.Element {
   return (

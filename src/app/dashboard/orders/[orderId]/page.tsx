@@ -1,4 +1,4 @@
-import * as React from 'react';
+import type * as React from 'react';
 import type { Metadata } from 'next';
 import RouterLink from 'next/link';
 import Avatar from '@mui/material/Avatar';
@@ -9,10 +9,10 @@ import CardContent from '@mui/material/CardContent';
 import CardHeader from '@mui/material/CardHeader';
 import Chip from '@mui/material/Chip';
 import Divider from '@mui/material/Divider';
+import Grid from '@mui/material/Grid2';
 import Link from '@mui/material/Link';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
-import Grid from '@mui/material/Unstable_Grid2';
 import { ArrowLeft as ArrowLeftIcon } from '@phosphor-icons/react/dist/ssr/ArrowLeft';
 import { CaretDown as CaretDownIcon } from '@phosphor-icons/react/dist/ssr/CaretDown';
 import { CheckCircle as CheckCircleIcon } from '@phosphor-icons/react/dist/ssr/CheckCircle';
@@ -21,7 +21,7 @@ import { PencilSimple as PencilSimpleIcon } from '@phosphor-icons/react/dist/ssr
 import { ShoppingCartSimple as ShoppingCartSimpleIcon } from '@phosphor-icons/react/dist/ssr/ShoppingCartSimple';
 import { Timer as TimerIcon } from '@phosphor-icons/react/dist/ssr/Timer';
 
-import { config } from '@/config';
+import { appConfig } from '@/config/app';
 import { paths } from '@/paths';
 import { dayjs } from '@/lib/dayjs';
 import { PropertyItem } from '@/components/core/property-item';
@@ -31,7 +31,7 @@ import { EventsTimeline } from '@/components/dashboard/order/events-timeline';
 import { LineItemsTable } from '@/components/dashboard/order/line-items-table';
 import type { LineItem } from '@/components/dashboard/order/line-items-table';
 
-export const metadata = { title: `Details | Orders | Dashboard | ${config.site.name}` } satisfies Metadata;
+export const metadata = { title: `Details | Orders | Dashboard | ${appConfig.name}` } satisfies Metadata;
 
 const lineItems = [
   {
@@ -114,7 +114,12 @@ export default function Page(): React.JSX.Element {
           </Stack>
         </div>
         <Grid container spacing={4}>
-          <Grid md={8} xs={12}>
+          <Grid
+            size={{
+              md: 8,
+              xs: 12,
+            }}
+          >
             <Stack spacing={4}>
               <Card>
                 <CardHeader
@@ -248,7 +253,12 @@ export default function Page(): React.JSX.Element {
               </Card>
             </Stack>
           </Grid>
-          <Grid md={4} xs={12}>
+          <Grid
+            size={{
+              md: 4,
+              xs: 12,
+            }}
+          >
             <Card>
               <CardHeader
                 avatar={

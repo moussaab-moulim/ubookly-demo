@@ -1,13 +1,13 @@
-import * as React from 'react';
+import type * as React from 'react';
 import type { Metadata } from 'next';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
+import Grid from '@mui/material/Grid2';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
-import Grid from '@mui/material/Unstable_Grid2';
 import { Plus as PlusIcon } from '@phosphor-icons/react/dist/ssr/Plus';
 
-import { config } from '@/config';
+import { appConfig } from '@/config/app';
 import { ChannelSessionsVsBounce } from '@/components/dashboard/analytics/channel-sessions-vs-bounce-rate';
 import { CountrySessionsVsBounce } from '@/components/dashboard/analytics/country-sessions-vs-bounce-rate';
 import { Devices } from '@/components/dashboard/analytics/devices';
@@ -15,7 +15,7 @@ import { InboundOutbound } from '@/components/dashboard/analytics/inbound-outbou
 import { Insight } from '@/components/dashboard/analytics/insight';
 import { Summary } from '@/components/dashboard/analytics/summary';
 
-export const metadata = { title: `Analytics | Dashboard | ${config.site.name}` } satisfies Metadata;
+export const metadata = { title: `Analytics | Dashboard | ${appConfig.name}` } satisfies Metadata;
 
 export default function Page(): React.JSX.Element {
   return (
@@ -39,10 +39,15 @@ export default function Page(): React.JSX.Element {
           </div>
         </Stack>
         <Grid container spacing={4}>
-          <Grid xs={12}>
+          <Grid size={12}>
             <Summary />
           </Grid>
-          <Grid lg={6} xs={12}>
+          <Grid
+            size={{
+              lg: 6,
+              xs: 12,
+            }}
+          >
             <CountrySessionsVsBounce
               data={[
                 { name: 'us', v1: 600, v2: 560 },
@@ -53,7 +58,12 @@ export default function Page(): React.JSX.Element {
               ]}
             />
           </Grid>
-          <Grid lg={6} xs={12}>
+          <Grid
+            size={{
+              lg: 6,
+              xs: 12,
+            }}
+          >
             <ChannelSessionsVsBounce
               data={[
                 { name: 'Organic', v1: 600, v2: 560 },
@@ -64,7 +74,12 @@ export default function Page(): React.JSX.Element {
               ]}
             />
           </Grid>
-          <Grid lg={4} xs={12}>
+          <Grid
+            size={{
+              lg: 4,
+              xs: 12,
+            }}
+          >
             <Devices
               data={[
                 { name: 'Desktop', value: 68.2, color: 'var(--mui-palette-primary-main)' },
@@ -73,7 +88,12 @@ export default function Page(): React.JSX.Element {
               ]}
             />
           </Grid>
-          <Grid lg={4} xs={12}>
+          <Grid
+            size={{
+              lg: 4,
+              xs: 12,
+            }}
+          >
             <InboundOutbound
               inbound={{
                 color: 'var(--mui-palette-error-main)',
@@ -97,7 +117,12 @@ export default function Page(): React.JSX.Element {
               }}
             />
           </Grid>
-          <Grid lg={4} xs={12}>
+          <Grid
+            size={{
+              lg: 4,
+              xs: 12,
+            }}
+          >
             <Insight
               insights={[
                 {

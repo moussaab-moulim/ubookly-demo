@@ -84,7 +84,7 @@ export function ThreadsView(): React.JSX.Element {
           </Tooltip>
         </Stack>
       </Stack>
-      {threads.length ? (
+      {threads.length > 0 ? (
         <React.Fragment>
           <Box
             sx={{

@@ -1,4 +1,4 @@
-import * as React from 'react';
+import type * as React from 'react';
 import type { Metadata } from 'next';
 import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box';
@@ -12,10 +12,10 @@ import { DotsThree as DotsThreeIcon } from '@phosphor-icons/react/dist/ssr/DotsT
 import { Image as ImageIcon } from '@phosphor-icons/react/dist/ssr/Image';
 import { UserPlus as UserPlusIcon } from '@phosphor-icons/react/dist/ssr/UserPlus';
 
-import { config } from '@/config';
+import { appConfig } from '@/config/app';
 import { ProfileTabs } from '@/components/dashboard/social/profile-tabs';
 
-export const metadata = { title: `Profile | Social | Dashboard | ${config.site.name}` } satisfies Metadata;
+export const metadata = { title: `Profile | Social | Dashboard | ${appConfig.name}` } satisfies Metadata;
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -35,7 +35,7 @@ export default function Layout({ children }: LayoutProps): React.JSX.Element {
         <Stack spacing={4}>
           <Box
             sx={{
-              backgroundImage: `url(/assets/image-abstract-2.png)`,
+              backgroundImage: 'url(/assets/image-abstract-2.png)',
               backgroundPosition: 'center',
               backgroundRepeat: 'no-repeat',
               backgroundSize: 'cover',

@@ -3,10 +3,11 @@
 import * as React from 'react';
 import { useRouter } from 'next/navigation';
 import Alert from '@mui/material/Alert';
+import type { SupabaseClient } from '@supabase/supabase-js';
 
 import { paths } from '@/paths';
 import { logger } from '@/lib/default-logger';
-import { createClient as createSupabaseClient } from '@/lib/supabase/client';
+import { createClient as createSupabaseClient } from '@/lib/supabase/browser';
 import { toast } from '@/components/core/toaster';
 
 // NOTE: This is a `Page` and not a `GET` route because
@@ -14,7 +15,7 @@ import { toast } from '@/components/core/toaster';
 //  Implicit Flow instead of PKCE Flow, such as `resend sign-up email` process.
 
 export default function Page(): React.JSX.Element | null {
-  const [supabaseClient] = React.useState(createSupabaseClient());
+  const [supabaseClient] = React.useState<SupabaseClient>(createSupabaseClient());
   const router = useRouter();
   const executedRef = React.useRef<boolean>(false);
   const [displayError, setDisplayError] = React.useState<string | null>(null);
@@ -30,9 +31,9 @@ export default function Page(): React.JSX.Element | null {
     // Callback `error` is received as a URL hash `#error=value`
     // Callback `access_token` is received as a URL hash `#access_token=value`
 
-    const hash = window.location.hash || '#';
+    const hash = globalThis.location.hash || '#';
     const hashParams = new URLSearchParams(hash.split('#')[1]);
-    const searchParams = new URLSearchParams(window.location.search);
+    const searchParams = new URLSearchParams(globalThis.location.search);
 
     if (hashParams.get('error')) {
       logger.debug(hashParams.get('error_description'));

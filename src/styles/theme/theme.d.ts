@@ -70,12 +70,14 @@ declare module '@mui/material/styles/createPalette' {
 
   interface Palette {
     neutral: PaletteRange;
+    shadow: string;
     Backdrop: { bg: string };
     OutlinedInput: { border: string };
   }
 
   interface PaletteOptions {
     neutral?: PaletteRange;
+    shadow?: string;
     Backdrop?: { bg?: string };
     OutlinedInput?: { border?: string };
   }

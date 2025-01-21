@@ -1,6 +1,7 @@
 'use client';
 
 import * as React from 'react';
+import { useRouter } from 'next/navigation';
 import Box from '@mui/material/Box';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import Menu from '@mui/material/Menu';
@@ -8,6 +9,8 @@ import MenuItem from '@mui/material/MenuItem';
 import Typography from '@mui/material/Typography';
 import { useTranslation } from 'react-i18next';
 
+import { setSettings as setPersistedSettings } from '@/lib/settings';
+import { useSettings } from '@/components/core/settings/settings-context';
 import { toast } from '@/components/core/toaster';
 
 export type Language = 'en' | 'de' | 'es';
@@ -31,15 +34,19 @@ export interface LanguagePopoverProps {
 }
 
 export function LanguagePopover({ anchorEl, onClose, open = false }: LanguagePopoverProps): React.JSX.Element {
-  const { i18n, t } = useTranslation();
+  const { settings } = useSettings();
+  const { t, i18n } = useTranslation();
+  const router = useRouter();
 
   const handleChange = React.useCallback(
     async (language: Language): Promise<void> => {
       onClose?.();
+      await setPersistedSettings({ ...settings, language });
       await i18n.changeLanguage(language);
-      toast.success(t('languageChanged'));
+      toast.success(t('common:languageChanged'));
+      router.refresh();
     },
-    [onClose, i18n, t]
+    [onClose, t, i18n, settings, router]
   );
 
   return (

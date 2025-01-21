@@ -97,7 +97,6 @@ export function SearchDialog({ onClose, open = false }: SearchDialogProps): Reac
           <form onSubmit={handleSubmit}>
             <OutlinedInput
               fullWidth
-              label="Search"
               onChange={(event) => {
                 setValue(event.target.value);
               }}

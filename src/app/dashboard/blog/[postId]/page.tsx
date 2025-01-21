@@ -1,4 +1,4 @@
-import * as React from 'react';
+import type * as React from 'react';
 import type { Metadata } from 'next';
 import RouterLink from 'next/link';
 import Avatar from '@mui/material/Avatar';
@@ -13,7 +13,7 @@ import Link from '@mui/material/Link';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 
-import { config } from '@/config';
+import { appConfig } from '@/config/app';
 import { paths } from '@/paths';
 import { dayjs } from '@/lib/dayjs';
 import { BreadcrumbsSeparator } from '@/components/core/breadcrumbs-separator';
@@ -23,7 +23,7 @@ import { Content } from '@/components/dashboard/blog/content';
 import { Newsletter } from '@/components/dashboard/blog/newsletter';
 import type { Comment } from '@/components/dashboard/blog/types';
 
-export const metadata = { title: `Details | Blog | Dashboard | ${config.site.name}` } satisfies Metadata;
+export const metadata = { title: `Details | Blog | Dashboard | ${appConfig.name}` } satisfies Metadata;
 
 const content = `## Cras at molestie lacus. Phasellus feugiat leo quis sem iaculis, sed mattis nibh accumsan.
 
