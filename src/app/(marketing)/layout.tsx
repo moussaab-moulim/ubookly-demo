@@ -25,7 +25,7 @@ export default function Layout({ children }: LayoutProps): React.JSX.Element {
       />
       <div>
         <MainNav />
-        {children}
+        <main>{children}</main>
         <Footer />
       </div>
     </React.Fragment>

@@ -127,7 +127,7 @@ export function CustomersTable({ rows }: CustomersTableProps): React.JSX.Element
         selectable
         selected={selected}
       />
-      {!rows.length ? (
+      {rows.length === 0 ? (
         <Box sx={{ p: 3 }}>
           <Typography color="text.secondary" sx={{ textAlign: 'center' }} variant="body2">
             No customers found

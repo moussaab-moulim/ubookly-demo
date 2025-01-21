@@ -10,8 +10,6 @@ import { Camera as CameraIcon } from '@phosphor-icons/react/dist/ssr/Camera';
 import { Paperclip as PaperclipIcon } from '@phosphor-icons/react/dist/ssr/Paperclip';
 import { PaperPlaneTilt as PaperPlaneTiltIcon } from '@phosphor-icons/react/dist/ssr/PaperPlaneTilt';
 
-import type { User } from '@/types/user';
-
 import type { MessageType } from './types';
 
 const user = {
@@ -19,7 +17,7 @@ const user = {
   name: 'Sofia Rivers',
   avatar: '/assets/avatar.png',
   email: 'sofia@devias.io',
-} satisfies User;
+} as const;
 
 export interface MessageAddProps {
   disabled?: boolean;

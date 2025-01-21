@@ -86,7 +86,7 @@ export function JobDetailsStep({ onBack, onNext }: JobDetailsStepProps): React.J
             />
           </FormControl>
           <Stack direction="row" spacing={1} sx={{ alignItems: 'center', flexWrap: 'wrap' }}>
-            {Array.from(tags.values()).map((tag) => (
+            {[...tags.values()].map((tag) => (
               <Chip
                 key={tag}
                 label={tag}

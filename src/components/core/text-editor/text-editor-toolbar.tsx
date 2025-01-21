@@ -55,9 +55,9 @@ export function TextEditorToolbar({ editor }: TextEditorToolbarProps): React.JSX
                 }
 
                 if (value.startsWith('h')) {
-                  const level = parseInt(value.replace('h', '')) as HeadlingLevel;
+                  const level = Number.parseInt(value.replace('h', '')) as HeadlingLevel;
 
-                  if (!isNaN(level) && level >= 1 && level <= 6) {
+                  if (!Number.isNaN(level) && level >= 1 && level <= 6) {
                     editor.chain().focus().setHeading({ level }).run();
                   }
                 }

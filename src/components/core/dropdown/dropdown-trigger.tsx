@@ -22,5 +22,5 @@ export function DropdownTrigger({ children }: DropdownButtonProps): React.JSX.El
       (children.props as { onMouseLeave?: (event: React.MouseEvent<HTMLElement>) => void }).onMouseLeave?.(event);
       onTriggerMouseLeave(event);
     },
-  });
+  } as React.Attributes);
 }

@@ -1,4 +1,4 @@
-import * as React from 'react';
+import type * as React from 'react';
 import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
@@ -6,10 +6,10 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardHeader from '@mui/material/CardHeader';
 import Divider from '@mui/material/Divider';
+import Grid from '@mui/material/Grid2';
 import Link from '@mui/material/Link';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
-import Grid from '@mui/material/Unstable_Grid2';
 import { CreditCard as CreditCardIcon } from '@phosphor-icons/react/dist/ssr/CreditCard';
 import { PencilSimple as PencilSimpleIcon } from '@phosphor-icons/react/dist/ssr/PencilSimple';
 
@@ -44,7 +44,13 @@ export function Plans(): React.JSX.Element {
           <Stack spacing={3}>
             <Grid container spacing={3}>
               {plans.map((plan) => (
-                <Grid key={plan.id} md={4} xs={12}>
+                <Grid
+                  key={plan.id}
+                  size={{
+                    md: 4,
+                    xs: 12,
+                  }}
+                >
                   <PlanCard isCurrent={plan.id === currentPlanId} plan={plan} />
                 </Grid>
               ))}

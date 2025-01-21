@@ -10,6 +10,7 @@ import Chip from '@mui/material/Chip';
 import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
 import Stack from '@mui/material/Stack';
+import { useColorScheme } from '@mui/material/styles';
 import Tooltip from '@mui/material/Tooltip';
 import Typography from '@mui/material/Typography';
 import { ArrowSquareOut as ArrowSquareOutIcon } from '@phosphor-icons/react/dist/ssr/ArrowSquareOut';
@@ -19,16 +20,14 @@ import { CaretRight as CaretRightIcon } from '@phosphor-icons/react/dist/ssr/Car
 import { List as ListIcon } from '@phosphor-icons/react/dist/ssr/List';
 import { MagnifyingGlass as MagnifyingGlassIcon } from '@phosphor-icons/react/dist/ssr/MagnifyingGlass';
 import { Users as UsersIcon } from '@phosphor-icons/react/dist/ssr/Users';
-import { useTranslation } from 'next-i18next';
+import { useTranslation } from 'react-i18next';
 
 import type { NavItemConfig } from '@/types/nav';
-import type { NavColor } from '@/types/settings';
-import type { User } from '@/types/user';
+import type { DashboardNavColor } from '@/types/settings';
 import { paths } from '@/paths';
 import { isNavItemActive } from '@/lib/is-nav-item-active';
 import { useDialog } from '@/hooks/use-dialog';
 import { usePopover } from '@/hooks/use-popover';
-import { useSettings } from '@/hooks/use-settings';
 import { Dropdown } from '@/components/core/dropdown/dropdown';
 import { DropdownPopover } from '@/components/core/dropdown/dropdown-popover';
 import { DropdownTrigger } from '@/components/core/dropdown/dropdown-trigger';
@@ -42,17 +41,17 @@ import type { Language } from '../language-popover';
 import { MobileNav } from '../mobile-nav';
 import { icons } from '../nav-icons';
 import { NotificationsPopover } from '../notifications-popover';
-import { UserPopover } from '../user-popover/user-popover';
+import { UserPopover } from '../user-popover';
 import { WorkspacesSwitch } from '../workspaces-switch';
 import { navColorStyles } from './styles';
 
 const logoColors = {
   dark: { blend_in: 'light', discrete: 'light', evident: 'light' },
   light: { blend_in: 'dark', discrete: 'dark', evident: 'light' },
-} as Record<ColorScheme, Record<NavColor, 'dark' | 'light'>>;
+} as Record<ColorScheme, Record<DashboardNavColor, 'dark' | 'light'>>;
 
 export interface MainNavProps {
-  color?: NavColor;
+  color?: DashboardNavColor;
   items?: NavItemConfig[];
 }
 
@@ -61,9 +60,7 @@ export function MainNav({ color = 'evident', items = [] }: MainNavProps): React.
 
   const [openNav, setOpenNav] = React.useState<boolean>(false);
 
-  const {
-    settings: { colorScheme = 'light' },
-  } = useSettings();
+  const { colorScheme = 'light' } = useColorScheme();
 
   const styles = navColorStyles[colorScheme][color];
   const logoColor = logoColors[colorScheme][color];
@@ -228,7 +225,7 @@ const user = {
   name: 'Sofia Rivers',
   avatar: '/assets/avatar.png',
   email: 'sofia@devias.io',
-} satisfies User;
+} as const;
 
 function UserButton(): React.JSX.Element {
   const popover = usePopover<HTMLButtonElement>();

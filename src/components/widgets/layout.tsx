@@ -1,4 +1,4 @@
-import * as React from 'react';
+import type * as React from 'react';
 import RouterLink from 'next/link';
 import Box from '@mui/material/Box';
 import Breadcrumbs from '@mui/material/Breadcrumbs';
@@ -25,7 +25,7 @@ export interface LayoutProps {
 
 export function Layout({ breadcrumbs, components, title }: LayoutProps): React.JSX.Element {
   return (
-    <main>
+    <div>
       <Box
         sx={{
           bgcolor: 'var(--mui-palette-background-level1)',
@@ -35,7 +35,7 @@ export function Layout({ breadcrumbs, components, title }: LayoutProps): React.J
       >
         <Container maxWidth="lg">
           <Stack spacing={3}>
-            {!breadcrumbs ? (
+            {breadcrumbs ? null : (
               <div>
                 <Link
                   color="text.primary"
@@ -48,7 +48,7 @@ export function Layout({ breadcrumbs, components, title }: LayoutProps): React.J
                   Components
                 </Link>
               </div>
-            ) : null}
+            )}
             <div>
               <Typography variant="h1">{title}</Typography>
             </div>
@@ -93,6 +93,6 @@ export function Layout({ breadcrumbs, components, title }: LayoutProps): React.J
           </Stack>
         </Container>
       </Box>
-    </main>
+    </div>
   );
 }

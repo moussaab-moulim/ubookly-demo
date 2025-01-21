@@ -1,12 +1,12 @@
-import * as React from 'react';
+import type * as React from 'react';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Chip from '@mui/material/Chip';
 import Container from '@mui/material/Container';
+import Grid from '@mui/material/Grid2';
 import Stack from '@mui/material/Stack';
 import Switch from '@mui/material/Switch';
 import Typography from '@mui/material/Typography';
-import Grid from '@mui/material/Unstable_Grid2';
 
 import { Plan } from './plan';
 
@@ -30,7 +30,12 @@ export function PlansTable(): React.JSX.Element {
           </Stack>
           <div>
             <Grid container spacing={3}>
-              <Grid md={4} xs={12}>
+              <Grid
+                size={{
+                  md: 4,
+                  xs: 12,
+                }}
+              >
                 <Plan
                   action={<Button variant="outlined">Select</Button>}
                   currency="USD"
@@ -41,7 +46,12 @@ export function PlansTable(): React.JSX.Element {
                   price={0}
                 />
               </Grid>
-              <Grid md={4} xs={12}>
+              <Grid
+                size={{
+                  md: 4,
+                  xs: 12,
+                }}
+              >
                 <Plan
                   action={<Button variant="contained">Start free trial</Button>}
                   currency="USD"
@@ -53,7 +63,12 @@ export function PlansTable(): React.JSX.Element {
                   price={14.99}
                 />
               </Grid>
-              <Grid md={4} xs={12}>
+              <Grid
+                size={{
+                  md: 4,
+                  xs: 12,
+                }}
+              >
                 <Plan
                   action={
                     <Button color="secondary" variant="contained">

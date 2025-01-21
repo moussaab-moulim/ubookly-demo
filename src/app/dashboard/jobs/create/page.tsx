@@ -1,13 +1,13 @@
-import * as React from 'react';
+import type * as React from 'react';
 import type { Metadata } from 'next';
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 
-import { config } from '@/config';
+import { appConfig } from '@/config/app';
 import { JobCreateForm } from '@/components/dashboard/jobs/job-create-form';
 
-export const metadata = { title: `Create | Jobs | Dashboard | ${config.site.name}` } satisfies Metadata;
+export const metadata = { title: `Create | Jobs | Dashboard | ${appConfig.name}` } satisfies Metadata;
 
 export default function Page(): React.JSX.Element {
   return (

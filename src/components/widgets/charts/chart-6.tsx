@@ -1,6 +1,6 @@
 'use client';
 
-import * as React from 'react';
+import type * as React from 'react';
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
@@ -19,13 +19,13 @@ const bars = [
 ] satisfies { name: string; dataKey: string; color: string }[];
 
 const data = [
-  { name: 'Capital One', v1: 12382, v2: 7321, v3: 11492 },
-  { name: 'Ally Bank', v1: 24491, v2: 16491, v3: 27592 },
-  { name: 'ING', v1: 36192, v2: 47515, v3: 24912 },
-  { name: 'Ridgewood', v1: 48921, v2: 58420, v3: 32015 },
-  { name: 'BT Transilvania', v1: 60521, v2: 40590, v3: 82234 },
-  { name: 'CEC', v1: 72419, v2: 49105, v3: 56391 },
-  { name: 'CBC', v1: 24421, v2: 43235, v3: 21612 },
+  { name: 'Capital One', v1: 12_382, v2: 7321, v3: 11_492 },
+  { name: 'Ally Bank', v1: 24_491, v2: 16_491, v3: 27_592 },
+  { name: 'ING', v1: 36_192, v2: 47_515, v3: 24_912 },
+  { name: 'Ridgewood', v1: 48_921, v2: 58_420, v3: 32_015 },
+  { name: 'BT Transilvania', v1: 60_521, v2: 40_590, v3: 82_234 },
+  { name: 'CEC', v1: 72_419, v2: 49_105, v3: 56_391 },
+  { name: 'CBC', v1: 24_421, v2: 43_235, v3: 21_612 },
 ] satisfies { name: string; v1: number; v2: number; v3: number }[];
 
 export function Chart6(): React.JSX.Element {

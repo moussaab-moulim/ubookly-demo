@@ -5,7 +5,7 @@ import * as React from 'react';
 import type { Contact, Message, MessageType, Participant, Thread } from './types';
 
 function noop(): void {
-  return undefined;
+  // No operation
 }
 
 export type CreateThreadParams = { type: 'direct'; recipientId: string } | { type: 'group'; recipientIds: string[] };
@@ -130,7 +130,7 @@ export function ChatProvider({
 
         participants.push({ id: contact.id, name: contact.name, avatar: contact.avatar });
       } else {
-        params.recipientIds.forEach((recipientId) => {
+        for (const recipientId of params.recipientIds) {
           const contact = contacts.find((contact) => contact.id === recipientId);
 
           if (!contact) {
@@ -138,7 +138,7 @@ export function ChatProvider({
           }
 
           participants.push({ id: contact.id, name: contact.name, avatar: contact.avatar });
-        });
+        }
       }
 
       thread = { id: `TRD-${Date.now()}`, type: params.type, participants, unreadCount: 0 } satisfies Thread;
@@ -191,10 +191,10 @@ export function ChatProvider({
       const updatedMessages = new Map<string, Message[]>(messages);
 
       // Add it to the messages
-      if (!updatedMessages.has(params.threadId)) {
-        updatedMessages.set(params.threadId, [message]);
-      } else {
+      if (updatedMessages.has(params.threadId)) {
         updatedMessages.set(params.threadId, [...updatedMessages.get(params.threadId)!, message]);
+      } else {
+        updatedMessages.set(params.threadId, [message]);
       }
 
       // Dispatch messages update

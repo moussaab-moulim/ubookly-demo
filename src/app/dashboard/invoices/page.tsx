@@ -1,4 +1,4 @@
-import * as React from 'react';
+import type * as React from 'react';
 import type { Metadata } from 'next';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
@@ -6,7 +6,7 @@ import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import { Plus as PlusIcon } from '@phosphor-icons/react/dist/ssr/Plus';
 
-import { config } from '@/config';
+import { appConfig } from '@/config/app';
 import { dayjs } from '@/lib/dayjs';
 import { InvoicesFiltersCard } from '@/components/dashboard/invoice//invoices-filters-card';
 import { InvoicesPagination } from '@/components/dashboard/invoice//invoices-pagination';
@@ -18,7 +18,7 @@ import { InvoicesFiltersButton } from '@/components/dashboard/invoice/invoices-f
 import { InvoicesSort } from '@/components/dashboard/invoice/invoices-sort';
 import type { Invoice } from '@/components/dashboard/invoice/invoices-table';
 
-export const metadata = { title: `List | Invoices | Dashboard | ${config.site.name}` } satisfies Metadata;
+export const metadata = { title: `List | Invoices | Dashboard | ${appConfig.name}` } satisfies Metadata;
 
 const invoices = [
   {
@@ -69,7 +69,7 @@ const invoices = [
 ] satisfies Invoice[];
 
 interface PageProps {
-  searchParams: {
+  searchParams: Promise<{
     customer?: string;
     endDate?: string;
     id?: string;
@@ -77,11 +77,11 @@ interface PageProps {
     startDate?: string;
     status?: string;
     view?: 'group' | 'list';
-  };
+  }>;
 }
 
-export default function Page({ searchParams }: PageProps): React.JSX.Element {
-  const { customer, endDate, id, sortDir, startDate, status, view = 'group' } = searchParams;
+export default async function Page({ searchParams }: PageProps): Promise<React.JSX.Element> {
+  const { customer, endDate, id, sortDir, startDate, status, view = 'group' } = await searchParams;
 
   const filters = { customer, endDate, id, startDate, status };
 
@@ -140,34 +140,24 @@ function applySort(row: Invoice[], sortDir: 'asc' | 'desc' | undefined): Invoice
 
 function applyFilters(row: Invoice[], { customer, id, endDate, status, startDate }: Filters): Invoice[] {
   return row.filter((item) => {
-    if (id) {
-      if (!item.id.toLowerCase().includes(id.toLowerCase())) {
-        return false;
-      }
+    if (id && !item.id.toLowerCase().includes(id.toLowerCase())) {
+      return false;
     }
 
-    if (status) {
-      if (item.status !== status) {
-        return false;
-      }
+    if (status && item.status !== status) {
+      return false;
     }
 
-    if (customer) {
-      if (!item.customer.name?.toLowerCase().includes(customer.toLowerCase())) {
-        return false;
-      }
+    if (customer && !item.customer.name?.toLowerCase().includes(customer.toLowerCase())) {
+      return false;
     }
 
-    if (startDate) {
-      if (dayjs(item.issueDate).isBefore(dayjs(startDate))) {
-        return false;
-      }
+    if (startDate && dayjs(item.issueDate).isBefore(dayjs(startDate))) {
+      return false;
     }
 
-    if (endDate) {
-      if (dayjs(item.issueDate).isAfter(dayjs(endDate).add(1, 'day'))) {
-        return false;
-      }
+    if (endDate && dayjs(item.issueDate).isAfter(dayjs(endDate).add(1, 'day'))) {
+      return false;
     }
 
     return true;

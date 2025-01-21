@@ -1,4 +1,4 @@
-import * as React from 'react';
+import type * as React from 'react';
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import Divider from '@mui/material/Divider';
@@ -67,7 +67,7 @@ interface PlanIconProps {
 
 function PlanIcon({ name }: PlanIconProps): React.JSX.Element | null {
   switch (name) {
-    case 'startup':
+    case 'startup': {
       return (
         <svg fill="none" height="33" viewBox="0 0 24 33" width="24" xmlns="http://www.w3.org/2000/svg">
           <path
@@ -76,7 +76,8 @@ function PlanIcon({ name }: PlanIconProps): React.JSX.Element | null {
           />
         </svg>
       );
-    case 'standard':
+    }
+    case 'standard': {
       return (
         <svg fill="none" height="33" viewBox="0 0 33 33" width="33" xmlns="http://www.w3.org/2000/svg">
           <path
@@ -90,7 +91,8 @@ function PlanIcon({ name }: PlanIconProps): React.JSX.Element | null {
           />
         </svg>
       );
-    case 'business':
+    }
+    case 'business': {
       return (
         <svg fill="none" height="33" viewBox="0 0 43 33" width="43" xmlns="http://www.w3.org/2000/svg">
           <path
@@ -109,7 +111,9 @@ function PlanIcon({ name }: PlanIconProps): React.JSX.Element | null {
           />
         </svg>
       );
-    default:
+    }
+    default: {
       return null;
+    }
   }
 }

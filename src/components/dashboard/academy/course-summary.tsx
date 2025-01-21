@@ -1,4 +1,4 @@
-import * as React from 'react';
+import type * as React from 'react';
 import LinearProgress from '@mui/material/LinearProgress';
 import Stack from '@mui/material/Stack';
 import Step from '@mui/material/Step';

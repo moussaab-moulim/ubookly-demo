@@ -1,4 +1,4 @@
-import * as React from 'react';
+import type * as React from 'react';
 import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
@@ -6,9 +6,9 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Chip from '@mui/material/Chip';
 import Divider from '@mui/material/Divider';
+import Grid from '@mui/material/Grid2';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
-import Grid from '@mui/material/Unstable_Grid2';
 
 interface Applicant {
   id: string;
@@ -33,7 +33,7 @@ const applicants = [
     name: 'Sofia Rivers',
     avatar: '/assets/avatar.png',
     cover: '/assets/image-abstract-1.png',
-    skills: ['Backend development', 'Firebase', 'MongoDB', 'ExpressJS'],
+    skills: ['Backend development', 'Supabase', 'MongoDB', 'ExpressJS'],
     commonContacts: 17,
   },
   {
@@ -51,7 +51,14 @@ export function GridList4(): React.JSX.Element {
     <Box sx={{ bgcolor: 'var(--mui-palette-background-level1)', p: 3 }}>
       <Grid container spacing={3}>
         {applicants.map((applicant) => (
-          <Grid key={applicant.id} md={4} sm={6} xs={12}>
+          <Grid
+            key={applicant.id}
+            size={{
+              md: 4,
+              sm: 6,
+              xs: 12,
+            }}
+          >
             <Card sx={{ height: '100%' }}>
               <CardMedia image={applicant.cover} sx={{ height: '200px' }} />
               <Box sx={{ display: 'flex', justifyContent: 'center', mt: '-50px' }}>

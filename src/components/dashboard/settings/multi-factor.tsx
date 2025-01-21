@@ -1,4 +1,4 @@
-import * as React from 'react';
+import type * as React from 'react';
 import Alert from '@mui/material/Alert';
 import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box';
@@ -6,9 +6,9 @@ import Button from '@mui/material/Button';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardHeader from '@mui/material/CardHeader';
+import Grid from '@mui/material/Grid2';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
-import Grid from '@mui/material/Unstable_Grid2';
 import { ArrowRight as ArrowRightIcon } from '@phosphor-icons/react/dist/ssr/ArrowRight';
 import { Key as KeyIcon } from '@phosphor-icons/react/dist/ssr/Key';
 
@@ -26,7 +26,12 @@ export function MultiFactor(): React.JSX.Element {
       <CardContent>
         <Stack spacing={3}>
           <Grid container spacing={3}>
-            <Grid xl={6} xs={12}>
+            <Grid
+              size={{
+                xl: 6,
+                xs: 12,
+              }}
+            >
               <Card sx={{ height: '100%' }} variant="outlined">
                 <CardContent>
                   <Stack spacing={4}>
@@ -59,7 +64,12 @@ export function MultiFactor(): React.JSX.Element {
                 </CardContent>
               </Card>
             </Grid>
-            <Grid xl={6} xs={12}>
+            <Grid
+              size={{
+                xl: 6,
+                xs: 12,
+              }}
+            >
               <Card sx={{ height: '100%' }} variant="outlined">
                 <CardContent>
                   <Stack spacing={4}>

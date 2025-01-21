@@ -1,4 +1,4 @@
-import * as React from 'react';
+import type * as React from 'react';
 import IconButton from '@mui/material/IconButton';
 import Stack from '@mui/material/Stack';
 import { Trash as TrashIcon } from '@phosphor-icons/react/dist/ssr/Trash';

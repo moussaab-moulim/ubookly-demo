@@ -1,4 +1,4 @@
-import * as React from 'react';
+import type * as React from 'react';
 import type { Metadata } from 'next';
 import RouterLink from 'next/link';
 import Box from '@mui/material/Box';
@@ -7,10 +7,10 @@ import Container from '@mui/material/Container';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 
-import { config } from '@/config';
+import { appConfig } from '@/config/app';
 import { paths } from '@/paths';
 
-export const metadata = { title: `Not found | ${config.site.name}` } satisfies Metadata;
+export const metadata = { title: `Not found | ${appConfig.name}` } satisfies Metadata;
 
 export default function NotFound(): React.JSX.Element {
   return (

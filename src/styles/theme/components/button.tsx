@@ -20,11 +20,7 @@ function getOutlinedVars(color: string, dark: boolean): Record<string, string> {
 
   // Custom case for secondary
   if (color === 'secondary') {
-    if (dark) {
-      vars['--Button-outlinedBorder'] = 'var(--mui-palette-secondary-700)';
-    } else {
-      vars['--Button-outlinedBorder'] = 'var(--mui-palette-secondary-200)';
-    }
+    vars['--Button-outlinedBorder'] = dark ? 'var(--mui-palette-secondary-700)' : 'var(--mui-palette-secondary-200)';
   }
 
   return vars;

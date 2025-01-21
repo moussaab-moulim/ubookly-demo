@@ -8,7 +8,7 @@ import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import { Plus as PlusIcon } from '@phosphor-icons/react/dist/ssr/Plus';
 
-import { config } from '@/config';
+import { appConfig } from '@/config/app';
 import { dayjs } from '@/lib/dayjs';
 import { OrderModal } from '@/components/dashboard/order/order-modal';
 import { OrdersFilters } from '@/components/dashboard/order/orders-filters';
@@ -18,7 +18,7 @@ import { OrdersSelectionProvider } from '@/components/dashboard/order/orders-sel
 import { OrdersTable } from '@/components/dashboard/order/orders-table';
 import type { Order } from '@/components/dashboard/order/orders-table';
 
-export const metadata = { title: `List | Orders | Dashboard | ${config.site.name}` } satisfies Metadata;
+export const metadata = { title: `List | Orders | Dashboard | ${appConfig.name}` } satisfies Metadata;
 
 const orders = [
   {
@@ -74,11 +74,17 @@ const orders = [
 ] satisfies Order[];
 
 interface PageProps {
-  searchParams: { customer?: string; id?: string; previewId?: string; sortDir?: 'asc' | 'desc'; status?: string };
+  searchParams: Promise<{
+    customer?: string;
+    id?: string;
+    previewId?: string;
+    sortDir?: 'asc' | 'desc';
+    status?: string;
+  }>;
 }
 
-export default function Page({ searchParams }: PageProps): React.JSX.Element {
-  const { customer, id, previewId, sortDir, status } = searchParams;
+export default async function Page({ searchParams }: PageProps): Promise<React.JSX.Element> {
+  const { customer, id, previewId, sortDir, status } = await searchParams;
 
   const sortedOrders = applySort(orders, sortDir);
   const filteredOrders = applyFilters(sortedOrders, { customer, id, status });
@@ -136,22 +142,16 @@ function applySort(row: Order[], sortDir: 'asc' | 'desc' | undefined): Order[] {
 
 function applyFilters(row: Order[], { customer, id, status }: Filters): Order[] {
   return row.filter((item) => {
-    if (customer) {
-      if (!item.customer?.name?.toLowerCase().includes(customer.toLowerCase())) {
-        return false;
-      }
+    if (customer && !item.customer?.name?.toLowerCase().includes(customer.toLowerCase())) {
+      return false;
     }
 
-    if (id) {
-      if (!item.id?.toLowerCase().includes(id.toLowerCase())) {
-        return false;
-      }
+    if (id && !item.id?.toLowerCase().includes(id.toLowerCase())) {
+      return false;
     }
 
-    if (status) {
-      if (item.status !== status) {
-        return false;
-      }
+    if (status && item.status !== status) {
+      return false;
     }
 
     return true;

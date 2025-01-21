@@ -23,4 +23,4 @@ dayjs.updateLocale('en', {
   },
 });
 
-export { dayjs };
+export { default as dayjs } from 'dayjs';

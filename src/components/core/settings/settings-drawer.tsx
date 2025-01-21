@@ -10,6 +10,7 @@ import { ArrowCounterClockwise as ArrowCounterClockwiseIcon } from '@phosphor-ic
 import { X as XIcon } from '@phosphor-icons/react/dist/ssr/X';
 
 import type { Settings } from '@/types/settings';
+import type { Mode } from '@/styles/theme/types';
 
 import { OptionsColorScheme } from './options-color-scheme';
 import { OptionsDirection } from './options-direction';
@@ -21,9 +22,9 @@ export interface SettingsDrawerProps {
   canReset?: boolean;
   onClose?: () => void;
   onReset?: () => void;
-  onUpdate?: (settings: Partial<Settings>) => void;
+  onUpdate?: (settings: Settings) => void;
   open?: boolean;
-  values?: Partial<Settings>;
+  values?: Settings & { theme?: Mode };
 }
 
 export function SettingsDrawer({
@@ -35,7 +36,7 @@ export function SettingsDrawer({
   values = {},
 }: SettingsDrawerProps): React.JSX.Element {
   const handleChange = React.useCallback(
-    (field: keyof Settings, value: unknown) => {
+    (field: keyof Settings | 'theme', value: unknown) => {
       onUpdate?.({ [field]: value });
     },
     [onUpdate]
@@ -77,21 +78,21 @@ export function SettingsDrawer({
         />
         <OptionsColorScheme
           onChange={(value) => {
-            handleChange('colorScheme', value);
+            handleChange('theme', value);
           }}
-          value={values.colorScheme}
+          value={values.theme}
         />
         <OptionsNavColor
           onChange={(value) => {
-            handleChange('navColor', value);
+            handleChange('dashboardNavColor', value);
           }}
-          value={values.navColor}
+          value={values.dashboardNavColor}
         />
         <OptionsLayout
           onChange={(value) => {
-            handleChange('layout', value);
+            handleChange('dashboardLayout', value);
           }}
-          value={values.layout}
+          value={values.dashboardLayout}
         />
         <OptionsDirection
           onChange={(value) => {

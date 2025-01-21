@@ -1,15 +1,15 @@
-import * as React from 'react';
+import type * as React from 'react';
 import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import CardActionArea from '@mui/material/CardActionArea';
 import CardMedia from '@mui/material/CardMedia';
+import Grid from '@mui/material/Grid2';
 import IconButton from '@mui/material/IconButton';
 import Link from '@mui/material/Link';
 import Stack from '@mui/material/Stack';
 import Tooltip from '@mui/material/Tooltip';
 import Typography from '@mui/material/Typography';
-import Grid from '@mui/material/Unstable_Grid2';
 import { Clock as ClockIcon } from '@phosphor-icons/react/dist/ssr/Clock';
 import { Heart as HeartIcon } from '@phosphor-icons/react/dist/ssr/Heart';
 import { ShareNetwork as ShareNetworkIcon } from '@phosphor-icons/react/dist/ssr/ShareNetwork';
@@ -52,7 +52,13 @@ export function GridList5(): React.JSX.Element {
     <Box sx={{ bgcolor: 'var(--mui-palette-background-level1)', p: 3 }}>
       <Grid container spacing={3}>
         {posts.map((post) => (
-          <Grid key={post.id} sm={6} xs={12}>
+          <Grid
+            key={post.id}
+            size={{
+              sm: 6,
+              xs: 12,
+            }}
+          >
             <Card sx={{ height: '100%' }}>
               <Stack spacing={2} sx={{ p: 3 }}>
                 <Stack direction="row" spacing={2} sx={{ alignItems: 'center' }}>

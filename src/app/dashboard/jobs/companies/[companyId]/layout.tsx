@@ -1,4 +1,4 @@
-import * as React from 'react';
+import type * as React from 'react';
 import type { Metadata } from 'next';
 import RouterLink from 'next/link';
 import Avatar from '@mui/material/Avatar';
@@ -6,19 +6,19 @@ import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Divider from '@mui/material/Divider';
+import Grid from '@mui/material/Grid2';
 import Link from '@mui/material/Link';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
-import Grid from '@mui/material/Unstable_Grid2';
 import { ArrowLeft as ArrowLeftIcon } from '@phosphor-icons/react/dist/ssr/ArrowLeft';
 
-import { config } from '@/config';
+import { appConfig } from '@/config/app';
 import { paths } from '@/paths';
 import { PropertyItem } from '@/components/core/property-item';
 import { PropertyList } from '@/components/core/property-list';
 import { CompanyTabs } from '@/components/dashboard/jobs/company-tabs';
 
-export const metadata = { title: `Company | Jobs | Dashboard | ${config.site.name}` } satisfies Metadata;
+export const metadata = { title: `Company | Jobs | Dashboard | ${appConfig.name}` } satisfies Metadata;
 
 interface Founder {
   id: string;
@@ -61,7 +61,12 @@ export default function Layout({ children }: LayoutProps): React.JSX.Element {
           </Link>
         </div>
         <Grid container spacing={4}>
-          <Grid lg={8} xs={12}>
+          <Grid
+            size={{
+              lg: 8,
+              xs: 12,
+            }}
+          >
             <Card>
               <Stack direction="row" spacing={2} sx={{ alignItems: 'center', p: 3 }}>
                 <Avatar src="/assets/company-avatar-1.png" variant="rounded" />
@@ -78,7 +83,12 @@ export default function Layout({ children }: LayoutProps): React.JSX.Element {
               <CardContent>{children}</CardContent>
             </Card>
           </Grid>
-          <Grid lg={4} xs={12}>
+          <Grid
+            size={{
+              lg: 4,
+              xs: 12,
+            }}
+          >
             <Card>
               <CardContent>
                 <Stack divider={<Divider />} spacing={2}>

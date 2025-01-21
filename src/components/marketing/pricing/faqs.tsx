@@ -1,9 +1,9 @@
-import * as React from 'react';
+import type * as React from 'react';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
+import Grid from '@mui/material/Grid2';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
-import Grid from '@mui/material/Unstable_Grid2';
 
 import { Faq } from './faq';
 
@@ -45,7 +45,12 @@ export function Faqs(): React.JSX.Element {
     <Box sx={{ py: '120px' }}>
       <Container maxWidth="lg">
         <Grid container spacing={3}>
-          <Grid md={6} xs={12}>
+          <Grid
+            size={{
+              md: 6,
+              xs: 12,
+            }}
+          >
             <Stack spacing={2}>
               <Typography variant="h3">Everything you need to know</Typography>
               <Typography color="text.secondary" variant="subtitle2">
@@ -53,7 +58,12 @@ export function Faqs(): React.JSX.Element {
               </Typography>
             </Stack>
           </Grid>
-          <Grid md={6} xs={12}>
+          <Grid
+            size={{
+              md: 6,
+              xs: 12,
+            }}
+          >
             <Stack spacing={3}>
               {faqs.map((faq) => (
                 <Faq key={faq.id} {...faq} />

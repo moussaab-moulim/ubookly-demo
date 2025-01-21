@@ -1,4 +1,4 @@
-import * as React from 'react';
+import type * as React from 'react';
 import type { Metadata } from 'next';
 import RouterLink from 'next/link';
 import Avatar from '@mui/material/Avatar';
@@ -9,12 +9,12 @@ import CardContent from '@mui/material/CardContent';
 import CardHeader from '@mui/material/CardHeader';
 import Chip from '@mui/material/Chip';
 import Divider from '@mui/material/Divider';
+import Grid from '@mui/material/Grid2';
 import IconButton from '@mui/material/IconButton';
 import LinearProgress from '@mui/material/LinearProgress';
 import Link from '@mui/material/Link';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
-import Grid from '@mui/material/Unstable_Grid2';
 import { ArrowLeft as ArrowLeftIcon } from '@phosphor-icons/react/dist/ssr/ArrowLeft';
 import { CaretDown as CaretDownIcon } from '@phosphor-icons/react/dist/ssr/CaretDown';
 import { CheckCircle as CheckCircleIcon } from '@phosphor-icons/react/dist/ssr/CheckCircle';
@@ -25,7 +25,7 @@ import { Plus as PlusIcon } from '@phosphor-icons/react/dist/ssr/Plus';
 import { ShieldWarning as ShieldWarningIcon } from '@phosphor-icons/react/dist/ssr/ShieldWarning';
 import { User as UserIcon } from '@phosphor-icons/react/dist/ssr/User';
 
-import { config } from '@/config';
+import { appConfig } from '@/config/app';
 import { paths } from '@/paths';
 import { dayjs } from '@/lib/dayjs';
 import { PropertyItem } from '@/components/core/property-item';
@@ -35,7 +35,7 @@ import { Payments } from '@/components/dashboard/customer/payments';
 import type { Address } from '@/components/dashboard/customer/shipping-address';
 import { ShippingAddress } from '@/components/dashboard/customer/shipping-address';
 
-export const metadata = { title: `Details | Customers | Dashboard | ${config.site.name}` } satisfies Metadata;
+export const metadata = { title: `Details | Customers | Dashboard | ${appConfig.name}` } satisfies Metadata;
 
 export default function Page(): React.JSX.Element {
   return (
@@ -89,7 +89,12 @@ export default function Page(): React.JSX.Element {
           </Stack>
         </Stack>
         <Grid container spacing={4}>
-          <Grid lg={4} xs={12}>
+          <Grid
+            size={{
+              lg: 4,
+              xs: 12,
+            }}
+          >
             <Stack spacing={4}>
               <Card>
                 <CardHeader
@@ -160,7 +165,12 @@ export default function Page(): React.JSX.Element {
               </Card>
             </Stack>
           </Grid>
-          <Grid lg={8} xs={12}>
+          <Grid
+            size={{
+              lg: 8,
+              xs: 12,
+            }}
+          >
             <Stack spacing={4}>
               <Payments
                 ordersValue={2069.48}
@@ -276,7 +286,13 @@ export default function Page(): React.JSX.Element {
                         },
                       ] satisfies Address[]
                     ).map((address) => (
-                      <Grid key={address.id} md={6} xs={12}>
+                      <Grid
+                        key={address.id}
+                        size={{
+                          md: 6,
+                          xs: 12,
+                        }}
+                      >
                         <ShippingAddress address={address} />
                       </Grid>
                     ))}

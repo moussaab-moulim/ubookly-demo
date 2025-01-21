@@ -5,7 +5,7 @@ import * as React from 'react';
 import type { Item } from './types';
 
 function noop(): void {
-  return undefined;
+  // No operation
 }
 
 export interface StorageContextValue {

@@ -1,6 +1,6 @@
 'use client';
 
-import * as React from 'react';
+import type * as React from 'react';
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
@@ -18,18 +18,18 @@ const bars = [
 ] satisfies { name: string; dataKey: string; color: string }[];
 
 const data = [
-  { name: 'Jan', v1: 54928, v2: 24923 },
-  { name: 'Feb', v1: 49836, v2: 11493 },
-  { name: 'Mar', v1: 54921, v2: 45923 },
-  { name: 'Apr', v1: 84701, v2: 66023 },
-  { name: 'May', v1: 39593, v2: 23012 },
-  { name: 'Jun', v1: 14492, v2: 18234 },
-  { name: 'Jul', v1: 54392, v2: 23958 },
-  { name: 'Aug', v1: 27606, v2: 10644 },
-  { name: 'Sep', v1: 45027, v2: 21823 },
-  { name: 'Oct', v1: 39592, v2: 37231 },
-  { name: 'Nov', v1: 48459, v2: 23105 },
-  { name: 'Dec', v1: 20502, v2: 13819 },
+  { name: 'Jan', v1: 54_928, v2: 24_923 },
+  { name: 'Feb', v1: 49_836, v2: 11_493 },
+  { name: 'Mar', v1: 54_921, v2: 45_923 },
+  { name: 'Apr', v1: 84_701, v2: 66_023 },
+  { name: 'May', v1: 39_593, v2: 23_012 },
+  { name: 'Jun', v1: 14_492, v2: 18_234 },
+  { name: 'Jul', v1: 54_392, v2: 23_958 },
+  { name: 'Aug', v1: 27_606, v2: 10_644 },
+  { name: 'Sep', v1: 45_027, v2: 21_823 },
+  { name: 'Oct', v1: 39_592, v2: 37_231 },
+  { name: 'Nov', v1: 48_459, v2: 23_105 },
+  { name: 'Dec', v1: 20_502, v2: 13_819 },
 ] satisfies { name: string; v1: number; v2: number }[];
 
 export function Chart5(): React.JSX.Element {

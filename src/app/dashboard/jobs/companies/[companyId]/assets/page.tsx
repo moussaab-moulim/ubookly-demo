@@ -1,7 +1,7 @@
-import * as React from 'react';
+import type * as React from 'react';
+import Grid from '@mui/material/Grid2';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
-import Grid from '@mui/material/Unstable_Grid2';
 
 import { AssetCard } from '@/components/dashboard/jobs/asset-card';
 import type { Asset } from '@/components/dashboard/jobs/types';
@@ -25,7 +25,14 @@ export default function Page(): React.JSX.Element {
       </div>
       <Grid container spacing={3}>
         {assets.map((asset) => (
-          <Grid key={asset.id} md={4} sm={6} xs={12}>
+          <Grid
+            key={asset.id}
+            size={{
+              md: 4,
+              sm: 6,
+              xs: 12,
+            }}
+          >
             <AssetCard asset={asset} />
           </Grid>
         ))}

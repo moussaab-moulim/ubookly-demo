@@ -1,11 +1,11 @@
 /** @type {import('prettier').Config} */
 const config = {
   endOfLine: 'lf',
+  printWidth: 120,
   semi: true,
   singleQuote: true,
   tabWidth: 2,
   trailingComma: 'es5',
-  printWidth: 120,
   importOrder: [
     '^node:$',
     '',
@@ -20,6 +20,7 @@ const config = {
     '^@/paths$',
     '^@/data/(.*)$',
     '^@/lib/(.*)$',
+    '^@/locales/(.*)$',
     '^@/actions/(.*)$',
     '^@/contexts/(.*)$',
     '^@/hooks/(.*)$',

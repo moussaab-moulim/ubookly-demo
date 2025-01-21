@@ -1,6 +1,6 @@
 'use client';
 
-import * as React from 'react';
+import type * as React from 'react';
 import Box from '@mui/material/Box';
 import { Link } from '@tiptap/extension-link';
 import { Placeholder } from '@tiptap/extension-placeholder';
@@ -76,7 +76,7 @@ export function TextEditor({
         },
       }}
     >
-      {!hideToolbar ? <TextEditorToolbar editor={editor} /> : <div />}
+      {hideToolbar ? <div /> : <TextEditorToolbar editor={editor} />}
       <EditorContent className="tiptap-container" editor={editor} />
     </Box>
   );

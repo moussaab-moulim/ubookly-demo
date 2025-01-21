@@ -1,18 +1,18 @@
-import * as React from 'react';
+import type * as React from 'react';
 import type { Metadata } from 'next';
 import Box from '@mui/material/Box';
+import Grid from '@mui/material/Grid2';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
-import Grid from '@mui/material/Unstable_Grid2';
 
-import { config } from '@/config';
+import { appConfig } from '@/config/app';
 import { CourseCard } from '@/components/dashboard/academy/course-card';
 import { CoursesFilters } from '@/components/dashboard/academy/courses-filters';
 import { DailyProgress } from '@/components/dashboard/academy/daily-progress';
 import { Help } from '@/components/dashboard/academy/help';
 import type { Course } from '@/components/dashboard/academy/types';
 
-export const metadata = { title: `Browse | Academy | ${config.site.name}` } satisfies Metadata;
+export const metadata = { title: `Browse | Academy | ${appConfig.name}` } satisfies Metadata;
 
 const courses = [
   {
@@ -91,10 +91,20 @@ export default function Page(): React.JSX.Element {
           </Typography>
         </Stack>
         <Grid container spacing={4}>
-          <Grid md={8} xs={12}>
+          <Grid
+            size={{
+              md: 8,
+              xs: 12,
+            }}
+          >
             <DailyProgress timeCurrent={20} timeGoal={35} />
           </Grid>
-          <Grid md={4} xs={12}>
+          <Grid
+            size={{
+              md: 4,
+              xs: 12,
+            }}
+          >
             <Help />
           </Grid>
         </Grid>
@@ -102,7 +112,13 @@ export default function Page(): React.JSX.Element {
           <Typography variant="h6">My courses</Typography>
           <Grid container spacing={4}>
             {courses.map((course) => (
-              <Grid key={course.id} md={4} xs={12}>
+              <Grid
+                key={course.id}
+                size={{
+                  md: 4,
+                  xs: 12,
+                }}
+              >
                 <CourseCard course={course} />
               </Grid>
             ))}

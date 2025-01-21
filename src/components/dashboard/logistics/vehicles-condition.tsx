@@ -1,14 +1,14 @@
 'use client';
 
-import * as React from 'react';
+import type * as React from 'react';
 import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardHeader from '@mui/material/CardHeader';
+import Grid from '@mui/material/Grid2';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
-import Grid from '@mui/material/Unstable_Grid2';
 import { Wrench as WrenchIcon } from '@phosphor-icons/react/dist/ssr/Wrench';
 import { Cell, Pie, PieChart } from 'recharts';
 
@@ -35,7 +35,12 @@ export function VehiclesCondition({ bad, excellent, good }: VehiclesConditionPro
       />
       <CardContent>
         <Grid container spacing={3}>
-          <Grid md={4} xs={12}>
+          <Grid
+            size={{
+              md: 4,
+              xs: 12,
+            }}
+          >
             <VehicleCondition
               amount={excellent}
               color="var(--mui-palette-success-main)"
@@ -45,7 +50,12 @@ export function VehiclesCondition({ bad, excellent, good }: VehiclesConditionPro
               trackColor="var(--mui-palette-success-100)"
             />
           </Grid>
-          <Grid md={4} xs={12}>
+          <Grid
+            size={{
+              md: 4,
+              xs: 12,
+            }}
+          >
             <VehicleCondition
               amount={good}
               color="var(--mui-palette-warning-main)"
@@ -55,7 +65,12 @@ export function VehiclesCondition({ bad, excellent, good }: VehiclesConditionPro
               trackColor="var(--mui-palette-warning-100)"
             />
           </Grid>
-          <Grid md={4} xs={12}>
+          <Grid
+            size={{
+              md: 4,
+              xs: 12,
+            }}
+          >
             <VehicleCondition
               amount={bad}
               color="var(--mui-palette-error-main)"

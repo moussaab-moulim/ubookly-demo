@@ -1,11 +1,11 @@
-import * as React from 'react';
+import type * as React from 'react';
 import type { Metadata } from 'next';
 import Box from '@mui/material/Box';
+import Grid from '@mui/material/Grid2';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
-import Grid from '@mui/material/Unstable_Grid2';
 
-import { config } from '@/config';
+import { appConfig } from '@/config/app';
 import { dayjs } from '@/lib/dayjs';
 import { ItemsFilters } from '@/components/dashboard/file-storage/items-filters';
 import type { Filters } from '@/components/dashboard/file-storage/items-filters';
@@ -16,7 +16,7 @@ import { StorageView } from '@/components/dashboard/file-storage/storage-view';
 import type { Item } from '@/components/dashboard/file-storage/types';
 import { UplaodButton } from '@/components/dashboard/file-storage/upload-button';
 
-export const metadata = { title: `File storage | Dashboard | ${config.site.name}` } satisfies Metadata;
+export const metadata = { title: `File storage | Dashboard | ${appConfig.name}` } satisfies Metadata;
 
 const items = [
   {
@@ -155,11 +155,11 @@ const items = [
 ] satisfies Item[];
 
 interface PageProps {
-  searchParams: { query?: string; sortDir?: 'asc' | 'desc'; view?: 'grid' | 'list' };
+  searchParams: Promise<{ query?: string; sortDir?: 'asc' | 'desc'; view?: 'grid' | 'list' }>;
 }
 
-export default function Page({ searchParams }: PageProps): React.JSX.Element {
-  const { query, sortDir, view = 'grid' } = searchParams;
+export default async function Page({ searchParams }: PageProps): Promise<React.JSX.Element> {
+  const { query, sortDir, view = 'grid' } = await searchParams;
 
   const filters = { query };
 
@@ -185,7 +185,12 @@ export default function Page({ searchParams }: PageProps): React.JSX.Element {
           </Box>
         </Stack>
         <Grid container spacing={4}>
-          <Grid md={8} xs={12}>
+          <Grid
+            size={{
+              md: 8,
+              xs: 12,
+            }}
+          >
             <Stack spacing={4}>
               <ItemsFilters filters={filters} sortDir={sortDir} view={view} />
               <StorageProvider items={filteredItems}>
@@ -194,7 +199,12 @@ export default function Page({ searchParams }: PageProps): React.JSX.Element {
               <ItemsPagination count={filteredItems.length} page={0} />
             </Stack>
           </Grid>
-          <Grid md={4} xs={12}>
+          <Grid
+            size={{
+              md: 4,
+              xs: 12,
+            }}
+          >
             <Stats />
           </Grid>
         </Grid>
@@ -217,10 +227,8 @@ function applySort(row: Item[], sortDir: 'asc' | 'desc' | undefined): Item[] {
 
 function applyFilters(row: Item[], { query }: Filters): Item[] {
   return row.filter((item) => {
-    if (query) {
-      if (!item.name?.toLowerCase().includes(query.toLowerCase())) {
-        return false;
-      }
+    if (query && !item.name?.toLowerCase().includes(query.toLowerCase())) {
+      return false;
     }
 
     return true;

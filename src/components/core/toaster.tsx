@@ -1,5 +1,3 @@
 'use client';
 
-import { toast, Toaster } from 'sonner';
-
-export { Toaster, toast };
+export { toast, Toaster } from 'sonner';

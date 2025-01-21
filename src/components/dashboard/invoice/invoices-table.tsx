@@ -1,6 +1,6 @@
 'use client';
 
-import * as React from 'react';
+import type * as React from 'react';
 import RouterLink from 'next/link';
 import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box';
@@ -39,8 +39,8 @@ function groupRows(invoices: Invoice[]): GroupedRows {
   return invoices.reduce<GroupedRows>(
     (acc, invoice) => {
       const { status } = invoice;
-
-      return { ...acc, [status]: [...acc[status], invoice] };
+      acc[status].push(invoice);
+      return acc;
     },
     { canceled: [], paid: [], pending: [] }
   );
@@ -150,7 +150,7 @@ export function InvoicesTable({ rows = [], view = 'group' }: InvoicesTableProps)
               <Typography color="text.secondary" variant="h6">
                 {groupTitles[key]} ({group.length})
               </Typography>
-              {group.length ? (
+              {group.length > 0 ? (
                 <Card sx={{ overflowX: 'auto' }}>
                   <DataTable<Invoice> columns={columns} hideHead rows={group} />
                 </Card>
@@ -171,7 +171,7 @@ export function InvoicesTable({ rows = [], view = 'group' }: InvoicesTableProps)
   return (
     <Card sx={{ overflowX: 'auto' }}>
       <DataTable<Invoice> columns={columns} hideHead rows={rows} />
-      {!rows.length ? (
+      {rows.length === 0 ? (
         <Box sx={{ p: 3 }}>
           <Typography color="text.secondary" sx={{ textAlign: 'center' }} variant="body2">
             No invoices found

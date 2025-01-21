@@ -4,16 +4,16 @@ import { usePathname } from 'next/navigation';
 import Box from '@mui/material/Box';
 import Chip from '@mui/material/Chip';
 import Stack from '@mui/material/Stack';
+import { useColorScheme } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
 import { ArrowSquareOut as ArrowSquareOutIcon } from '@phosphor-icons/react/dist/ssr/ArrowSquareOut';
 import { CaretDown as CaretDownIcon } from '@phosphor-icons/react/dist/ssr/CaretDown';
 import { CaretRight as CaretRightIcon } from '@phosphor-icons/react/dist/ssr/CaretRight';
 
 import type { NavItemConfig } from '@/types/nav';
-import type { NavColor } from '@/types/settings';
+import type { DashboardNavColor } from '@/types/settings';
 import { paths } from '@/paths';
 import { isNavItemActive } from '@/lib/is-nav-item-active';
-import { useSettings } from '@/hooks/use-settings';
 import { Logo } from '@/components/core/logo';
 import type { ColorScheme } from '@/styles/theme/types';
 
@@ -24,19 +24,17 @@ import { navColorStyles } from './styles';
 const logoColors = {
   dark: { blend_in: 'light', discrete: 'light', evident: 'light' },
   light: { blend_in: 'dark', discrete: 'dark', evident: 'light' },
-} as Record<ColorScheme, Record<NavColor, 'dark' | 'light'>>;
+} as Record<ColorScheme, Record<DashboardNavColor, 'dark' | 'light'>>;
 
 export interface SideNavProps {
-  color?: NavColor;
+  color?: DashboardNavColor;
   items?: NavItemConfig[];
 }
 
 export function SideNav({ color = 'evident', items = [] }: SideNavProps): React.JSX.Element {
   const pathname = usePathname();
 
-  const {
-    settings: { colorScheme = 'light' },
-  } = useSettings();
+  const { colorScheme = 'light' } = useColorScheme();
 
   const styles = navColorStyles[colorScheme][color];
   const logoColor = logoColors[colorScheme][color];
@@ -120,7 +118,7 @@ function renderNavItems({
     const { items: childItems, key, ...item } = curr;
 
     const forceOpen = childItems
-      ? Boolean(childItems.find((childItem) => childItem.href && pathname.startsWith(childItem.href)))
+      ? childItems.some((childItem) => childItem.href && pathname.startsWith(childItem.href))
       : false;
 
     acc.push(

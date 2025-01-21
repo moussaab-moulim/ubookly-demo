@@ -30,13 +30,13 @@ export function useMediaQuery(fn: FnName, start: Breakpoint | number, end?: Brea
   mq = mq.replace(/^@media(?: ?)/m, '');
 
   React.useEffect((): (() => void) => {
-    setMatches(window.matchMedia(mq).matches);
+    setMatches(globalThis.matchMedia(mq).matches);
 
     function handler(event: MediaQueryListEvent): void {
       setMatches(event.matches);
     }
 
-    const mediaQueryList = window.matchMedia(mq);
+    const mediaQueryList = globalThis.matchMedia(mq);
 
     mediaQueryList.addEventListener('change', handler);
 

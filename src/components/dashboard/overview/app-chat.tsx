@@ -1,4 +1,4 @@
-import * as React from 'react';
+import type * as React from 'react';
 import Avatar from '@mui/material/Avatar';
 import Badge from '@mui/material/Badge';
 import Button from '@mui/material/Button';

@@ -6,11 +6,11 @@ import Button from '@mui/material/Button';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import FormControl from '@mui/material/FormControl';
+import Grid from '@mui/material/Grid2';
 import InputLabel from '@mui/material/InputLabel';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
-import Grid from '@mui/material/Unstable_Grid2';
 
 import type { File } from '@/components/core/file-dropzone';
 import { FileDropzone } from '@/components/core/file-dropzone';
@@ -22,9 +22,9 @@ export function PostForm(): React.JSX.Element {
   const handleCoverDrop = React.useCallback(async ([file]: File[]) => {
     const reader = new FileReader();
     reader.readAsDataURL(file);
-    reader.onload = () => {
+    reader.addEventListener('load', () => {
       setCover(reader.result as string);
-    };
+    });
   }, []);
 
   const handleCoverRemove = React.useCallback(() => {
@@ -36,10 +36,20 @@ export function PostForm(): React.JSX.Element {
       <Card>
         <CardContent>
           <Grid container spacing={3}>
-            <Grid md={4} xs={12}>
+            <Grid
+              size={{
+                md: 4,
+                xs: 12,
+              }}
+            >
               <Typography variant="h6">Basic details</Typography>
             </Grid>
-            <Grid md={8} xs={12}>
+            <Grid
+              size={{
+                md: 8,
+                xs: 12,
+              }}
+            >
               <Stack spacing={3}>
                 <FormControl>
                   <InputLabel>Post title</InputLabel>
@@ -57,10 +67,20 @@ export function PostForm(): React.JSX.Element {
       <Card>
         <CardContent>
           <Grid container spacing={3}>
-            <Grid md={4} xs={12}>
+            <Grid
+              size={{
+                md: 4,
+                xs: 12,
+              }}
+            >
               <Typography variant="h6">Post cover</Typography>
             </Grid>
-            <Grid md={8} xs={12}>
+            <Grid
+              size={{
+                md: 8,
+                xs: 12,
+              }}
+            >
               <Stack spacing={3}>
                 {cover ? (
                   <Box
@@ -113,10 +133,20 @@ export function PostForm(): React.JSX.Element {
       <Card>
         <CardContent>
           <Grid container spacing={3}>
-            <Grid md={4} xs={12}>
+            <Grid
+              size={{
+                md: 4,
+                xs: 12,
+              }}
+            >
               <Typography variant="h6">Content</Typography>
             </Grid>
-            <Grid md={8} xs={12}>
+            <Grid
+              size={{
+                md: 8,
+                xs: 12,
+              }}
+            >
               <Box sx={{ '& .tiptap-container': { height: '320px' } }}>
                 <TextEditor content="" placeholder="Write something" />
               </Box>
@@ -127,10 +157,20 @@ export function PostForm(): React.JSX.Element {
       <Card>
         <CardContent>
           <Grid container spacing={3}>
-            <Grid md={4} xs={12}>
+            <Grid
+              size={{
+                md: 4,
+                xs: 12,
+              }}
+            >
               <Typography variant="h6">Meta</Typography>
             </Grid>
-            <Grid lg={8} xs={12}>
+            <Grid
+              size={{
+                lg: 8,
+                xs: 12,
+              }}
+            >
               <Stack spacing={3}>
                 <FormControl>
                   <InputLabel>SEO title</InputLabel>

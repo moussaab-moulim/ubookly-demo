@@ -1,23 +1,23 @@
-import * as React from 'react';
+import type * as React from 'react';
 import type { Metadata } from 'next';
 import RouterLink from 'next/link';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
+import Grid from '@mui/material/Grid2';
 import IconButton from '@mui/material/IconButton';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
-import Grid from '@mui/material/Unstable_Grid2';
 import { CaretLeft as CaretLeftIcon } from '@phosphor-icons/react/dist/ssr/CaretLeft';
 import { CaretRight as CaretRightIcon } from '@phosphor-icons/react/dist/ssr/CaretRight';
 
-import { config } from '@/config';
+import { appConfig } from '@/config/app';
 import { paths } from '@/paths';
 import { dayjs } from '@/lib/dayjs';
 import { CompanyCard } from '@/components/dashboard/jobs/company-card';
 import type { Company } from '@/components/dashboard/jobs/company-card';
 import { JobsFilters } from '@/components/dashboard/jobs/jobs-filters';
 
-export const metadata = { title: `Browse | Jobs | Dashboard | ${config.site.name}` } satisfies Metadata;
+export const metadata = { title: `Browse | Jobs | Dashboard | ${appConfig.name}` } satisfies Metadata;
 
 const companies = [
   {
@@ -33,8 +33,8 @@ const companies = [
         id: 'JOB-005',
         title: 'Remote React / React Native Developer',
         currency: 'USD',
-        budgetMin: 55000,
-        budgetMax: 75000,
+        budgetMin: 55_000,
+        budgetMax: 75_000,
         isRemote: true,
         publishedAt: dayjs().subtract(24, 'minute').toDate(),
       },
@@ -42,8 +42,8 @@ const companies = [
         id: 'JOB-006',
         title: 'Senior Golang Backend Engineer',
         currency: 'USD',
-        budgetMin: 80000,
-        budgetMax: 160000,
+        budgetMin: 80_000,
+        budgetMax: 160_000,
         country: 'Germany',
         state: 'Bavaria',
         city: 'Munich',
@@ -64,8 +64,8 @@ const companies = [
         id: 'JOB-004',
         title: 'Remote React / React Native Developer',
         currency: 'USD',
-        budgetMin: 87000,
-        budgetMax: 135000,
+        budgetMin: 87_000,
+        budgetMax: 135_000,
         isRemote: true,
         publishedAt: dayjs().subtract(1, 'hour').toDate(),
       },
@@ -84,8 +84,8 @@ const companies = [
         id: 'JOB-003',
         title: 'Senior Backend Engineer',
         currency: 'USD',
-        budgetMin: 150000,
-        budgetMax: 210000,
+        budgetMin: 150_000,
+        budgetMax: 210_000,
         isRemote: true,
         publishedAt: dayjs().subtract(39, 'minute').subtract(7, 'hour').subtract(5, 'day').toDate(),
       },
@@ -104,8 +104,8 @@ const companies = [
         id: 'JOB-001',
         title: 'Senior React Developer',
         currency: 'USD',
-        budgetMin: 94000,
-        budgetMax: 140000,
+        budgetMin: 94_000,
+        budgetMax: 140_000,
         isRemote: true,
         publishedAt: dayjs().subtract(49, 'minute').subtract(2, 'hour').subtract(7, 'day').toDate(),
       },
@@ -113,8 +113,8 @@ const companies = [
         id: 'JOB-002',
         title: 'Senior Ruby Engineer',
         currency: 'USD',
-        budgetMin: 120000,
-        budgetMax: 145000,
+        budgetMin: 120_000,
+        budgetMax: 145_000,
         isRemote: true,
         publishedAt: dayjs().subtract(10, 'minute').subtract(7, 'hour').subtract(8, 'day').toDate(),
       },
@@ -143,7 +143,12 @@ export default function Page(): React.JSX.Element {
           }}
         >
           <Grid container sx={{ alignItems: 'center' }}>
-            <Grid sm={7} xs={12}>
+            <Grid
+              size={{
+                sm: 7,
+                xs: 12,
+              }}
+            >
               <Stack spacing={3}>
                 <Stack spacing={2}>
                   <Typography color="inherit" variant="h3">
@@ -160,7 +165,12 @@ export default function Page(): React.JSX.Element {
                 </div>
               </Stack>
             </Grid>
-            <Grid sm={5} sx={{ display: { xs: 'none', sm: 'flex' }, justifyContent: 'center' }}>
+            <Grid
+              sx={{ display: { xs: 'none', sm: 'flex' }, justifyContent: 'center' }}
+              size={{
+                sm: 5,
+              }}
+            >
               <Box
                 alt="Shield"
                 component="img"

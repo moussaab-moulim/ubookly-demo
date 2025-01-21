@@ -1,4 +1,4 @@
-import type { NavColor } from '@/types/settings';
+import type { DashboardNavColor } from '@/types/settings';
 import type { ColorScheme } from '@/styles/theme/types';
 
 export const navColorStyles = {
@@ -127,4 +127,4 @@ export const navColorStyles = {
       '--Workspaces-expand-color': 'var(--mui-palette-neutral-400)',
     },
   },
-} satisfies Record<ColorScheme, Record<NavColor, Record<string, string>>>;
+} satisfies Record<ColorScheme, Record<DashboardNavColor, Record<string, string>>>;

@@ -2,9 +2,7 @@
 
 import * as React from 'react';
 import { usePathname, useSearchParams } from 'next/navigation';
-import { GTMProvider, useGTMDispatch } from '@elgorditosalsero/react-gtm-hook';
-
-import { config } from '@/config';
+import { GTMProvider, useGTMDispatch } from 'react-gtm-hook';
 
 export interface PageViewTrackerProps {
   children: React.ReactNode;
@@ -32,12 +30,14 @@ export interface AnalyticsProps {
  * If GTM ID is not configured, this will no track any event.
  */
 export function Analytics({ children }: AnalyticsProps): React.JSX.Element {
-  if (!config.gtm?.id) {
+  const id = process.env.NEXT_PUBLIC_GOOGLE_TAG_MANAGER_ID;
+
+  if (!id) {
     return <React.Fragment>{children}</React.Fragment>;
   }
 
   return (
-    <GTMProvider state={{ id: config.gtm.id }}>
+    <GTMProvider config={{ id }}>
       <PageViewTracker>{children}</PageViewTracker>
     </GTMProvider>
   );

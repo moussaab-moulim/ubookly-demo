@@ -9,7 +9,7 @@ export interface DropdownProps {
 
 export function Dropdown({ children, delay = 50 }: DropdownProps): React.JSX.Element {
   const [anchorEl, setAnchorEl] = React.useState<HTMLElement | null>(null);
-  const cleanupRef = React.useRef<number>();
+  const cleanupRef = React.useRef<number | undefined>(undefined);
 
   const handleTriggerMouseEnter = React.useCallback((event: React.MouseEvent<HTMLElement>) => {
     clearTimeout(cleanupRef.current);

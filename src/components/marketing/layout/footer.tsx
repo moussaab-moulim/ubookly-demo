@@ -1,12 +1,12 @@
-import * as React from 'react';
+import type * as React from 'react';
 import RouterLink from 'next/link';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Divider from '@mui/material/Divider';
+import Grid from '@mui/material/Grid2';
 import Link from '@mui/material/Link';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
-import Grid from '@mui/material/Unstable_Grid2';
 
 import type { NavItemConfig } from '@/types/nav';
 import { paths } from '@/paths';
@@ -60,7 +60,14 @@ export function Footer(): React.JSX.Element {
     >
       <Container maxWidth="lg">
         <Grid container spacing={3}>
-          <Grid md={3} sm={4} sx={{ order: { xs: 4, md: 1 } }} xs={12}>
+          <Grid
+            sx={{ order: { xs: 4, md: 1 } }}
+            size={{
+              md: 3,
+              sm: 4,
+              xs: 12,
+            }}
+          >
             <Stack spacing={1}>
               <DynamicLogo colorDark="light" colorLight="dark" height={32} width={122} />
               <Typography color="text.secondary" variant="caption">
@@ -69,7 +76,15 @@ export function Footer(): React.JSX.Element {
             </Stack>
           </Grid>
           {groups.map((section, index) => (
-            <Grid key={section.key} md={3} sm={4} sx={{ order: { md: index + 2, xs: index + 1 } }} xs={12}>
+            <Grid
+              key={section.key}
+              sx={{ order: { md: index + 2, xs: index + 1 } }}
+              size={{
+                md: 3,
+                sm: 4,
+                xs: 12,
+              }}
+            >
               <Typography color="text.secondary" variant="overline">
                 {section.title}
               </Typography>

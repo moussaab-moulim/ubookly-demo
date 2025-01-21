@@ -1,13 +1,13 @@
-import * as React from 'react';
+import type * as React from 'react';
 import type { Metadata } from 'next';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 
-import { config } from '@/config';
+import { appConfig } from '@/config/app';
 import { EmailNotifications } from '@/components/dashboard/settings/email-notifications';
 import { PhoneNotifications } from '@/components/dashboard/settings/phone-notifications';
 
-export const metadata = { title: `Notifications | Settings | Dashboard | ${config.site.name}` } satisfies Metadata;
+export const metadata = { title: `Notifications | Settings | Dashboard | ${appConfig.name}` } satisfies Metadata;
 
 export default function Page(): React.JSX.Element {
   return (

@@ -1,18 +1,19 @@
 'use client';
 
-import * as React from 'react';
+import type * as React from 'react';
 import InputLabel from '@mui/material/InputLabel';
 import Stack from '@mui/material/Stack';
+import { Devices as DevicesIcon } from '@phosphor-icons/react/dist/ssr/Devices';
 import { Moon as MoonIcon } from '@phosphor-icons/react/dist/ssr/Moon';
 import { Sun as SunIcon } from '@phosphor-icons/react/dist/ssr/Sun';
 
-import type { ColorScheme } from '@/styles/theme/types';
+import type { Mode } from '@/styles/theme/types';
 
 import { Option } from './option';
 
 export interface OptionsColorSchemeProps {
-  onChange?: (value: ColorScheme) => void;
-  value?: ColorScheme;
+  onChange?: (value: Mode) => void;
+  value?: Mode;
 }
 
 export function OptionsColorScheme({ onChange, value }: OptionsColorSchemeProps): React.JSX.Element {
@@ -24,6 +25,7 @@ export function OptionsColorScheme({ onChange, value }: OptionsColorSchemeProps)
           [
             { label: 'Light', value: 'light', icon: <SunIcon /> },
             { label: 'Dark', value: 'dark', icon: <MoonIcon /> },
+            { label: 'System', value: 'system', icon: <DevicesIcon /> },
           ] satisfies { label: string; value: string; icon: React.ReactNode }[]
         ).map((option) => (
           <Option
@@ -31,7 +33,7 @@ export function OptionsColorScheme({ onChange, value }: OptionsColorSchemeProps)
             key={option.value}
             label={option.label}
             onClick={() => {
-              onChange?.(option.value as ColorScheme);
+              onChange?.(option.value as Mode);
             }}
             selected={option.value === value}
           />

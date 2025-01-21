@@ -1,6 +1,6 @@
 'use client';
 
-import * as React from 'react';
+import type * as React from 'react';
 import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
@@ -64,7 +64,7 @@ function Segment({ color, data: dataRaw, diff, name, trend, value }: SegmentProp
 
   const sortedData = [...dataRaw].sort((a, b) => a - b);
   const min = sortedData[0] ?? 0;
-  const max = sortedData[sortedData.length - 1] ?? 0;
+  const max = sortedData.at(-1) ?? 0;
 
   return (
     <Stack

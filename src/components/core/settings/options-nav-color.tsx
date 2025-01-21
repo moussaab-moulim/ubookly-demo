@@ -1,18 +1,18 @@
 'use client';
 
-import * as React from 'react';
+import type * as React from 'react';
 import InputLabel from '@mui/material/InputLabel';
 import Stack from '@mui/material/Stack';
 import Tooltip from '@mui/material/Tooltip';
 import { Info as InfoIcon } from '@phosphor-icons/react/dist/ssr/Info';
 
-import type { NavColor } from '@/types/settings';
+import type { DashboardNavColor } from '@/types/settings';
 
 import { Option } from './option';
 
 export interface OptionsNavColorProps {
-  onChange?: (value: NavColor) => void;
-  value?: NavColor;
+  onChange?: (value: DashboardNavColor) => void;
+  value?: DashboardNavColor;
 }
 
 export function OptionsNavColor({ onChange, value }: OptionsNavColorProps): React.JSX.Element {
@@ -30,7 +30,7 @@ export function OptionsNavColor({ onChange, value }: OptionsNavColorProps): Reac
             { label: 'Blend-in', value: 'blend_in' },
             { label: 'Discrete', value: 'discrete' },
             { label: 'Evident', value: 'evident' },
-          ] as { label: string; value: NavColor }[]
+          ] as { label: string; value: DashboardNavColor }[]
         ).map((option) => (
           <Option
             key={option.label}

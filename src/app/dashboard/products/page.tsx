@@ -9,7 +9,7 @@ import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import { Plus as PlusIcon } from '@phosphor-icons/react/dist/ssr/Plus';
 
-import { config } from '@/config';
+import { appConfig } from '@/config/app';
 import { paths } from '@/paths';
 import { dayjs } from '@/lib/dayjs';
 import { ProductModal } from '@/components/dashboard/product/product-modal';
@@ -19,7 +19,7 @@ import { ProductsPagination } from '@/components/dashboard/product/products-pagi
 import { ProductsTable } from '@/components/dashboard/product/products-table';
 import type { Product } from '@/components/dashboard/product/products-table';
 
-export const metadata = { title: `List | Products | Dashboard | ${config.site.name}` } satisfies Metadata;
+export const metadata = { title: `List | Products | Dashboard | ${appConfig.name}` } satisfies Metadata;
 
 const products = [
   {
@@ -90,11 +90,17 @@ const products = [
 ] satisfies Product[];
 
 interface PageProps {
-  searchParams: { category?: string; previewId?: string; sortDir?: 'asc' | 'desc'; sku?: string; status?: string };
+  searchParams: Promise<{
+    category?: string;
+    previewId?: string;
+    sortDir?: 'asc' | 'desc';
+    sku?: string;
+    status?: string;
+  }>;
 }
 
-export default function Page({ searchParams }: PageProps): React.JSX.Element {
-  const { category, previewId, sortDir, sku, status } = searchParams;
+export default async function Page({ searchParams }: PageProps): Promise<React.JSX.Element> {
+  const { category, previewId, sortDir, sku, status } = await searchParams;
 
   const orderedProducts = applySort(products, sortDir);
   const filteredProducts = applyFilters(orderedProducts, { category, sku, status });
@@ -155,22 +161,16 @@ function applySort(row: Product[], sortDir: 'asc' | 'desc' | undefined): Product
 
 function applyFilters(row: Product[], { category, status, sku }: Filters): Product[] {
   return row.filter((item) => {
-    if (category) {
-      if (item.category !== category) {
-        return false;
-      }
+    if (category && item.category !== category) {
+      return false;
     }
 
-    if (status) {
-      if (item.status !== status) {
-        return false;
-      }
+    if (status && item.status !== status) {
+      return false;
     }
 
-    if (sku) {
-      if (!item.sku?.toLowerCase().includes(sku.toLowerCase())) {
-        return false;
-      }
+    if (sku && !item.sku?.toLowerCase().includes(sku.toLowerCase())) {
+      return false;
     }
 
     return true;

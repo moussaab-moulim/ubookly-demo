@@ -4,6 +4,7 @@ import * as React from 'react';
 import RouterLink from 'next/link';
 import { useRouter } from 'next/navigation';
 import { zodResolver } from '@hookform/resolvers/zod';
+import Autocomplete from '@mui/material/Autocomplete';
 import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
@@ -15,12 +16,12 @@ import Divider from '@mui/material/Divider';
 import FormControl from '@mui/material/FormControl';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormHelperText from '@mui/material/FormHelperText';
+import Grid from '@mui/material/Grid2';
 import InputLabel from '@mui/material/InputLabel';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import Select from '@mui/material/Select';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
-import Grid from '@mui/material/Unstable_Grid2';
 import { Camera as CameraIcon } from '@phosphor-icons/react/dist/ssr/Camera';
 import { Controller, useForm } from 'react-hook-form';
 import { z as zod } from 'zod';
@@ -30,16 +31,22 @@ import { logger } from '@/lib/default-logger';
 import { Option } from '@/components/core/option';
 import { toast } from '@/components/core/toaster';
 
+const countryOptions = [
+  { label: 'United States', value: 'us' },
+  { label: 'Germany', value: 'de' },
+  { label: 'Spain', value: 'es' },
+] as const;
+
 function fileToBase64(file: Blob): Promise<string> {
   return new Promise((resolve, reject) => {
     const reader = new FileReader();
     reader.readAsDataURL(file);
-    reader.onload = () => {
+    reader.addEventListener('load', () => {
       resolve(reader.result as string);
-    };
-    reader.onerror = () => {
+    });
+    reader.addEventListener('error', () => {
       reject(new Error('Error converting file to base64'));
-    };
+    });
   });
 }
 
@@ -71,7 +78,7 @@ const defaultValues = {
   email: '',
   phone: '',
   company: '',
-  billingAddress: { country: '', state: '', city: '', zipCode: '', line1: '', line2: '' },
+  billingAddress: { country: 'us', state: '', city: '', zipCode: '', line1: '', line2: '' },
   taxId: '',
   timezone: 'new_york',
   language: 'en',
@@ -95,8 +102,8 @@ export function CustomerCreateForm(): React.JSX.Element {
         // Make API request
         toast.success('Customer updated');
         router.push(paths.dashboard.customers.details('1'));
-      } catch (err) {
-        logger.error(err);
+      } catch (error) {
+        logger.error(error);
         toast.error('Something went wrong!');
       }
     },
@@ -126,7 +133,7 @@ export function CustomerCreateForm(): React.JSX.Element {
             <Stack spacing={3}>
               <Typography variant="h6">Account information</Typography>
               <Grid container spacing={3}>
-                <Grid xs={12}>
+                <Grid size={12}>
                   <Stack direction="row" spacing={3} sx={{ alignItems: 'center' }}>
                     <Box
                       sx={{
@@ -167,7 +174,12 @@ export function CustomerCreateForm(): React.JSX.Element {
                     </Stack>
                   </Stack>
                 </Grid>
-                <Grid md={6} xs={12}>
+                <Grid
+                  size={{
+                    md: 6,
+                    xs: 12,
+                  }}
+                >
                   <Controller
                     control={control}
                     name="name"
@@ -180,7 +192,12 @@ export function CustomerCreateForm(): React.JSX.Element {
                     )}
                   />
                 </Grid>
-                <Grid md={6} xs={12}>
+                <Grid
+                  size={{
+                    md: 6,
+                    xs: 12,
+                  }}
+                >
                   <Controller
                     control={control}
                     name="email"
@@ -193,7 +210,12 @@ export function CustomerCreateForm(): React.JSX.Element {
                     )}
                   />
                 </Grid>
-                <Grid md={6} xs={12}>
+                <Grid
+                  size={{
+                    md: 6,
+                    xs: 12,
+                  }}
+                >
                   <Controller
                     control={control}
                     name="phone"
@@ -206,7 +228,12 @@ export function CustomerCreateForm(): React.JSX.Element {
                     )}
                   />
                 </Grid>
-                <Grid md={6} xs={12}>
+                <Grid
+                  size={{
+                    md: 6,
+                    xs: 12,
+                  }}
+                >
                   <Controller
                     control={control}
                     name="company"
@@ -224,27 +251,50 @@ export function CustomerCreateForm(): React.JSX.Element {
             <Stack spacing={3}>
               <Typography variant="h6">Billing information</Typography>
               <Grid container spacing={3}>
-                <Grid md={6} xs={12}>
+                <Grid
+                  size={{
+                    md: 6,
+                    xs: 12,
+                  }}
+                >
                   <Controller
                     control={control}
                     name="billingAddress.country"
                     render={({ field }) => (
-                      <FormControl error={Boolean(errors.billingAddress?.country)} fullWidth>
-                        <InputLabel required>Country</InputLabel>
-                        <Select {...field}>
-                          <Option value="">Choose a country</Option>
-                          <Option value="us">United States</Option>
-                          <Option value="de">Germany</Option>
-                          <Option value="es">Spain</Option>
-                        </Select>
-                        {errors.billingAddress?.country ? (
-                          <FormHelperText>{errors.billingAddress?.country?.message}</FormHelperText>
-                        ) : null}
-                      </FormControl>
+                      <Autocomplete
+                        {...field}
+                        getOptionLabel={(option) => option.label}
+                        onChange={(_, value) => {
+                          if (value) {
+                            field.onChange(value.value);
+                          }
+                        }}
+                        options={countryOptions}
+                        renderInput={(params) => (
+                          <FormControl error={Boolean(errors.billingAddress?.country)} fullWidth>
+                            <InputLabel required>Country</InputLabel>
+                            <OutlinedInput inputProps={params.inputProps} ref={params.InputProps.ref} />
+                            {errors.billingAddress?.country ? (
+                              <FormHelperText>{errors.billingAddress?.country?.message}</FormHelperText>
+                            ) : null}
+                          </FormControl>
+                        )}
+                        renderOption={(props, option) => (
+                          <Option {...props} key={option.value} value={option.value}>
+                            {option.label}
+                          </Option>
+                        )}
+                        value={countryOptions.find((option) => option.value === field.value)}
+                      />
                     )}
                   />
                 </Grid>
-                <Grid md={6} xs={12}>
+                <Grid
+                  size={{
+                    md: 6,
+                    xs: 12,
+                  }}
+                >
                   <Controller
                     control={control}
                     name="billingAddress.state"
@@ -259,7 +309,12 @@ export function CustomerCreateForm(): React.JSX.Element {
                     )}
                   />
                 </Grid>
-                <Grid md={6} xs={12}>
+                <Grid
+                  size={{
+                    md: 6,
+                    xs: 12,
+                  }}
+                >
                   <Controller
                     control={control}
                     name="billingAddress.city"
@@ -274,7 +329,12 @@ export function CustomerCreateForm(): React.JSX.Element {
                     )}
                   />
                 </Grid>
-                <Grid md={6} xs={12}>
+                <Grid
+                  size={{
+                    md: 6,
+                    xs: 12,
+                  }}
+                >
                   <Controller
                     control={control}
                     name="billingAddress.zipCode"
@@ -289,7 +349,12 @@ export function CustomerCreateForm(): React.JSX.Element {
                     )}
                   />
                 </Grid>
-                <Grid md={6} xs={12}>
+                <Grid
+                  size={{
+                    md: 6,
+                    xs: 12,
+                  }}
+                >
                   <Controller
                     control={control}
                     name="billingAddress.line1"
@@ -304,7 +369,12 @@ export function CustomerCreateForm(): React.JSX.Element {
                     )}
                   />
                 </Grid>
-                <Grid md={6} xs={12}>
+                <Grid
+                  size={{
+                    md: 6,
+                    xs: 12,
+                  }}
+                >
                   <Controller
                     control={control}
                     name="taxId"
@@ -326,7 +396,12 @@ export function CustomerCreateForm(): React.JSX.Element {
             <Stack spacing={3}>
               <Typography variant="h6">Additional information</Typography>
               <Grid container spacing={3}>
-                <Grid md={6} xs={12}>
+                <Grid
+                  size={{
+                    md: 6,
+                    xs: 12,
+                  }}
+                >
                   <Controller
                     control={control}
                     name="timezone"
@@ -344,7 +419,12 @@ export function CustomerCreateForm(): React.JSX.Element {
                     )}
                   />
                 </Grid>
-                <Grid md={6} xs={12}>
+                <Grid
+                  size={{
+                    md: 6,
+                    xs: 12,
+                  }}
+                >
                   <Controller
                     control={control}
                     name="language"
@@ -362,7 +442,12 @@ export function CustomerCreateForm(): React.JSX.Element {
                     )}
                   />
                 </Grid>
-                <Grid md={6} xs={12}>
+                <Grid
+                  size={{
+                    md: 6,
+                    xs: 12,
+                  }}
+                >
                   <Controller
                     control={control}
                     name="currency"

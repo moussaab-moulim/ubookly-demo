@@ -4,9 +4,9 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import GlobalStyles from '@mui/material/GlobalStyles';
 
-import { useSettings } from '@/hooks/use-settings';
+import { dashboardConfig } from '@/config/dashboard';
+import { useSettings } from '@/components/core/settings/settings-context';
 
-import { layoutConfig } from '../config';
 import { MainNav } from './main-nav';
 
 export interface HorizontalLayoutProps {
@@ -15,6 +15,8 @@ export interface HorizontalLayoutProps {
 
 export function HorizontalLayout({ children }: HorizontalLayoutProps): React.JSX.Element {
   const { settings } = useSettings();
+
+  const navColor = settings.dashboardNavColor ?? dashboardConfig.navColor;
 
   return (
     <React.Fragment>
@@ -30,7 +32,7 @@ export function HorizontalLayout({ children }: HorizontalLayoutProps): React.JSX
           minHeight: '100%',
         }}
       >
-        <MainNav color={settings.navColor} items={layoutConfig.navItems} />
+        <MainNav color={navColor} items={dashboardConfig.navItems} />
         <Box
           component="main"
           sx={{

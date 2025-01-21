@@ -1,11 +1,10 @@
-import * as React from 'react';
+import type * as React from 'react';
 import Avatar from '@mui/material/Avatar';
 import AvatarGroup from '@mui/material/AvatarGroup';
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 
-import type { User } from '@/types/user';
 import { dayjs } from '@/lib/dayjs';
 
 import type { Message, Thread } from './types';
@@ -15,7 +14,7 @@ const user = {
   name: 'Sofia Rivers',
   avatar: '/assets/avatar.png',
   email: 'sofia@devias.io',
-} satisfies User;
+} as const;
 
 function getDisplayContent(lastMessage: Message, userId: string): string {
   const author = lastMessage.author.id === userId ? 'Me: ' : '';
@@ -34,7 +33,7 @@ export interface ThreadItemProps {
 export function ThreadItem({ active = false, thread, messages, onSelect }: ThreadItemProps): React.JSX.Element {
   const recipients = (thread.participants ?? []).filter((participant) => participant.id !== user.id);
 
-  const lastMessage = messages[messages.length - 1];
+  const lastMessage = messages.at(-1);
 
   return (
     <Box component="li" sx={{ userSelect: 'none' }}>

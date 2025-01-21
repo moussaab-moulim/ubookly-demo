@@ -20,7 +20,7 @@ export function StorageView({ view }: StorageViewProps): React.JSX.Element {
 
   return (
     <React.Fragment>
-      {items.size ? (
+      {items.size > 0 ? (
         <React.Fragment>{view === 'grid' ? <GridView /> : <ListView />}</React.Fragment>
       ) : (
         <Box sx={{ p: 3 }}>

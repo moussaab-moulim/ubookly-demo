@@ -1,6 +1,6 @@
 'use client';
 
-import * as React from 'react';
+import type * as React from 'react';
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
@@ -20,7 +20,7 @@ const bars = [
   { name: 'Instagram', dataKey: 'v4', color: 'var(--mui-palette-error-main)' },
 ] satisfies { name: string; dataKey: string; color: string }[];
 
-const data = [{ name: 'Sales', v1: 37530, v2: 90590, v3: 13219, v4: 62935 }];
+const data = [{ name: 'Sales', v1: 37_530, v2: 90_590, v3: 13_219, v4: 62_935 }];
 
 export function Chart7(): React.JSX.Element {
   const chartHeight = 300;

@@ -1,7 +1,7 @@
-import * as React from 'react';
+import type * as React from 'react';
 import type { Metadata } from 'next';
 
-import { config } from '@/config';
+import { appConfig } from '@/config/app';
 import { Chart1 } from '@/components/widgets/charts/chart-1';
 import { Chart2 } from '@/components/widgets/charts/chart-2';
 import { Chart3 } from '@/components/widgets/charts/chart-3';
@@ -16,7 +16,7 @@ import { Chart11 } from '@/components/widgets/charts/chart-11';
 import { Layout } from '@/components/widgets/layout';
 import type { Component } from '@/components/widgets/layout';
 
-export const metadata = { title: `Charts | Components | ${config.site.name}` } satisfies Metadata;
+export const metadata = { title: `Charts | Components | ${appConfig.name}` } satisfies Metadata;
 
 const components = [
   { title: 'Chart 1', element: <Chart1 /> },
