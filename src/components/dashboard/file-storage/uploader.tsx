@@ -21,11 +21,11 @@ function bytesToSize(bytes: number, decimals = 2): string {
   }
 
   const k = 1024;
-  const dm = decimals < 0 ? 0 : decimals;
+  const dm = Math.max(decimals, 0);
   const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
   const i = Math.floor(Math.log(bytes) / Math.log(k));
 
-  return `${parseFloat((bytes / Math.pow(k, i)).toFixed(dm))} ${sizes[i]}`;
+  return `${Number.parseFloat((bytes / k ** i).toFixed(dm))} ${sizes[i]}`;
 }
 
 export interface UploaderProps {
@@ -67,7 +67,7 @@ export function Uploader({ onClose, open = false }: UploaderProps): React.JSX.El
       <DialogContent>
         <Stack spacing={3}>
           <FileDropzone accept={{ '*/*': [] }} caption="Max file size is 3 MB" files={files} onDrop={handleDrop} />
-          {files.length ? (
+          {files.length > 0 ? (
             <Stack spacing={2}>
               <Stack component="ul" spacing={1} sx={{ listStyle: 'none', m: 0, p: 0 }}>
                 {files.map((file) => {

@@ -1,6 +1,6 @@
 'use client';
 
-import * as React from 'react';
+import type * as React from 'react';
 import Checkbox from '@mui/material/Checkbox';
 import Table from '@mui/material/Table';
 import type { TableProps } from '@mui/material/Table';
@@ -91,7 +91,7 @@ export function DataTable<TRowModel extends object & { id?: RowId | null }>({
       </TableHead>
       <TableBody>
         {rows.map((row, index): React.JSX.Element => {
-          const rowId = row.id ? row.id : uniqueRowId?.(row);
+          const rowId = row.id ?? uniqueRowId?.(row);
           const rowSelected = rowId ? selected?.has(rowId) : false;
 
           return (

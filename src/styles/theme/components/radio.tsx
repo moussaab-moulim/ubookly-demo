@@ -1,4 +1,4 @@
-import * as React from 'react';
+import type * as React from 'react';
 import type { Components } from '@mui/material/styles';
 
 import type { Theme } from '../types';

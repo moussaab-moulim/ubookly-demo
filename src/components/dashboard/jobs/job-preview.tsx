@@ -1,4 +1,4 @@
-import * as React from 'react';
+import type * as React from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Card from '@mui/material/Card';
@@ -34,11 +34,11 @@ export function JobPreview(): React.JSX.Element {
             <Typography color="text.secondary" variant="caption">
               Remote possible •{' '}
               {new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', notation: 'compact' }).format(
-                150000
+                150_000
               )}{' '}
               -{' '}
               {new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', notation: 'compact' }).format(
-                210000
+                210_000
               )}
             </Typography>
           </div>

@@ -1,7 +1,7 @@
-import * as React from 'react';
+import type * as React from 'react';
 import type { Metadata } from 'next';
 
-import { config } from '@/config';
+import { appConfig } from '@/config/app';
 import { Layout } from '@/components/widgets/layout';
 import type { Component } from '@/components/widgets/layout';
 import { QuickStats1 } from '@/components/widgets/quick-stats/quick-stats-1';
@@ -16,7 +16,7 @@ import { QuickStats9 } from '@/components/widgets/quick-stats/quick-stats-9';
 import { QuickStats10 } from '@/components/widgets/quick-stats/quick-stats-10';
 import { QuickStats11 } from '@/components/widgets/quick-stats/quick-stats-11';
 
-export const metadata = { title: `Quick stats | Components | ${config.site.name}` } satisfies Metadata;
+export const metadata = { title: `Quick stats | Components | ${appConfig.name}` } satisfies Metadata;
 
 const components = [
   { title: 'Quick stats 1', element: <QuickStats1 /> },

@@ -7,7 +7,9 @@ export const paths = {
     custom: {
       signIn: '/auth/custom/sign-in',
       signUp: '/auth/custom/sign-up',
+      signOut: '/auth/custom/sign-out',
       resetPassword: '/auth/custom/reset-password',
+      profile: '/auth/custom/profile',
     },
     auth0: {
       callback: '/auth/auth0/callback',
@@ -16,26 +18,20 @@ export const paths = {
       signOut: '/auth/auth0/sign-out',
       profile: '/auth/auth0/profile',
     },
-    cognito: {
-      signIn: '/auth/cognito/sign-in',
-      signUp: '/auth/cognito/sign-up',
-      signUpConfirm: '/auth/cognito/sign-up-confirm',
-      newPasswordRequired: '/auth/cognito/new-password-required',
-      resetPassword: '/auth/cognito/reset-password',
-      updatePassword: '/auth/cognito/update-password',
+    clerk: {
+      signOut: '/auth/clerk/sign-out',
     },
-    firebase: {
-      signIn: '/auth/firebase/sign-in',
-      signUp: '/auth/firebase/sign-up',
-      resetPassword: '/auth/firebase/reset-password',
-      recoveryLinkSent: '/auth/firebase/recovery-link-sent',
-      updatePassword: '/auth/firebase/update-password',
+    cognito: {
+      callback: '/auth/cognito/callback',
+      signIn: '/auth/cognito/sign-in',
+      signOut: '/auth/cognito/sign-out',
     },
     supabase: {
       callback: { implicit: '/auth/supabase/callback/implicit', pkce: '/auth/supabase/callback/pkce' },
       signIn: '/auth/supabase/sign-in',
       signUp: '/auth/supabase/sign-up',
       signUpConfirm: '/auth/supabase/sign-up-confirm',
+      signOut: '/auth/supabase/sign-out',
       resetPassword: '/auth/supabase/reset-password',
       recoveryLinkSent: '/auth/supabase/recovery-link-sent',
       updatePassword: '/auth/supabase/update-password',
@@ -83,6 +79,7 @@ export const paths = {
     },
     eCommerce: '/dashboard/e-commerce',
     fileStorage: '/dashboard/file-storage',
+    i18n: '/dashboard/i18n',
     invoices: {
       list: '/dashboard/invoices',
       create: '/dashboard/invoices/create',

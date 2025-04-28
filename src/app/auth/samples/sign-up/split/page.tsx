@@ -13,12 +13,12 @@ import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import { ArrowLeft as ArrowLeftIcon } from '@phosphor-icons/react/dist/ssr/ArrowLeft';
 
-import { config } from '@/config';
+import { appConfig } from '@/config/app';
 import { paths } from '@/paths';
 import { SplitLayout } from '@/components/auth/split-layout';
 import { DynamicLogo } from '@/components/core/logo';
 
-export const metadata: Metadata = { title: `Sign up | Samples | Auth | ${config.site.name}` };
+export const metadata = { title: `Sign up | Samples | Auth | ${appConfig.name}` } satisfies Metadata;
 
 export default function Page(): React.JSX.Element {
   return (

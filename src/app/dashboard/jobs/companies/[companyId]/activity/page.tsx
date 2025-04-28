@@ -1,4 +1,4 @@
-import * as React from 'react';
+import type * as React from 'react';
 import Timeline from '@mui/lab/Timeline';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';

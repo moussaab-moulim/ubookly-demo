@@ -1,18 +1,16 @@
-import * as React from 'react';
+import type * as React from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import Rating from '@mui/material/Rating';
 import Stack from '@mui/material/Stack';
 
-import type { User } from '@/types/user';
-
 const user = {
   id: 'USR-000',
   name: 'Sofia Rivers',
   avatar: '/assets/avatar.png',
   email: 'sofia@devias.io',
-} satisfies User;
+} as const;
 
 export function CompanyReviewAdd(): React.JSX.Element {
   return (

@@ -1,7 +1,7 @@
-import * as React from 'react';
+import type * as React from 'react';
 import type { Metadata } from 'next';
 
-import { config } from '@/config';
+import { appConfig } from '@/config/app';
 import { Layout } from '@/components/widgets/layout';
 import type { Component } from '@/components/widgets/layout';
 import { Modal1 } from '@/components/widgets/modals/modal-1';
@@ -15,7 +15,7 @@ import { Modal8 } from '@/components/widgets/modals/modal-8';
 import { Modal9 } from '@/components/widgets/modals/modal-9';
 import { Modal10 } from '@/components/widgets/modals/modal-10';
 
-export const metadata = { title: `Modals | Components | ${config.site.name}` } satisfies Metadata;
+export const metadata = { title: `Modals | Components | ${appConfig.name}` } satisfies Metadata;
 
 const components = [
   { title: 'Modal 1', element: <Modal1 /> },

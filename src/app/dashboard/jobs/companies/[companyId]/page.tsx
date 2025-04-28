@@ -1,13 +1,13 @@
-import * as React from 'react';
+import type * as React from 'react';
 import RouterLink from 'next/link';
 import Box from '@mui/material/Box';
 import Divider from '@mui/material/Divider';
+import Grid from '@mui/material/Grid2';
 import ImageList from '@mui/material/ImageList';
 import ImageListItem from '@mui/material/ImageListItem';
 import Link from '@mui/material/Link';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
-import Grid from '@mui/material/Unstable_Grid2';
 import { ArrowRight as ArrowRightIcon } from '@phosphor-icons/react/dist/ssr/ArrowRight';
 
 import { paths } from '@/paths';
@@ -39,8 +39,8 @@ const jobs = [
     id: 'JOB-001',
     title: 'Senior React Developer',
     currency: 'USD',
-    budgetMin: 94000,
-    budgetMax: 140000,
+    budgetMin: 94_000,
+    budgetMax: 140_000,
     isRemote: true,
     publishedAt: dayjs().subtract(49, 'minute').subtract(2, 'hour').subtract(7, 'day').toDate(),
   },
@@ -48,8 +48,8 @@ const jobs = [
     id: 'JOB-002',
     title: 'Senior Ruby Engineer',
     currency: 'USD',
-    budgetMin: 120000,
-    budgetMax: 145000,
+    budgetMin: 120_000,
+    budgetMax: 145_000,
     isRemote: true,
     publishedAt: dayjs().subtract(10, 'minute').subtract(7, 'hour').subtract(8, 'day').toDate(),
   },
@@ -129,7 +129,13 @@ export default function Page(): React.JSX.Element {
         </Stack>
         <Grid container spacing={3}>
           {members.map((member) => (
-            <Grid key={member.id} sm={6} xs={12}>
+            <Grid
+              key={member.id}
+              size={{
+                sm: 6,
+                xs: 12,
+              }}
+            >
               <MemberCard member={member} />
             </Grid>
           ))}

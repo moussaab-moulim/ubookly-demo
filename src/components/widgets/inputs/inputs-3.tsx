@@ -1,15 +1,20 @@
-import * as React from 'react';
+import type * as React from 'react';
 import Box from '@mui/material/Box';
+import Grid from '@mui/material/Grid2';
 import Stack from '@mui/material/Stack';
 import Switch from '@mui/material/Switch';
 import Typography from '@mui/material/Typography';
-import Grid from '@mui/material/Unstable_Grid2';
 
 export function Inputs3(): React.JSX.Element {
   return (
     <Box sx={{ p: 3 }}>
       <Grid container spacing={3}>
-        <Grid md={6} xs={12}>
+        <Grid
+          size={{
+            md: 6,
+            xs: 12,
+          }}
+        >
           <Stack spacing={1}>
             <Typography variant="subtitle2">Email verified</Typography>
             <Typography color="text.secondary" variant="body2">
@@ -18,7 +23,12 @@ export function Inputs3(): React.JSX.Element {
             <Switch defaultChecked />
           </Stack>
         </Grid>
-        <Grid md={6} xs={12}>
+        <Grid
+          size={{
+            md: 6,
+            xs: 12,
+          }}
+        >
           <Stack spacing={1}>
             <Typography variant="subtitle2">Email</Typography>
             <Typography color="text.secondary" variant="body2">

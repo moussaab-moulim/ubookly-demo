@@ -1,19 +1,24 @@
-import * as React from 'react';
+import type * as React from 'react';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import Divider from '@mui/material/Divider';
+import Grid from '@mui/material/Grid2';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
-import Grid from '@mui/material/Unstable_Grid2';
 import { ArrowRight as ArrowRightIcon } from '@phosphor-icons/react/dist/ssr/ArrowRight';
 
 export function QuickStats11(): React.JSX.Element {
   return (
     <Box sx={{ bgcolor: 'var(--mui-palette-background-level1)', p: 3 }}>
       <Grid container spacing={3}>
-        <Grid lg={4} xs={12}>
+        <Grid
+          size={{
+            lg: 4,
+            xs: 12,
+          }}
+        >
           <Card>
             <Stack direction="row" spacing={3} sx={{ alignItems: 'center', px: 4, py: 3 }}>
               <div>
@@ -39,7 +44,12 @@ export function QuickStats11(): React.JSX.Element {
             </CardActions>
           </Card>
         </Grid>
-        <Grid lg={4} xs={12}>
+        <Grid
+          size={{
+            lg: 4,
+            xs: 12,
+          }}
+        >
           <Card>
             <Stack direction="row" spacing={3} sx={{ alignItems: 'center', px: 4, py: 3 }}>
               <div>
@@ -65,7 +75,12 @@ export function QuickStats11(): React.JSX.Element {
             </CardActions>
           </Card>
         </Grid>
-        <Grid lg={4} xs={12}>
+        <Grid
+          size={{
+            lg: 4,
+            xs: 12,
+          }}
+        >
           <Card>
             <Stack direction="row" spacing={3} sx={{ alignItems: 'center', px: 4, py: 3 }}>
               <div>

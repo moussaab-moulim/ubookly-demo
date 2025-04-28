@@ -22,7 +22,7 @@ import { Controller, useForm } from 'react-hook-form';
 import { z as zod } from 'zod';
 
 import { paths } from '@/paths';
-import { createClient as createSupabaseClient } from '@/lib/supabase/client';
+import { createClient as createSupabaseClient } from '@/lib/supabase/browser';
 import { DynamicLogo } from '@/components/core/logo';
 import { toast } from '@/components/core/toaster';
 
@@ -66,7 +66,7 @@ export function SignInForm(): React.JSX.Element {
     async (providerId: OAuthProvider['id']): Promise<void> => {
       setIsPending(true);
 
-      const redirectToUrl = new URL(paths.auth.supabase.callback.pkce, window.location.origin);
+      const redirectToUrl = new URL(paths.auth.supabase.callback.pkce, globalThis.location.origin);
       redirectToUrl.searchParams.set('next', paths.dashboard.overview);
 
       const { data, error } = await supabaseClient.auth.signInWithOAuth({
@@ -80,7 +80,7 @@ export function SignInForm(): React.JSX.Element {
         return;
       }
 
-      window.location.href = data.url;
+      globalThis.location.href = data.url;
     },
     [supabaseClient]
   );
@@ -100,14 +100,16 @@ export function SignInForm(): React.JSX.Element {
           // For the sake of simplicity, we will just redirect to the confirmation page.
           const searchParams = new URLSearchParams({ email: values.email });
           router.push(`${paths.auth.supabase.signUpConfirm}?${searchParams.toString()}`);
-        } else {
-          setError('root', { type: 'server', message: error.message });
-          setIsPending(false);
+          return;
         }
-      } else {
-        // UserProvider will handle Router refresh
-        // After refresh, GuestGuard will handle the redirect
+
+        setError('root', { type: 'server', message: error.message });
+        setIsPending(false);
+        return;
       }
+
+      // On router refresh the sign-in page component will automatically redirect to the dashboard.
+      router.refresh();
     },
     [supabaseClient, router, setError]
   );
@@ -191,7 +193,6 @@ export function SignInForm(): React.JSX.Element {
                           />
                         )
                       }
-                      label="Password"
                       type={showPassword ? 'text' : 'password'}
                     />
                     {errors.password ? <FormHelperText>{errors.password.message}</FormHelperText> : null}

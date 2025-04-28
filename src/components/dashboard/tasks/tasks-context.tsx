@@ -5,7 +5,7 @@ import * as React from 'react';
 import type { Column, Comment, Task } from './types';
 
 function noop(): void {
-  return undefined;
+  // No operation
 }
 
 export interface TasksContextValue {
@@ -91,7 +91,7 @@ export function TasksProvider({
 
       const updatedColumn = { ...column };
 
-      if (typeof name !== 'undefined') {
+      if (name !== undefined) {
         updatedColumn.name = name;
       }
 
@@ -116,9 +116,9 @@ export function TasksProvider({
       const updatedTasks = new Map<string, Task>(tasks);
 
       // Delete tasks
-      column.taskIds.forEach((taskId): void => {
+      for (const taskId of column.taskIds) {
         updatedTasks.delete(taskId);
-      });
+      }
 
       const updatedColumns = new Map<string, Column>(columns);
 
@@ -146,9 +146,9 @@ export function TasksProvider({
       const updatedTasks = new Map<string, Task>(tasks);
 
       // Delete tasks
-      column.taskIds.forEach((taskId): void => {
+      for (const taskId of column.taskIds) {
         updatedTasks.delete(taskId);
-      });
+      }
 
       const updatedColumns = new Map<string, Column>(columns);
 
@@ -245,8 +245,8 @@ export function TasksProvider({
 
         // Dropped on the same column, reorder
         if (activeTask.columnId === overTask.columnId) {
-          const oldTaskIndex = activeColumn.taskIds.findIndex((taskId) => taskId === activeTask.id);
-          const newTaskIndex = activeColumn.taskIds.findIndex((taskId) => taskId === overTask.id);
+          const oldTaskIndex = activeColumn.taskIds.indexOf(activeTask.id);
+          const newTaskIndex = activeColumn.taskIds.indexOf(overTask.id);
 
           const updatedActiveColumn = {
             ...activeColumn,
@@ -277,7 +277,7 @@ export function TasksProvider({
           updatedTasks.set(updatedActiveTask.id, updatedActiveTask);
 
           // Find new task position
-          const overTaskIndex = overColumn.taskIds.findIndex((taskId) => taskId === overTask.id);
+          const overTaskIndex = overColumn.taskIds.indexOf(overTask.id);
 
           // Remove task from active column
           const updatedActiveColumn = {
@@ -389,12 +389,12 @@ export function TasksProvider({
       const updatedTask = { ...task };
 
       // Title changed
-      if (typeof title !== 'undefined') {
+      if (title !== undefined) {
         updatedTask.title = title;
       }
 
       // Description changed
-      if (typeof description !== 'undefined') {
+      if (description !== undefined) {
         updatedTask.description = description;
       }
 

@@ -1,6 +1,6 @@
 'use client';
 
-import * as React from 'react';
+import type * as React from 'react';
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import CardHeader from '@mui/material/CardHeader';
@@ -20,12 +20,12 @@ interface Entry {
 }
 
 const entries = [
-  { url: '/', visitors: 95847, uniqueVisits: 8584, bounceRate: 16 },
+  { url: '/', visitors: 95_847, uniqueVisits: 8584, bounceRate: 16 },
   { url: '/auth/login', visitors: 7500, uniqueVisits: 648, bounceRate: 5 },
-  { url: '/dashboard', visitors: 85406, uniqueVisits: 568, bounceRate: 2 },
-  { url: '/blog/top-5-react-frameworks', visitors: 75050, uniqueVisits: 12322, bounceRate: 12 },
-  { url: '/blog/understand-programming-principles', visitors: 68003, uniqueVisits: 11645, bounceRate: 10 },
-  { url: '/blog/design-patterns', visitors: 49510, uniqueVisits: 10259, bounceRate: 8 },
+  { url: '/dashboard', visitors: 85_406, uniqueVisits: 568, bounceRate: 2 },
+  { url: '/blog/top-5-react-frameworks', visitors: 75_050, uniqueVisits: 12_322, bounceRate: 12 },
+  { url: '/blog/understand-programming-principles', visitors: 68_003, uniqueVisits: 11_645, bounceRate: 10 },
+  { url: '/blog/design-patterns', visitors: 49_510, uniqueVisits: 10_259, bounceRate: 8 },
 ] satisfies Entry[];
 
 const columns = [

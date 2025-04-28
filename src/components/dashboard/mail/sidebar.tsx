@@ -27,13 +27,13 @@ interface GroupedLabels {
 function groupLabels(labels: Label[]): GroupedLabels {
   const groups: GroupedLabels = { system: [], custom: [] };
 
-  labels.forEach((label) => {
+  for (const label of labels) {
     if (label.type === 'system') {
       groups.system.push(label);
     } else {
       groups.custom.push(label);
     }
-  });
+  }
 
   return groups;
 }

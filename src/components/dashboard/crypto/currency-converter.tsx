@@ -1,4 +1,4 @@
-import * as React from 'react';
+import type * as React from 'react';
 import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
@@ -71,7 +71,7 @@ export function CurrencyConverter(): React.JSX.Element {
             </FormControl>
           </Stack>
           <Typography color="text.secondary" variant="body2">
-            1 BTC = {new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(20024.9)}
+            1 BTC = {new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(20_024.9)}
           </Typography>
           <Button variant="contained">Buy Bitcoin</Button>
         </Stack>

@@ -62,8 +62,8 @@ function getDefaultValues({ event, range }: { event?: Event; range?: { start: Da
     return {
       title: event.title ?? '',
       description: event.description ?? '',
-      start: event.start ? event.start : new Date(),
-      end: event.end ? event.end : dayjs().add(30, 'minute').toDate(),
+      start: event.start ?? new Date(),
+      end: event.end ?? dayjs().add(30, 'minute').toDate(),
       allDay: event.allDay ?? false,
       priority: event.priority ?? 'low',
     };
@@ -128,8 +128,8 @@ export function EventDialog({
         } else {
           onCreate?.(params);
         }
-      } catch (err) {
-        logger.error(err);
+      } catch (error) {
+        logger.error(error);
         toast.error('Something went wrong!');
       }
     },

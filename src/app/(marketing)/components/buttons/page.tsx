@@ -1,7 +1,7 @@
-import * as React from 'react';
+import type * as React from 'react';
 import type { Metadata } from 'next';
 
-import { config } from '@/config';
+import { appConfig } from '@/config/app';
 import { Buttons1 } from '@/components/widgets/buttons/buttons-1';
 import { Buttons2 } from '@/components/widgets/buttons/buttons-2';
 import { Buttons3 } from '@/components/widgets/buttons/buttons-3';
@@ -9,7 +9,7 @@ import { Buttons4 } from '@/components/widgets/buttons/buttons-4';
 import { Layout } from '@/components/widgets/layout';
 import type { Component } from '@/components/widgets/layout';
 
-export const metadata = { title: `Buttons | Components | ${config.site.name}` } satisfies Metadata;
+export const metadata = { title: `Buttons | Components | ${appConfig.name}` } satisfies Metadata;
 
 const components = [
   { title: 'Simple buttons', element: <Buttons1 /> },

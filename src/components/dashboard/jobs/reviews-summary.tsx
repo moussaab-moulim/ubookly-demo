@@ -1,4 +1,4 @@
-import * as React from 'react';
+import type * as React from 'react';
 import Card from '@mui/material/Card';
 import Rating from '@mui/material/Rating';
 import Stack from '@mui/material/Stack';

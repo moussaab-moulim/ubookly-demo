@@ -1,4 +1,4 @@
-import * as React from 'react';
+import type * as React from 'react';
 import type { Metadata } from 'next';
 import RouterLink from 'next/link';
 import Box from '@mui/material/Box';
@@ -7,11 +7,11 @@ import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import { ArrowLeft as ArrowLeftIcon } from '@phosphor-icons/react/dist/ssr/ArrowLeft';
 
-import { config } from '@/config';
+import { appConfig } from '@/config/app';
 import { paths } from '@/paths';
 import { ProductEditForm } from '@/components/dashboard/product/product-edit-form';
 
-export const metadata = { title: `Details | Products | Dashboard | ${config.site.name}` } satisfies Metadata;
+export const metadata = { title: `Details | Products | Dashboard | ${appConfig.name}` } satisfies Metadata;
 
 // The page should load the product from the API based on the productId param and pass it to the form component.
 // For the sake of simplicity, we are just using a static product object.

@@ -1,7 +1,7 @@
-import * as React from 'react';
+import type * as React from 'react';
 import type { Metadata } from 'next';
 
-import { config } from '@/config';
+import { appConfig } from '@/config/app';
 import { Colors1 } from '@/components/widgets/colors/colors-1';
 import { Colors2 } from '@/components/widgets/colors/colors-2';
 import { Colors3 } from '@/components/widgets/colors/colors-3';
@@ -13,7 +13,7 @@ import { Colors8 } from '@/components/widgets/colors/colors-8';
 import { Layout } from '@/components/widgets/layout';
 import type { Component } from '@/components/widgets/layout';
 
-export const metadata = { title: `Colors | Components | ${config.site.name}` } satisfies Metadata;
+export const metadata = { title: `Colors | Components | ${appConfig.name}` } satisfies Metadata;
 
 const components = [
   { element: <Colors1 />, title: 'Text colors' },

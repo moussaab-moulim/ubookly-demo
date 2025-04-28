@@ -1,6 +1,6 @@
 'use client';
 
-import * as React from 'react';
+import type * as React from 'react';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Card from '@mui/material/Card';
@@ -18,8 +18,8 @@ import { Cell, Pie, PieChart, Tooltip } from 'recharts';
 import { NoSsr } from '@/components/core/no-ssr';
 
 const data = [
-  { name: 'US Dollars', value: 21500, color: 'var(--mui-palette-primary-main)' },
-  { name: 'Bitcoin', value: 15300, color: 'var(--mui-palette-info-main)' },
+  { name: 'US Dollars', value: 21_500, color: 'var(--mui-palette-primary-main)' },
+  { name: 'Bitcoin', value: 15_300, color: 'var(--mui-palette-info-main)' },
   { name: 'XRP Ripple', value: 1076.81, color: 'var(--mui-palette-warning-main)' },
 ] satisfies { name: string; value: number; color: string }[];
 

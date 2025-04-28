@@ -4,9 +4,9 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import GlobalStyles from '@mui/material/GlobalStyles';
 
-import { useSettings } from '@/hooks/use-settings';
+import { dashboardConfig } from '@/config/dashboard';
+import { useSettings } from '@/components/core/settings/settings-context';
 
-import { layoutConfig } from '../config';
 import { MainNav } from './main-nav';
 import { SideNav } from './side-nav';
 
@@ -16,6 +16,8 @@ export interface VerticalLayoutProps {
 
 export function VerticalLayout({ children }: VerticalLayoutProps): React.JSX.Element {
   const { settings } = useSettings();
+
+  const navColor = settings.dashboardNavColor ?? dashboardConfig.navColor;
 
   return (
     <React.Fragment>
@@ -40,9 +42,9 @@ export function VerticalLayout({ children }: VerticalLayoutProps): React.JSX.Ele
           minHeight: '100%',
         }}
       >
-        <SideNav color={settings.navColor} items={layoutConfig.navItems} />
+        <SideNav color={navColor} items={dashboardConfig.navItems} />
         <Box sx={{ display: 'flex', flex: '1 1 auto', flexDirection: 'column', pl: { lg: 'var(--SideNav-width)' } }}>
-          <MainNav items={layoutConfig.navItems} />
+          <MainNav items={dashboardConfig.navItems} />
           <Box
             component="main"
             sx={{

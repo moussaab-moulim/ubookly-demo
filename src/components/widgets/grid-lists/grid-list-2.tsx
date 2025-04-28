@@ -1,16 +1,16 @@
-import * as React from 'react';
+import type * as React from 'react';
 import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import CardMedia from '@mui/material/CardMedia';
 import Divider from '@mui/material/Divider';
+import Grid from '@mui/material/Grid2';
 import IconButton from '@mui/material/IconButton';
 import Link from '@mui/material/Link';
 import Rating from '@mui/material/Rating';
 import Stack from '@mui/material/Stack';
 import Tooltip from '@mui/material/Tooltip';
 import Typography from '@mui/material/Typography';
-import Grid from '@mui/material/Unstable_Grid2';
 import { Heart as HeartIcon } from '@phosphor-icons/react/dist/ssr/Heart';
 import { Users as UsersIcon } from '@phosphor-icons/react/dist/ssr/Users';
 
@@ -89,7 +89,14 @@ export function GridList2(): React.JSX.Element {
     <Box sx={{ bgcolor: 'var(--mui-palette-background-level1)', p: 3 }}>
       <Grid container spacing={3}>
         {projects.map((project) => (
-          <Grid key={project.id} md={4} sm={6} xs={12}>
+          <Grid
+            key={project.id}
+            size={{
+              md: 4,
+              sm: 6,
+              xs: 12,
+            }}
+          >
             <Card sx={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
               <Stack spacing={2} sx={{ flex: '1 1 auto', p: 2 }}>
                 <CardMedia

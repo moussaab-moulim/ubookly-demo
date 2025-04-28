@@ -1,10 +1,10 @@
 'use client';
 
-import * as React from 'react';
+import type * as React from 'react';
 import TablePagination from '@mui/material/TablePagination';
 
 function noop(): void {
-  return undefined;
+  // No operation
 }
 
 interface ProductsPaginationProps {

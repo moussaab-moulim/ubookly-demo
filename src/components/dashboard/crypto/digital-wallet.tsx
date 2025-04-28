@@ -1,6 +1,6 @@
 'use client';
 
-import * as React from 'react';
+import type * as React from 'react';
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import IconButton from '@mui/material/IconButton';
@@ -77,7 +77,7 @@ export function DigitalWallet({
               <Area
                 animationDuration={300}
                 dataKey="value"
-                fill={`url(#${`area-wallet-${currency}`})`}
+                fill={`url(#area-wallet-${currency})`}
                 fillOpacity={1}
                 name="Income"
                 stroke={color}

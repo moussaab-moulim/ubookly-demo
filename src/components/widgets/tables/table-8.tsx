@@ -1,6 +1,6 @@
 'use client';
 
-import * as React from 'react';
+import type * as React from 'react';
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import CardHeader from '@mui/material/CardHeader';
@@ -30,9 +30,9 @@ interface Visit {
 }
 
 const visits = [
-  { countryCode: 'us', countryName: 'United States', seoRate: 40, value: 31200 },
-  { countryCode: 'uk', countryName: 'United Kingdom', seoRate: 47, value: 12700 },
-  { countryCode: 'ru', countryName: 'Russia', seoRate: 65, value: 10360 },
+  { countryCode: 'us', countryName: 'United States', seoRate: 40, value: 31_200 },
+  { countryCode: 'uk', countryName: 'United Kingdom', seoRate: 47, value: 12_700 },
+  { countryCode: 'ru', countryName: 'Russia', seoRate: 65, value: 10_360 },
   { countryCode: 'ca', countryName: 'Canada', seoRate: 23, value: 5749 },
   { countryCode: 'de', countryName: 'Germany', seoRate: 45, value: 2932 },
   { countryCode: 'es', countryName: 'Spain', seoRate: 56, value: 200 },

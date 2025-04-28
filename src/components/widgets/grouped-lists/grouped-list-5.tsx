@@ -1,6 +1,6 @@
 'use client';
 
-import * as React from 'react';
+import type * as React from 'react';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Card from '@mui/material/Card';
@@ -31,8 +31,8 @@ const products = [
     name: 'Erbology Aloe Vera',
     image: '/assets/product-1.png',
     currency: 'USD',
-    profit: 53500,
-    sales: 13153,
+    profit: 53_500,
+    sales: 13_153,
     conversionRate: 93,
   },
   {
@@ -40,8 +40,8 @@ const products = [
     name: 'Lancome Rouge',
     image: '/assets/product-2.png',
     currency: 'USD',
-    profit: 45763,
-    sales: 10300,
+    profit: 45_763,
+    sales: 10_300,
     conversionRate: 76,
   },
   {
@@ -49,7 +49,7 @@ const products = [
     name: 'Ritual of Sakura',
     image: '/assets/product-3.png',
     currency: 'USD',
-    profit: 28700,
+    profit: 28_700,
     sales: 5300,
     conversionRate: 60,
   },
@@ -58,7 +58,7 @@ const products = [
     name: 'Necessaire Body Lotion',
     image: '/assets/product-4.png',
     currency: 'USD',
-    profit: 20400,
+    profit: 20_400,
     sales: 1203,
     conversionRate: 46,
   },
@@ -67,7 +67,7 @@ const products = [
     name: 'Soja & Co. Eucalyptus',
     image: '/assets/product-5.png',
     currency: 'USD',
-    profit: 15200,
+    profit: 15_200,
     sales: 254,
     conversionRate: 41,
   },

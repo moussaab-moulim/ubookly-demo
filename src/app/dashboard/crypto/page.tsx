@@ -1,13 +1,13 @@
-import * as React from 'react';
+import type * as React from 'react';
 import type { Metadata } from 'next';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
+import Grid from '@mui/material/Grid2';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
-import Grid from '@mui/material/Unstable_Grid2';
 import { Plus as PlusIcon } from '@phosphor-icons/react/dist/ssr/Plus';
 
-import { config } from '@/config';
+import { appConfig } from '@/config/app';
 import { dayjs } from '@/lib/dayjs';
 import { AccountUpgrade } from '@/components/dashboard/crypto/account-upgrade';
 import { CreditCard } from '@/components/dashboard/crypto/credit-card';
@@ -16,7 +16,7 @@ import { CurrentBalance } from '@/components/dashboard/crypto/current-balance';
 import { DigitalWallet } from '@/components/dashboard/crypto/digital-wallet';
 import { Transactions } from '@/components/dashboard/crypto/transactions';
 
-export const metadata = { title: `Crypto | Dashboard | ${config.site.name}` } satisfies Metadata;
+export const metadata = { title: `Crypto | Dashboard | ${appConfig.name}` } satisfies Metadata;
 
 export default function Page(): React.JSX.Element {
   return (
@@ -40,7 +40,7 @@ export default function Page(): React.JSX.Element {
           </div>
         </Stack>
         <Grid container spacing={4}>
-          <Grid xs={12}>
+          <Grid size={12}>
             <Box
               sx={{
                 display: 'grid',
@@ -58,7 +58,7 @@ export default function Page(): React.JSX.Element {
                 ]}
                 diff={34.1}
                 trend="up"
-                value={16213.2}
+                value={16_213.2}
               />
 
               <DigitalWallet
@@ -96,19 +96,34 @@ export default function Page(): React.JSX.Element {
               />
             </Box>
           </Grid>
-          <Grid md={8} xs={12}>
+          <Grid
+            size={{
+              md: 8,
+              xs: 12,
+            }}
+          >
             <CurrentBalance
               data={[
-                { name: 'USD', value: 10076.81, color: 'var(--mui-palette-success-main)' },
-                { name: 'BTC', value: 16213.2, color: 'var(--mui-palette-warning-main)' },
+                { name: 'USD', value: 10_076.81, color: 'var(--mui-palette-success-main)' },
+                { name: 'BTC', value: 16_213.2, color: 'var(--mui-palette-warning-main)' },
                 { name: 'ETH', value: 9626.8, color: 'var(--mui-palette-primary-main)' },
               ]}
             />
           </Grid>
-          <Grid md={4} xs={12}>
+          <Grid
+            size={{
+              md: 4,
+              xs: 12,
+            }}
+          >
             <CurrencyConverter />
           </Grid>
-          <Grid md={8} xs={12}>
+          <Grid
+            size={{
+              md: 8,
+              xs: 12,
+            }}
+          >
             <Transactions
               transactions={[
                 {
@@ -141,7 +156,12 @@ export default function Page(): React.JSX.Element {
               ]}
             />
           </Grid>
-          <Grid md={4} xs={12}>
+          <Grid
+            size={{
+              md: 4,
+              xs: 12,
+            }}
+          >
             <AccountUpgrade />
           </Grid>
         </Grid>

@@ -1,4 +1,4 @@
-import * as React from 'react';
+import type * as React from 'react';
 import Box from '@mui/material/Box';
 
 export interface CenteredLayoutProps {
@@ -13,7 +13,7 @@ export function CenteredLayout({ children }: CenteredLayoutProps): React.JSX.Ele
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'center',
-        minHeight: '100vh',
+        minHeight: '100%',
         p: { xs: 2, md: 3 },
       }}
     >

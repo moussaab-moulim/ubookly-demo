@@ -7,13 +7,13 @@ import Box from '@mui/material/Box';
 import Chip from '@mui/material/Chip';
 import Dialog from '@mui/material/Dialog';
 import DialogContent from '@mui/material/DialogContent';
+import Grid from '@mui/material/Grid2';
 import IconButton from '@mui/material/IconButton';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import Stack from '@mui/material/Stack';
 import Tooltip from '@mui/material/Tooltip';
 import Typography from '@mui/material/Typography';
-import Grid from '@mui/material/Unstable_Grid2';
 import { Globe as GlobeIcon } from '@phosphor-icons/react/dist/ssr/Globe';
 import { PencilSimple as PencilSimpleIcon } from '@phosphor-icons/react/dist/ssr/PencilSimple';
 import { Plus as PlusIcon } from '@phosphor-icons/react/dist/ssr/Plus';
@@ -99,48 +99,98 @@ export function ItemModal({ item, onClose, onDelete, onFavorite, open = false }:
             </Stack>
             <div>
               <Grid alignItems="center" container spacing={3}>
-                <Grid sm={4} xs={12}>
+                <Grid
+                  size={{
+                    sm: 4,
+                    xs: 12,
+                  }}
+                >
                   <Typography color="text.secondary" variant="body2">
                     Created by
                   </Typography>
                 </Grid>
-                <Grid sm={8} xs={12}>
+                <Grid
+                  size={{
+                    sm: 8,
+                    xs: 12,
+                  }}
+                >
                   {item.author ? <Avatar src={item.author.avatar} /> : null}
                 </Grid>
-                <Grid sm={4} xs={12}>
+                <Grid
+                  size={{
+                    sm: 4,
+                    xs: 12,
+                  }}
+                >
                   <Typography color="text.secondary" variant="body2">
                     Size
                   </Typography>
                 </Grid>
-                <Grid sm={8} xs={12}>
+                <Grid
+                  size={{
+                    sm: 8,
+                    xs: 12,
+                  }}
+                >
                   <Typography variant="body2">{item.size}</Typography>
                 </Grid>
-                <Grid sm={4} xs={12}>
+                <Grid
+                  size={{
+                    sm: 4,
+                    xs: 12,
+                  }}
+                >
                   <Typography color="text.secondary" variant="body2">
                     Created At
                   </Typography>
                 </Grid>
-                <Grid sm={8} xs={12}>
+                <Grid
+                  size={{
+                    sm: 8,
+                    xs: 12,
+                  }}
+                >
                   <Typography variant="body2">
                     {item.createdAt ? dayjs(item.createdAt).format('MMM D, YYYY hh:mm A') : undefined}
                   </Typography>
                 </Grid>
-                <Grid sm={4} xs={12}>
+                <Grid
+                  size={{
+                    sm: 4,
+                    xs: 12,
+                  }}
+                >
                   <Typography color="text.secondary" variant="body2">
                     Modified At
                   </Typography>
                 </Grid>
-                <Grid sm={8} xs={12}>
+                <Grid
+                  size={{
+                    sm: 8,
+                    xs: 12,
+                  }}
+                >
                   <Typography variant="body2">
                     {item.updatedAt ? dayjs(item.updatedAt).format('MMM D, YYYY hh:mm A') : undefined}
                   </Typography>
                 </Grid>
-                <Grid sm={4} xs={12}>
+                <Grid
+                  size={{
+                    sm: 4,
+                    xs: 12,
+                  }}
+                >
                   <Typography color="text.secondary" variant="body2">
                     Tags
                   </Typography>
                 </Grid>
-                <Grid sm={8} xs={12}>
+                <Grid
+                  size={{
+                    sm: 8,
+                    xs: 12,
+                  }}
+                >
                   <Stack direction="row" spacing={1} sx={{ alignItems: 'center', flexWrap: 'wrap' }}>
                     {tags.map((tag) => (
                       <Chip
@@ -158,12 +208,22 @@ export function ItemModal({ item, onClose, onDelete, onFavorite, open = false }:
                     </IconButton>
                   </Stack>
                 </Grid>
-                <Grid sm={4} xs={12}>
+                <Grid
+                  size={{
+                    sm: 4,
+                    xs: 12,
+                  }}
+                >
                   <Typography color="text.secondary" variant="body2">
                     Shared with
                   </Typography>
                 </Grid>
-                <Grid sm={8} xs={12}>
+                <Grid
+                  size={{
+                    sm: 8,
+                    xs: 12,
+                  }}
+                >
                   <Stack direction="row" spacing={1} sx={{ alignItems: 'center' }}>
                     {item.isPublic ? (
                       <Tooltip title="Public">
@@ -184,12 +244,22 @@ export function ItemModal({ item, onClose, onDelete, onFavorite, open = false }:
                     </IconButton>
                   </Stack>
                 </Grid>
-                <Grid sm={4} xs={12}>
+                <Grid
+                  size={{
+                    sm: 4,
+                    xs: 12,
+                  }}
+                >
                   <Typography color="text.secondary" variant="body2">
                     Actions
                   </Typography>
                 </Grid>
-                <Grid sm={8} xs={12}>
+                <Grid
+                  size={{
+                    sm: 8,
+                    xs: 12,
+                  }}
+                >
                   <IconButton
                     color="error"
                     onClick={() => {

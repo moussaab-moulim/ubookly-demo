@@ -1,12 +1,12 @@
-import * as React from 'react';
+import type * as React from 'react';
 import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import Chip from '@mui/material/Chip';
+import Grid from '@mui/material/Grid2';
 import LinearProgress from '@mui/material/LinearProgress';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
-import Grid from '@mui/material/Unstable_Grid2';
 import { Coins as CoinsIcon } from '@phosphor-icons/react/dist/ssr/Coins';
 import { CurrencyDollar as CurrencyDollarIcon } from '@phosphor-icons/react/dist/ssr/CurrencyDollar';
 import { Folder as FolderIcon } from '@phosphor-icons/react/dist/ssr/Folder';
@@ -15,7 +15,13 @@ export function QuickStats2(): React.JSX.Element {
   return (
     <Box sx={{ bgcolor: 'var(--mui-palette-background-level1)', p: 3 }}>
       <Grid container spacing={3}>
-        <Grid lg={3} md={6} xs={12}>
+        <Grid
+          size={{
+            lg: 3,
+            md: 6,
+            xs: 12,
+          }}
+        >
           <Card>
             <Stack direction="row" spacing={2} sx={{ alignItems: 'center', p: 3 }}>
               <Stack spacing={1} sx={{ flex: '1 1 auto' }}>
@@ -46,7 +52,13 @@ export function QuickStats2(): React.JSX.Element {
             </Stack>
           </Card>
         </Grid>
-        <Grid lg={3} md={6} xs={12}>
+        <Grid
+          size={{
+            lg: 3,
+            md: 6,
+            xs: 12,
+          }}
+        >
           <Card>
             <Stack direction="row" spacing={2} sx={{ alignItems: 'center', p: 3 }}>
               <Stack spacing={1} sx={{ flex: '1 1 auto' }}>
@@ -71,7 +83,13 @@ export function QuickStats2(): React.JSX.Element {
             </Stack>
           </Card>
         </Grid>
-        <Grid lg={3} md={6} xs={12}>
+        <Grid
+          size={{
+            lg: 3,
+            md: 6,
+            xs: 12,
+          }}
+        >
           <Card>
             <Stack spacing={1} sx={{ p: 3 }}>
               <Typography color="text.secondary" variant="overline">
@@ -86,7 +104,13 @@ export function QuickStats2(): React.JSX.Element {
             </Stack>
           </Card>
         </Grid>
-        <Grid lg={3} md={6} xs={12}>
+        <Grid
+          size={{
+            lg: 3,
+            md: 6,
+            xs: 12,
+          }}
+        >
           <Card
             sx={{
               alignItems: 'center',

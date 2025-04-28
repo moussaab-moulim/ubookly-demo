@@ -1,19 +1,19 @@
-import * as React from 'react';
+import type * as React from 'react';
 import type { Metadata } from 'next';
 import RouterLink from 'next/link';
 import Box from '@mui/material/Box';
+import Grid from '@mui/material/Grid2';
 import Link from '@mui/material/Link';
 import Stack from '@mui/material/Stack';
-import Grid from '@mui/material/Unstable_Grid2';
 import { ArrowLeft as ArrowLeftIcon } from '@phosphor-icons/react/dist/ssr/ArrowLeft';
 
-import { config } from '@/config';
+import { appConfig } from '@/config/app';
 import { paths } from '@/paths';
 import { ChapterView } from '@/components/dashboard/academy/chapter-view';
 import { CourseSummary } from '@/components/dashboard/academy/course-summary';
 import type { Chapter, Course } from '@/components/dashboard/academy/types';
 
-export const metadata = { title: `Course | Academy | ${config.site.name}` } satisfies Metadata;
+export const metadata = { title: `Course | Academy | ${appConfig.name}` } satisfies Metadata;
 
 const course = {
   id: 'CRS-001',
@@ -78,7 +78,12 @@ export default function Page(): React.JSX.Element {
       }}
     >
       <Grid container spacing={4}>
-        <Grid md={4} xs={12}>
+        <Grid
+          size={{
+            md: 4,
+            xs: 12,
+          }}
+        >
           <Stack spacing={3}>
             <div>
               <Link
@@ -95,7 +100,12 @@ export default function Page(): React.JSX.Element {
             <CourseSummary chapters={chapters} course={course} currentChapterNumber={currentChapter.number} />
           </Stack>
         </Grid>
-        <Grid md={8} xs={12}>
+        <Grid
+          size={{
+            md: 8,
+            xs: 12,
+          }}
+        >
           <ChapterView chapter={currentChapter} />
         </Grid>
       </Grid>

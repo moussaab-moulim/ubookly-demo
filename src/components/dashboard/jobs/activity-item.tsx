@@ -1,4 +1,4 @@
-import * as React from 'react';
+import type * as React from 'react';
 import TimelineConnector from '@mui/lab/TimelineConnector';
 import TimelineContent from '@mui/lab/TimelineContent';
 import TimelineDot from '@mui/lab/TimelineDot';

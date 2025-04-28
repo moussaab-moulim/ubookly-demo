@@ -1,14 +1,19 @@
-import * as React from 'react';
+import type * as React from 'react';
 import Box from '@mui/material/Box';
+import Grid from '@mui/material/Grid2';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
-import Grid from '@mui/material/Unstable_Grid2';
 
 export function Typography1(): React.JSX.Element {
   return (
     <Box sx={{ p: 3 }}>
       <Grid container>
-        <Grid md={6} xs={12}>
+        <Grid
+          size={{
+            md: 6,
+            xs: 12,
+          }}
+        >
           <Stack spacing={3}>
             <Typography variant="h1">H1</Typography>
             <Typography variant="h2">H2</Typography>

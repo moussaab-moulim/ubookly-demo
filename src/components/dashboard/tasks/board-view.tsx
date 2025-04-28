@@ -99,10 +99,8 @@ export function BoardView(): React.JSX.Element | null {
       sensors={sensors}
     >
       <ColumnList>
-        {Array.from(columns.values()).map(({ taskIds, ...column }): React.JSX.Element => {
-          const tasksFiltered = taskIds
-            .map((taskId) => tasks.get(taskId))
-            .filter((task) => typeof task !== 'undefined') as Task[];
+        {[...columns.values()].map(({ taskIds, ...column }): React.JSX.Element => {
+          const tasksFiltered = taskIds.map((taskId) => tasks.get(taskId)).filter((task) => task !== undefined);
 
           return (
             <ColumnItem

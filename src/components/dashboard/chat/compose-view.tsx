@@ -71,7 +71,7 @@ export function ComposeView(): React.JSX.Element {
       <Divider />
       <Box sx={{ flex: '1 1 auto' }} />
       <Divider />
-      <MessageAdd disabled={recipients.length < 1} onSend={handleSendMessage} />
+      <MessageAdd disabled={recipients.length === 0} onSend={handleSendMessage} />
     </Box>
   );
 }

@@ -1,13 +1,13 @@
 'use client';
 
-import * as React from 'react';
+import type * as React from 'react';
 import Box from '@mui/material/Box';
 import Chip from '@mui/material/Chip';
 import Container from '@mui/material/Container';
+import Grid from '@mui/material/Grid2';
 import Stack from '@mui/material/Stack';
 import { useColorScheme } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
-import Grid from '@mui/material/Unstable_Grid2';
 import { CodeBlock as CodeBlockIcon } from '@phosphor-icons/react/dist/ssr/CodeBlock';
 import { DiamondsFour as DiamondsFourIcon } from '@phosphor-icons/react/dist/ssr/DiamondsFour';
 import { Palette as PaletteIcon } from '@phosphor-icons/react/dist/ssr/Palette';
@@ -121,7 +121,12 @@ export function Productivity(): React.JSX.Element {
             </Typography>
           </Stack>
           <Grid container spacing={3}>
-            <Grid md={8} xs={12}>
+            <Grid
+              size={{
+                md: 8,
+                xs: 12,
+              }}
+            >
               <Box
                 sx={{
                   bgcolor: 'var(--mui-palette-background-level1)',
@@ -153,7 +158,12 @@ export function Productivity(): React.JSX.Element {
                 </Box>
               </Box>
             </Grid>
-            <Grid md={4} xs={12}>
+            <Grid
+              size={{
+                md: 4,
+                xs: 12,
+              }}
+            >
               <Box
                 sx={{
                   bgcolor: 'var(--mui-palette-background-level1)',
@@ -184,7 +194,12 @@ export function Productivity(): React.JSX.Element {
                 </Box>
               </Box>
             </Grid>
-            <Grid md={4} xs={12}>
+            <Grid
+              size={{
+                md: 4,
+                xs: 12,
+              }}
+            >
               <Box
                 sx={{
                   bgcolor: 'var(--mui-palette-background-level1)',
@@ -211,7 +226,12 @@ export function Productivity(): React.JSX.Element {
                 </Box>
               </Box>
             </Grid>
-            <Grid md={8} xs={12}>
+            <Grid
+              size={{
+                md: 8,
+                xs: 12,
+              }}
+            >
               <Box
                 sx={{
                   bgcolor: 'var(--mui-palette-background-level1)',

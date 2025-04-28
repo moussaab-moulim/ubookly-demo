@@ -1,6 +1,6 @@
 'use client';
 
-import * as React from 'react';
+import type * as React from 'react';
 import Avatar from '@mui/material/Avatar';
 import AvatarGroup from '@mui/material/AvatarGroup';
 import Card from '@mui/material/Card';
@@ -46,7 +46,7 @@ export function TaskCard({ onOpen, task }: TaskCardProps): React.JSX.Element {
         </Stack>
         <Stack direction="row" spacing={2} sx={{ alignItems: 'center', justifyContent: 'space-between' }}>
           <div>
-            {assignees.length ? (
+            {assignees.length > 0 ? (
               <AvatarGroup sx={{ flex: '1 1 auto' }}>
                 {assignees.map(
                   (assignee): React.JSX.Element => (
@@ -57,9 +57,9 @@ export function TaskCard({ onOpen, task }: TaskCardProps): React.JSX.Element {
             ) : null}
           </div>
           <Stack direction="row" spacing={1}>
-            {attachments.length ? <LinkIcon fontSize="var(--icon-fontSize-md)" /> : null}
-            {comments.length ? <ChatIcon fontSize="var(--icon-fontSize-md)" /> : null}
-            {subtasks.length ? <ListIcon fontSize="var(--icon-fontSize-md)" /> : null}
+            {attachments.length > 0 ? <LinkIcon fontSize="var(--icon-fontSize-md)" /> : null}
+            {comments.length > 0 ? <ChatIcon fontSize="var(--icon-fontSize-md)" /> : null}
+            {subtasks.length > 0 ? <ListIcon fontSize="var(--icon-fontSize-md)" /> : null}
           </Stack>
         </Stack>
       </Stack>

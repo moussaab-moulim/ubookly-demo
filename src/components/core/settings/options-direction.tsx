@@ -1,12 +1,12 @@
 'use client';
 
-import * as React from 'react';
+import type * as React from 'react';
 import InputLabel from '@mui/material/InputLabel';
 import Stack from '@mui/material/Stack';
 import { TextAlignLeft as TextAlignLeftIcon } from '@phosphor-icons/react/dist/ssr/TextAlignLeft';
 import { TextAlignRight as TextAlignRightIcon } from '@phosphor-icons/react/dist/ssr/TextAlignRight';
 
-import type { Direction } from '@/styles/theme/types';
+import type { Direction } from '@/types/settings';
 
 import { Option } from './option';
 

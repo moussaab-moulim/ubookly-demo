@@ -59,7 +59,7 @@ export function GroupRecipients({
         // filtering the data in the client.
         const results = contacts.filter((contact) => {
           // Filter already picked recipients
-          if (recipients.find((recipient) => recipient.id === contact.id)) {
+          if (recipients.some((recipient) => recipient.id === contact.id)) {
             return false;
           }
 
@@ -67,8 +67,8 @@ export function GroupRecipients({
         });
 
         setSearchResults(results);
-      } catch (err) {
-        logger.error(err);
+      } catch (error) {
+        logger.error(error);
       }
     },
     [contacts, recipients]

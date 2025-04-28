@@ -1,6 +1,6 @@
 'use client';
 
-import * as React from 'react';
+import type * as React from 'react';
 import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
@@ -42,7 +42,7 @@ export function Stats({ data }: StatsProps): React.JSX.Element {
             spacing={3}
             sx={{ justifyContent: 'space-between' }}
           >
-            <Summary icon={ChartPieIcon} title="Payout balance" value={16400} />
+            <Summary icon={ChartPieIcon} title="Payout balance" value={16_400} />
             <Summary icon={CurrencyDollarIcon} title="Today's revenue" value={2600} />
             <Summary icon={ReceiptIcon} title="Expenses" value={5800} />
             <Summary icon={ReceiptXIcon} title="Refunds" value={1250} />
@@ -53,7 +53,7 @@ export function Stats({ data }: StatsProps): React.JSX.Element {
                 <CartesianGrid strokeDasharray="2 4" vertical={false} />
                 <XAxis axisLine={false} dataKey="name" interval={4} tickLine={false} type="category" />
                 <YAxis axisLine={false} domain={[0, 120]} hide type="number" yAxisId={0} />
-                <YAxis axisLine={false} domain={[2000, 12000]} hide type="number" yAxisId={1} />
+                <YAxis axisLine={false} domain={[2000, 12_000]} hide type="number" yAxisId={1} />
                 {lines.map(
                   (line, index): React.JSX.Element => (
                     <Line

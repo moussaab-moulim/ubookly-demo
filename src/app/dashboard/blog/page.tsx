@@ -1,4 +1,4 @@
-import * as React from 'react';
+import type * as React from 'react';
 import type { Metadata } from 'next';
 import RouterLink from 'next/link';
 import Box from '@mui/material/Box';
@@ -6,14 +6,14 @@ import Breadcrumbs from '@mui/material/Breadcrumbs';
 import Button from '@mui/material/Button';
 import Card from '@mui/material/Card';
 import Divider from '@mui/material/Divider';
+import Grid from '@mui/material/Grid2';
 import Link from '@mui/material/Link';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
-import Grid from '@mui/material/Unstable_Grid2';
 import { ArrowLeft as ArrowLeftIcon } from '@phosphor-icons/react/dist/ssr/ArrowLeft';
 import { ArrowRight as ArrowRightIcon } from '@phosphor-icons/react/dist/ssr/ArrowRight';
 
-import { config } from '@/config';
+import { appConfig } from '@/config/app';
 import { paths } from '@/paths';
 import { dayjs } from '@/lib/dayjs';
 import { BreadcrumbsSeparator } from '@/components/core/breadcrumbs-separator';
@@ -21,7 +21,7 @@ import { Newsletter } from '@/components/dashboard/blog/newsletter';
 import { PostCard } from '@/components/dashboard/blog/post-card';
 import type { Post } from '@/components/dashboard/blog/types';
 
-export const metadata = { title: `List | Blog | Dashboard | ${config.site.name}` } satisfies Metadata;
+export const metadata = { title: `List | Blog | Dashboard | ${appConfig.name}` } satisfies Metadata;
 
 const posts = [
   {
@@ -122,7 +122,13 @@ export default function Page(): React.JSX.Element {
           <Divider />
           <Grid container spacing={4}>
             {posts.map((post) => (
-              <Grid key={post.title} md={6} xs={12}>
+              <Grid
+                key={post.title}
+                size={{
+                  md: 6,
+                  xs: 12,
+                }}
+              >
                 <PostCard post={post} />
               </Grid>
             ))}

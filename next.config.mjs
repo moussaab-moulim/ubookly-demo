@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const config = {
   experimental: {
-    windowHistorySupport: true,
+    esmExternals: 'loose',
   },
 };
 

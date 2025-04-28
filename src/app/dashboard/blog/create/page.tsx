@@ -1,4 +1,4 @@
-import * as React from 'react';
+import type * as React from 'react';
 import type { Metadata } from 'next';
 import RouterLink from 'next/link';
 import Box from '@mui/material/Box';
@@ -11,12 +11,12 @@ import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import { DotsThree as DotsThreeIcon } from '@phosphor-icons/react/dist/ssr/DotsThree';
 
-import { config } from '@/config';
+import { appConfig } from '@/config/app';
 import { paths } from '@/paths';
 import { BreadcrumbsSeparator } from '@/components/core/breadcrumbs-separator';
 import { PostForm } from '@/components/dashboard/blog/post-form';
 
-export const metadata = { title: `Create | Blog | Dashboard | ${config.site.name}` } satisfies Metadata;
+export const metadata = { title: `Create | Blog | Dashboard | ${appConfig.name}` } satisfies Metadata;
 
 export default function Page(): React.JSX.Element {
   return (

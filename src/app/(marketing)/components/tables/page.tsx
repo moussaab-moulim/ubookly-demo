@@ -1,7 +1,7 @@
-import * as React from 'react';
+import type * as React from 'react';
 import type { Metadata } from 'next';
 
-import { config } from '@/config';
+import { appConfig } from '@/config/app';
 import type { Component } from '@/components/widgets/layout';
 import { Layout } from '@/components/widgets/layout';
 import { Table1 } from '@/components/widgets/tables/table-1';
@@ -15,7 +15,7 @@ import { Table8 } from '@/components/widgets/tables/table-8';
 import { Table9 } from '@/components/widgets/tables/table-9';
 import { Table10 } from '@/components/widgets/tables/table-10';
 
-export const metadata = { title: `Tables | Components | ${config.site.name}` } satisfies Metadata;
+export const metadata = { title: `Tables | Components | ${appConfig.name}` } satisfies Metadata;
 
 const components = [
   { title: 'Table 1', element: <Table1 /> },

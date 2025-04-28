@@ -1,7 +1,7 @@
-import * as React from 'react';
+import type * as React from 'react';
 import type { Metadata } from 'next';
 
-import { config } from '@/config';
+import { appConfig } from '@/config/app';
 import { GridList1 } from '@/components/widgets/grid-lists/grid-list-1';
 import { GridList2 } from '@/components/widgets/grid-lists/grid-list-2';
 import { GridList3 } from '@/components/widgets/grid-lists/grid-list-3';
@@ -11,7 +11,7 @@ import { GridList6 } from '@/components/widgets/grid-lists/grid-list-6';
 import { Layout } from '@/components/widgets/layout';
 import type { Component } from '@/components/widgets/layout';
 
-export const metadata = { title: `Grid lists | Components | ${config.site.name}` } satisfies Metadata;
+export const metadata = { title: `Grid lists | Components | ${appConfig.name}` } satisfies Metadata;
 
 const components = [
   { title: 'Grid list 1', element: <GridList1 /> },

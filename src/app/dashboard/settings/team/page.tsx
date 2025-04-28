@@ -1,12 +1,12 @@
-import * as React from 'react';
+import type * as React from 'react';
 import type { Metadata } from 'next';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 
-import { config } from '@/config';
+import { appConfig } from '@/config/app';
 import { Members } from '@/components/dashboard/settings/members';
 
-export const metadata = { title: `Team | Settings | Dashboard | ${config.site.name}` } satisfies Metadata;
+export const metadata = { title: `Team | Settings | Dashboard | ${appConfig.name}` } satisfies Metadata;
 
 export default function Page(): React.JSX.Element {
   return (

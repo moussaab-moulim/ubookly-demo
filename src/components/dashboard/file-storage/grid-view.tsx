@@ -18,7 +18,7 @@ export function GridView(): React.JSX.Element {
     <Box
       sx={{ display: 'grid', gap: 4, gridTemplateColumns: { xs: '1fr', sm: 'repeat(2, 1fr)', md: 'repeat(3, 1fr)' } }}
     >
-      {Array.from(items.values()).map((item) => (
+      {[...items.values()].map((item) => (
         <ItemCard
           item={item}
           key={item.id}

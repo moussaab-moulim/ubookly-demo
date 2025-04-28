@@ -13,6 +13,7 @@ import Divider from '@mui/material/Divider';
 import FormControl from '@mui/material/FormControl';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormHelperText from '@mui/material/FormHelperText';
+import Grid from '@mui/material/Grid2';
 import IconButton from '@mui/material/IconButton';
 import InputAdornment from '@mui/material/InputAdornment';
 import InputLabel from '@mui/material/InputLabel';
@@ -20,7 +21,6 @@ import OutlinedInput from '@mui/material/OutlinedInput';
 import Select from '@mui/material/Select';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
-import Grid from '@mui/material/Unstable_Grid2';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { PencilSimple as PencilSimpleIcon } from '@phosphor-icons/react/dist/ssr/PencilSimple';
 import { PlusCircle as PlusCircleIcon } from '@phosphor-icons/react/dist/ssr/PlusCircle';
@@ -45,7 +45,7 @@ interface LineItem {
 
 function calculateSubtotal(lineItems: LineItem[]): number {
   const subtotal = lineItems.reduce((acc, lineItem) => acc + lineItem.quantity * lineItem.unitPrice, 0);
-  return parseFloat(subtotal.toFixed(2));
+  return Number.parseFloat(subtotal.toFixed(2));
 }
 
 function calculateTotalWithoutTaxes(subtotal: number, discount: number, shippingRate: number): number {
@@ -54,7 +54,7 @@ function calculateTotalWithoutTaxes(subtotal: number, discount: number, shipping
 
 function calculateTax(totalWithoutTax: number, taxRate: number): number {
   const tax = totalWithoutTax * (taxRate / 100);
-  return parseFloat(tax.toFixed(2));
+  return Number.parseFloat(tax.toFixed(2));
 }
 
 function calculateTotal(totalWithoutTax: number, taxes: number): number {
@@ -188,8 +188,8 @@ export function OrderCreateForm(): React.JSX.Element {
         // Make API request
         toast.success('Order created');
         router.push(paths.dashboard.orders.list);
-      } catch (err) {
-        logger.error(err);
+      } catch (error) {
+        logger.error(error);
         toast.error('Something went wrong!');
       }
     },
@@ -214,7 +214,12 @@ export function OrderCreateForm(): React.JSX.Element {
             <Stack spacing={3}>
               <Typography variant="h6">Basic information</Typography>
               <Grid container spacing={3}>
-                <Grid md={6} xs={12}>
+                <Grid
+                  size={{
+                    md: 6,
+                    xs: 12,
+                  }}
+                >
                   <Controller
                     control={control}
                     name="customer"
@@ -227,7 +232,12 @@ export function OrderCreateForm(): React.JSX.Element {
                     )}
                   />
                 </Grid>
-                <Grid md={6} xs={12}>
+                <Grid
+                  size={{
+                    md: 6,
+                    xs: 12,
+                  }}
+                >
                   <Controller
                     control={control}
                     name="number"
@@ -239,7 +249,12 @@ export function OrderCreateForm(): React.JSX.Element {
                     )}
                   />
                 </Grid>
-                <Grid md={6} xs={12}>
+                <Grid
+                  size={{
+                    md: 6,
+                    xs: 12,
+                  }}
+                >
                   <Controller
                     control={control}
                     name="issueDate"
@@ -268,7 +283,12 @@ export function OrderCreateForm(): React.JSX.Element {
             <Stack spacing={3}>
               <Typography variant="h6">Billing information</Typography>
               <Grid container spacing={3}>
-                <Grid md={6} xs={12}>
+                <Grid
+                  size={{
+                    md: 6,
+                    xs: 12,
+                  }}
+                >
                   <Controller
                     control={control}
                     name="billingAddress.country"
@@ -288,7 +308,12 @@ export function OrderCreateForm(): React.JSX.Element {
                     )}
                   />
                 </Grid>
-                <Grid md={6} xs={12}>
+                <Grid
+                  size={{
+                    md: 6,
+                    xs: 12,
+                  }}
+                >
                   <Controller
                     control={control}
                     name="billingAddress.state"
@@ -303,7 +328,12 @@ export function OrderCreateForm(): React.JSX.Element {
                     )}
                   />
                 </Grid>
-                <Grid md={6} xs={12}>
+                <Grid
+                  size={{
+                    md: 6,
+                    xs: 12,
+                  }}
+                >
                   <Controller
                     control={control}
                     name="billingAddress.city"
@@ -318,7 +348,12 @@ export function OrderCreateForm(): React.JSX.Element {
                     )}
                   />
                 </Grid>
-                <Grid md={6} xs={12}>
+                <Grid
+                  size={{
+                    md: 6,
+                    xs: 12,
+                  }}
+                >
                   <Controller
                     control={control}
                     name="billingAddress.zipCode"
@@ -333,7 +368,12 @@ export function OrderCreateForm(): React.JSX.Element {
                     )}
                   />
                 </Grid>
-                <Grid md={6} xs={12}>
+                <Grid
+                  size={{
+                    md: 6,
+                    xs: 12,
+                  }}
+                >
                   <Controller
                     control={control}
                     name="billingAddress.line1"
@@ -348,7 +388,12 @@ export function OrderCreateForm(): React.JSX.Element {
                     )}
                   />
                 </Grid>
-                <Grid md={6} xs={12}>
+                <Grid
+                  size={{
+                    md: 6,
+                    xs: 12,
+                  }}
+                >
                   <Controller
                     control={control}
                     name="taxId"
@@ -396,7 +441,12 @@ export function OrderCreateForm(): React.JSX.Element {
               </Stack>
             </Stack>
             <Grid container spacing={3}>
-              <Grid md={4} xs={12}>
+              <Grid
+                size={{
+                  md: 4,
+                  xs: 12,
+                }}
+              >
                 <Controller
                   control={control}
                   name="discount"
@@ -409,12 +459,12 @@ export function OrderCreateForm(): React.JSX.Element {
                         onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
                           const value = event.target.valueAsNumber;
 
-                          if (isNaN(value)) {
+                          if (Number.isNaN(value)) {
                             field.onChange('');
                             return;
                           }
 
-                          field.onChange(parseFloat(value.toFixed(2)));
+                          field.onChange(Number.parseFloat(value.toFixed(2)));
                         }}
                         startAdornment={<InputAdornment position="start">$</InputAdornment>}
                         type="number"
@@ -424,7 +474,12 @@ export function OrderCreateForm(): React.JSX.Element {
                   )}
                 />
               </Grid>
-              <Grid md={4} xs={12}>
+              <Grid
+                size={{
+                  md: 4,
+                  xs: 12,
+                }}
+              >
                 <Controller
                   control={control}
                   name="shippingRate"
@@ -437,12 +492,12 @@ export function OrderCreateForm(): React.JSX.Element {
                         onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
                           const value = event.target.valueAsNumber;
 
-                          if (isNaN(value)) {
+                          if (Number.isNaN(value)) {
                             field.onChange('');
                             return;
                           }
 
-                          field.onChange(parseFloat(value.toFixed(2)));
+                          field.onChange(Number.parseFloat(value.toFixed(2)));
                         }}
                         startAdornment={<InputAdornment position="start">$</InputAdornment>}
                         type="number"
@@ -452,7 +507,12 @@ export function OrderCreateForm(): React.JSX.Element {
                   )}
                 />
               </Grid>
-              <Grid md={4} xs={12}>
+              <Grid
+                size={{
+                  md: 4,
+                  xs: 12,
+                }}
+              >
                 <Controller
                   control={control}
                   name="taxRate"
@@ -465,7 +525,7 @@ export function OrderCreateForm(): React.JSX.Element {
                         onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
                           const value = event.target.valueAsNumber;
 
-                          if (isNaN(value)) {
+                          if (Number.isNaN(value)) {
                             field.onChange('');
                             return;
                           }
@@ -475,7 +535,7 @@ export function OrderCreateForm(): React.JSX.Element {
                             return;
                           }
 
-                          field.onChange(parseFloat(value.toFixed(2)));
+                          field.onChange(Number.parseFloat(value.toFixed(2)));
                         }}
                         type="number"
                       />

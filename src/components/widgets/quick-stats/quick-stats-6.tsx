@@ -1,15 +1,15 @@
 'use client';
 
-import * as React from 'react';
+import type * as React from 'react';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import Divider from '@mui/material/Divider';
+import Grid from '@mui/material/Grid2';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
-import Grid from '@mui/material/Unstable_Grid2';
 import { ArrowRight as ArrowRightIcon } from '@phosphor-icons/react/dist/ssr/ArrowRight';
 import { Cell, Pie, PieChart } from 'recharts';
 
@@ -19,10 +19,20 @@ export function QuickStats6(): React.JSX.Element {
   return (
     <Box sx={{ bgcolor: 'var(--mui-palette-background-level1)', p: 3 }}>
       <Grid container spacing={3}>
-        <Grid md={6} xs={12}>
+        <Grid
+          size={{
+            md: 6,
+            xs: 12,
+          }}
+        >
           <Summary color="var(--mui-palette-primary-main)" title="Weekly earnings" total="0.299 BTC" value={75} />
         </Grid>
-        <Grid md={6} xs={12}>
+        <Grid
+          size={{
+            md: 6,
+            xs: 12,
+          }}
+        >
           <Summary
             color="var(--mui-palette-warning-main)"
             title="Private wallet"
@@ -30,7 +40,7 @@ export function QuickStats6(): React.JSX.Element {
               style: 'currency',
               currency: 'USD',
               maximumFractionDigits: 0,
-            }).format(52451)}
+            }).format(52_451)}
             value={32}
           />
         </Grid>

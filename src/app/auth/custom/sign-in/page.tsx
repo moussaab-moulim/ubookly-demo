@@ -1,19 +1,27 @@
-import * as React from 'react';
+import type * as React from 'react';
 import type { Metadata } from 'next';
+import { redirect } from 'next/navigation';
 
-import { config } from '@/config';
+import { appConfig } from '@/config/app';
+import { paths } from '@/paths';
+import { getUser } from '@/lib/custom-auth/server';
+import { logger } from '@/lib/default-logger';
 import { SignInForm } from '@/components/auth/custom/sign-in-form';
-import { GuestGuard } from '@/components/auth/guest-guard';
 import { SplitLayout } from '@/components/auth/split-layout';
 
-export const metadata: Metadata = { title: `Sign in | Custom | Auth | ${config.site.name}` };
+export const metadata = { title: `Sign in | Custom | Auth | ${appConfig.name}` } satisfies Metadata;
 
-export default function Page(): React.JSX.Element {
+export default async function Page(): Promise<React.JSX.Element> {
+  const { data } = await getUser();
+
+  if (data?.user) {
+    logger.debug('[Sign in] User is authenticated, redirecting to dashboard');
+    redirect(paths.dashboard.overview);
+  }
+
   return (
-    <GuestGuard>
-      <SplitLayout>
-        <SignInForm />
-      </SplitLayout>
-    </GuestGuard>
+    <SplitLayout>
+      <SignInForm />
+    </SplitLayout>
   );
 }

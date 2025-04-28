@@ -1,8 +1,6 @@
 import * as React from 'react';
 import type { EventContentArg } from '@fullcalendar/core';
 import Box from '@mui/material/Box';
-import Paper from '@mui/material/Paper';
-import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 
 import { dayjs } from '@/lib/dayjs';
@@ -24,29 +22,39 @@ export function EventContent(arg: EventContentProps): React.JSX.Element {
   const startTime = arg.event.start ? dayjs(arg.event.start).format('h:mm A') : null;
   const endTime = arg.event.end ? dayjs(arg.event.end).format('h:mm A') : null;
 
+  const inline = arg.event.start && arg.event.end && dayjs(arg.event.end).diff(dayjs(arg.event.start), 'minute') < 30;
+
   return (
-    <Paper
-      sx={{
-        border: '1px solid var(--mui-palette-divider)',
-        boxShadow: 'var(--mui-shadows-1)',
-        borderRadius: 1,
-        overflowX: 'auto',
-        overflowY: 'hidden',
-      }}
-    >
-      <Stack direction="row" spacing={1}>
-        <Box sx={{ bgcolor: color, flex: '0 0 auto', width: '4px' }} />
-        <div>
-          {!arg.event.allDay ? (
-            <Typography noWrap variant="body2">
-              {startTime} - {endTime}
-            </Typography>
-          ) : null}
-          <Typography noWrap variant="body2">
-            {arg.event.title}
+    <React.Fragment>
+      <Box
+        sx={{
+          backgroundColor: color,
+          height: '100%',
+          left: 0,
+          position: 'absolute',
+          top: 0,
+          width: '4px',
+        }}
+      />
+      <Box
+        sx={{
+          display: 'flex',
+          flexDirection: inline ? 'row' : 'column',
+          gap: 1,
+          pl: '8px',
+          position: 'sticky',
+          top: 0,
+        }}
+      >
+        {arg.event.allDay ? null : (
+          <Typography sx={{ whiteSpace: 'nowrap' }} variant="body2">
+            {startTime} - {endTime}
           </Typography>
-        </div>
-      </Stack>
-    </Paper>
+        )}
+        <Typography noWrap variant="body2">
+          {arg.event.title}
+        </Typography>
+      </Box>
+    </React.Fragment>
   );
 }

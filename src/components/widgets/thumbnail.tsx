@@ -1,9 +1,8 @@
 'use client';
 
-import * as React from 'react';
+import type * as React from 'react';
 import Box from '@mui/material/Box';
-
-import { useSettings } from '@/hooks/use-settings';
+import { useColorScheme } from '@mui/material/styles';
 
 export interface ThumbnailProps {
   imageDark: string;
@@ -11,9 +10,7 @@ export interface ThumbnailProps {
 }
 
 export function Thumbnail({ imageDark, imageLight }: ThumbnailProps): React.JSX.Element {
-  const {
-    settings: { colorScheme = 'light' },
-  } = useSettings();
+  const { colorScheme } = useColorScheme();
 
   return (
     <Box sx={{ position: 'relative', pt: 'calc(300 / 500 * 100%)' }}>

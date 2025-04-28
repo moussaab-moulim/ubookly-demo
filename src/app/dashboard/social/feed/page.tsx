@@ -1,16 +1,16 @@
-import * as React from 'react';
+import type * as React from 'react';
 import type { Metadata } from 'next';
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 
-import { config } from '@/config';
+import { appConfig } from '@/config/app';
 import { dayjs } from '@/lib/dayjs';
 import { PostAdd } from '@/components/dashboard/social/post-add';
 import { PostCard } from '@/components/dashboard/social/post-card';
 import type { Post } from '@/components/dashboard/social/types';
 
-export const metadata = { title: `Feed | Social | Dashboard | ${config.site.name}` } satisfies Metadata;
+export const metadata = { title: `Feed | Social | Dashboard | ${appConfig.name}` } satisfies Metadata;
 
 const posts = [
   {

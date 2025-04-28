@@ -1,4 +1,4 @@
-import * as React from 'react';
+import type * as React from 'react';
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import Chip from '@mui/material/Chip';
@@ -43,7 +43,7 @@ export function QuickStats3(): React.JSX.Element {
           >
             <Typography variant="h5">
               {new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 }).format(
-                12500
+                12_500
               )}
             </Typography>
             <Typography color="text.secondary" variant="overline">

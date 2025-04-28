@@ -1,3 +1,5 @@
+'use client';
+
 import * as React from 'react';
 import RouterLink from 'next/link';
 import { usePathname } from 'next/navigation';
@@ -127,7 +129,7 @@ function renderNavItems({
     const { items: childItems, key, ...item } = curr;
 
     const forceOpen = childItems
-      ? Boolean(childItems.find((childItem) => childItem.href && pathname.startsWith(childItem.href)))
+      ? childItems.some((childItem) => childItem.href && pathname.startsWith(childItem.href))
       : false;
 
     acc.push(

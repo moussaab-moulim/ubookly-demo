@@ -1,11 +1,11 @@
-import * as React from 'react';
+import type * as React from 'react';
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardHeader from '@mui/material/CardHeader';
+import Grid from '@mui/material/Grid2';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
-import Grid from '@mui/material/Unstable_Grid2';
 
 export function QuickStats10(): React.JSX.Element {
   return (
@@ -14,7 +14,12 @@ export function QuickStats10(): React.JSX.Element {
         <CardHeader title="Today's stats" />
         <CardContent>
           <Grid container spacing={3}>
-            <Grid md={4} xs={12}>
+            <Grid
+              size={{
+                md: 4,
+                xs: 12,
+              }}
+            >
               <Stack
                 direction="row"
                 spacing={2}
@@ -42,7 +47,12 @@ export function QuickStats10(): React.JSX.Element {
                 </div>
               </Stack>
             </Grid>
-            <Grid md={4} xs={12}>
+            <Grid
+              size={{
+                md: 4,
+                xs: 12,
+              }}
+            >
               <Stack
                 direction="row"
                 spacing={2}
@@ -71,12 +81,17 @@ export function QuickStats10(): React.JSX.Element {
                       style: 'currency',
                       currency: 'USD',
                       maximumFractionDigits: 0,
-                    }).format(15032)}
+                    }).format(15_032)}
                   </Typography>
                 </div>
               </Stack>
             </Grid>
-            <Grid md={4} xs={12}>
+            <Grid
+              size={{
+                md: 4,
+                xs: 12,
+              }}
+            >
               <Stack
                 direction="row"
                 spacing={2}
@@ -105,7 +120,7 @@ export function QuickStats10(): React.JSX.Element {
                       style: 'currency',
                       currency: 'USD',
                       maximumFractionDigits: 0,
-                    }).format(25961)}
+                    }).format(25_961)}
                   </Typography>
                 </div>
               </Stack>

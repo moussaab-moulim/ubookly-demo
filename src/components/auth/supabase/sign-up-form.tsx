@@ -17,11 +17,12 @@ import Link from '@mui/material/Link';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
+import type { SupabaseClient } from '@supabase/supabase-js';
 import { Controller, useForm } from 'react-hook-form';
 import { z as zod } from 'zod';
 
 import { paths } from '@/paths';
-import { createClient as createSupabaseClient } from '@/lib/supabase/client';
+import { createClient as createSupabaseClient } from '@/lib/supabase/browser';
 import { DynamicLogo } from '@/components/core/logo';
 import { toast } from '@/components/core/toaster';
 
@@ -49,7 +50,7 @@ type Values = zod.infer<typeof schema>;
 const defaultValues = { firstName: '', lastName: '', email: '', password: '', terms: false } satisfies Values;
 
 export function SignUpForm(): React.JSX.Element {
-  const [supabaseClient] = React.useState(createSupabaseClient());
+  const [supabaseClient] = React.useState<SupabaseClient>(createSupabaseClient());
 
   const router = useRouter();
 
@@ -66,7 +67,7 @@ export function SignUpForm(): React.JSX.Element {
     async (providerId: OAuthProvider['id']): Promise<void> => {
       setIsPending(true);
 
-      const redirectToUrl = new URL(paths.auth.supabase.callback.pkce, window.location.origin);
+      const redirectToUrl = new URL(paths.auth.supabase.callback.pkce, globalThis.location.origin);
       redirectToUrl.searchParams.set('next', paths.dashboard.overview);
 
       const { data, error } = await supabaseClient.auth.signInWithOAuth({
@@ -80,7 +81,7 @@ export function SignUpForm(): React.JSX.Element {
         return;
       }
 
-      window.location.href = data.url;
+      globalThis.location.href = data.url;
     },
     [supabaseClient]
   );
@@ -95,7 +96,7 @@ export function SignUpForm(): React.JSX.Element {
       // If a user already exists with this email, they will not
       // receive a confirmation email.
 
-      const redirectToUrl = new URL(paths.auth.supabase.callback.pkce, window.location.origin);
+      const redirectToUrl = new URL(paths.auth.supabase.callback.pkce, globalThis.location.origin);
       redirectToUrl.searchParams.set('next', paths.dashboard.overview);
 
       const { data, error } = await supabaseClient.auth.signUp({
@@ -110,19 +111,14 @@ export function SignUpForm(): React.JSX.Element {
         return;
       }
 
-      if (data.session) {
-        // UserProvider will handle Router refresh
-        // After refresh, GuestGuard will handle the redirect
-        return;
-      }
-
-      if (data.user) {
+      if (!data.session) {
         const searchParams = new URLSearchParams({ email: values.email });
         router.push(`${paths.auth.supabase.signUpConfirm}?${searchParams.toString()}`);
         return;
       }
 
-      setIsPending(false);
+      // On router refresh the sign-up page component will automatically redirect to the dashboard.
+      router.refresh();
     },
     [supabaseClient, router, setError]
   );

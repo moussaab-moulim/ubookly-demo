@@ -1,13 +1,13 @@
-import * as React from 'react';
+import type * as React from 'react';
 import type { Metadata } from 'next';
 
-import { config } from '@/config';
+import { appConfig } from '@/config/app';
 import { dayjs } from '@/lib/dayjs';
 import { TasksProvider } from '@/components/dashboard/tasks/tasks-context';
 import { TasksView } from '@/components/dashboard/tasks/tasks-view';
 import type { Column, Task } from '@/components/dashboard/tasks/types';
 
-export const metadata = { title: `Tasks | Dashboard | ${config.site.name}` } satisfies Metadata;
+export const metadata = { title: `Tasks | Dashboard | ${appConfig.name}` } satisfies Metadata;
 
 const columns = [
   { id: 'COL-001', name: 'Todo', taskIds: ['TSK-001', 'TSK-002'] },

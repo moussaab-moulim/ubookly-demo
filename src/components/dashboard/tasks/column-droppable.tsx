@@ -1,6 +1,6 @@
 'use client';
 
-import * as React from 'react';
+import type * as React from 'react';
 import { useDroppable } from '@dnd-kit/core';
 import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';

@@ -1,6 +1,6 @@
 'use client';
 
-import * as React from 'react';
+import type * as React from 'react';
 import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
@@ -35,7 +35,7 @@ const projects = [
     technologies: ['angular'],
     author: { name: 'Jie Yan', avatar: '/assets/avatar-8.png' },
     currency: 'USD',
-    budget: 12500,
+    budget: 12_500,
     createdAt: dayjs().subtract(10, 'seconds').subtract(34, 'minute').subtract(2, 'hour').toDate(),
   },
   {
@@ -44,7 +44,7 @@ const projects = [
     technologies: ['sketch', 'html-css'],
     author: { name: 'Omar Darobe', avatar: '/assets/avatar-11.png' },
     currency: 'USD',
-    budget: 15750,
+    budget: 15_750,
     createdAt: dayjs().subtract(25, 'seconds').subtract(56, 'minute').subtract(10, 'hour').toDate(),
   },
   {
@@ -53,7 +53,7 @@ const projects = [
     technologies: ['react-js'],
     author: { name: 'Siegbert Gottfried', avatar: '/assets/avatar-2.png' },
     currency: 'USD',
-    budget: 15750,
+    budget: 15_750,
     createdAt: dayjs().subtract(50, 'seconds').subtract(30, 'minute').subtract(1, 'day').toDate(),
   },
   {
@@ -62,7 +62,7 @@ const projects = [
     technologies: ['vue-js'],
     author: { name: 'Iulia Albu', avatar: '/assets/avatar-6.png' },
     currency: 'USD',
-    budget: 12500,
+    budget: 12_500,
     createdAt: dayjs().subtract(30, 'second').subtract(4, 'minute').subtract(1, 'day').toDate(),
   },
   {
@@ -71,7 +71,7 @@ const projects = [
     technologies: ['angular', 'figma'],
     author: { name: 'Carson Darrin', avatar: '/assets/avatar-3.png' },
     currency: 'USD',
-    budget: 15750,
+    budget: 15_750,
     createdAt: dayjs().subtract(6, 'second').subtract(11, 'minute').subtract(1, 'day').toDate(),
   },
 ] satisfies Project[];

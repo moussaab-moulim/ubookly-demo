@@ -1,7 +1,7 @@
-import * as React from 'react';
+import type * as React from 'react';
 import type { Metadata } from 'next';
 
-import { config } from '@/config';
+import { appConfig } from '@/config/app';
 import { Form1 } from '@/components/widgets/forms/form-1';
 import { Form2 } from '@/components/widgets/forms/form-2';
 import { Form3 } from '@/components/widgets/forms/form-3';
@@ -21,7 +21,7 @@ import { Form16 } from '@/components/widgets/forms/form-16';
 import { Layout } from '@/components/widgets/layout';
 import type { Component } from '@/components/widgets/layout';
 
-export const metadata = { title: `Forms | Components | ${config.site.name}` } satisfies Metadata;
+export const metadata = { title: `Forms | Components | ${appConfig.name}` } satisfies Metadata;
 
 const components = [
   { title: 'Form 1', element: <Form1 /> },

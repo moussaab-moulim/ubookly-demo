@@ -1,36 +1,47 @@
-import type { NextRequest } from 'next/server';
-import { NextResponse } from 'next/server';
-import type { CookieOptions } from '@supabase/ssr';
+import 'server-only';
+
+import { NextResponse, type NextRequest } from 'next/server';
 import { createServerClient } from '@supabase/ssr';
-import type { SupabaseClient } from '@supabase/supabase-js';
 
-import { config } from '@/config';
+import { paths } from '@/paths';
+import { logger } from '@/lib/default-logger';
+import { getAppUrl } from '@/lib/get-app-url';
 
-type ResponseCookie = Pick<CookieOptions, 'httpOnly' | 'maxAge' | 'priority'>;
+export async function middleware(req: NextRequest): Promise<NextResponse> {
+  let res = NextResponse.next({ request: req });
 
-export function createClient(req: NextRequest): { supabaseClient: SupabaseClient; res: NextResponse } {
-  // Create an unmodified response
-  let res = NextResponse.next({ request: { headers: req.headers } });
+  const supabaseClient = createServerClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.NEXT_PUBLIC_SUPABASE_PUBLIC_KEY!,
+    {
+      cookies: {
+        getAll() {
+          return req.cookies.getAll();
+        },
+        setAll(cookiesToSet) {
+          for (const { name, value } of cookiesToSet) {
+            req.cookies.set(name, value);
+          }
 
-  const supabaseClient = createServerClient(config.supabase.url!, config.supabase.anonKey!, {
-    cookies: {
-      get(name: string) {
-        return req.cookies.get(name)?.value;
+          res = NextResponse.next({ request: req });
+
+          for (const { name, value, options } of cookiesToSet) {
+            res.cookies.set(name, value, options);
+          }
+        },
       },
-      set(name: string, value: string, options: CookieOptions) {
-        // If the cookie is updated, update the cookies for the request and response
-        req.cookies.set({ name, value, ...(options as Partial<ResponseCookie>) });
-        res = NextResponse.next({ request: { headers: req.headers } });
-        res.cookies.set({ name, value, ...(options as Partial<ResponseCookie>) });
-      },
-      remove(name: string, options: CookieOptions) {
-        // If the cookie is removed, update the cookies for the request and response
-        req.cookies.set({ name, value: '', ...(options as Partial<ResponseCookie>) });
-        res = NextResponse.next({ request: { headers: req.headers } });
-        res.cookies.set({ name, value: '', ...(options as Partial<ResponseCookie>) });
-      },
-    },
-  });
+    }
+  );
 
-  return { supabaseClient, res };
+  if (req.nextUrl.pathname.startsWith('/dashboard')) {
+    const { data } = await supabaseClient.auth.getUser();
+
+    if (!data.user) {
+      logger.debug('[Middleware] User is not logged in, redirecting to sign in');
+      const redirectTo = new URL(paths.auth.supabase.signIn, getAppUrl());
+      return NextResponse.redirect(redirectTo);
+    }
+  }
+
+  return res;
 }

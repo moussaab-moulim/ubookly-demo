@@ -1,17 +1,17 @@
-import * as React from 'react';
+import type * as React from 'react';
 import type { Metadata } from 'next';
 import RouterLink from 'next/link';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Card from '@mui/material/Card';
 import Chip from '@mui/material/Chip';
+import Grid from '@mui/material/Grid2';
 import Link from '@mui/material/Link';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
-import Grid from '@mui/material/Unstable_Grid2';
 import { ArrowLeft as ArrowLeftIcon } from '@phosphor-icons/react/dist/ssr/ArrowLeft';
 
-import { config } from '@/config';
+import { appConfig } from '@/config/app';
 import { paths } from '@/paths';
 import { dayjs } from '@/lib/dayjs';
 import { DynamicLogo } from '@/components/core/logo';
@@ -19,7 +19,7 @@ import { InvoicePDFLink } from '@/components/dashboard/invoice/invoice-pdf-link'
 import { LineItemsTable } from '@/components/dashboard/invoice/line-items-table';
 import type { LineItem } from '@/components/dashboard/invoice/line-items-table';
 
-export const metadata = { title: `Details | Invoices | Dashboard | ${config.site.name}` } satisfies Metadata;
+export const metadata = { title: `Details | Invoices | Dashboard | ${appConfig.name}` } satisfies Metadata;
 
 const lineItems = [
   { id: 'LI-001', name: 'Pro Subscription', quantity: 1, currency: 'USD', unitAmount: 14.99, totalAmount: 14.99 },
@@ -109,7 +109,12 @@ export default function Page(): React.JSX.Element {
               </Stack>
             </Stack>
             <Grid container spacing={3}>
-              <Grid md={6} xs={12}>
+              <Grid
+                size={{
+                  md: 6,
+                  xs: 12,
+                }}
+              >
                 <Stack spacing={1}>
                   <Typography variant="subtitle1">Devias IO</Typography>
                   <Typography variant="body2">
@@ -125,7 +130,12 @@ export default function Page(): React.JSX.Element {
                   </Typography>
                 </Stack>
               </Grid>
-              <Grid md={6} xs={12}>
+              <Grid
+                size={{
+                  md: 6,
+                  xs: 12,
+                }}
+              >
                 <Stack spacing={1}>
                   <Typography variant="subtitle1">Billed to</Typography>
                   <Typography variant="body2">

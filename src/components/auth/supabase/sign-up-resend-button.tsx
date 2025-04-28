@@ -5,9 +5,10 @@ import Alert from '@mui/material/Alert';
 import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
+import type { SupabaseClient } from '@supabase/supabase-js';
 
 import { paths } from '@/paths';
-import { createClient as createSupabaseClient } from '@/lib/supabase/client';
+import { createClient as createSupabaseClient } from '@/lib/supabase/browser';
 import { toast } from '@/components/core/toaster';
 
 export interface SignUpResendButtonProps {
@@ -16,7 +17,7 @@ export interface SignUpResendButtonProps {
 }
 
 export function SignUpResendButton({ children, email }: SignUpResendButtonProps): React.JSX.Element {
-  const [supabaseClient] = React.useState(createSupabaseClient());
+  const [supabaseClient] = React.useState<SupabaseClient>(createSupabaseClient());
 
   const [isPending, setIsPending] = React.useState<boolean>(false);
   const [submitError, setSubmitError] = React.useState<string>();
@@ -25,7 +26,7 @@ export function SignUpResendButton({ children, email }: SignUpResendButtonProps)
     setIsPending(true);
     setSubmitError(undefined);
 
-    const redirectToUrl = new URL(paths.auth.supabase.callback.implicit, window.location.origin);
+    const redirectToUrl = new URL(paths.auth.supabase.callback.implicit, globalThis.location.origin);
     redirectToUrl.searchParams.set('next', paths.dashboard.overview);
 
     const { error } = await supabaseClient.auth.resend({

@@ -198,7 +198,7 @@ export function TaskModal({
           ) : null}
           {tab === 'subtasks' ? (
             <Stack spacing={2}>
-              {subtasks.length ? (
+              {subtasks.length > 0 ? (
                 <Stack spacing={2}>
                   <Stack spacing={1}>
                     <Typography color="text.secondary" variant="subtitle2">
@@ -232,7 +232,7 @@ export function TaskModal({
           ) : null}
           {tab === 'comments' ? (
             <Stack spacing={5}>
-              {comments.length ? (
+              {comments.length > 0 ? (
                 <Stack spacing={3}>
                   {comments.map(
                     (comment, index): React.JSX.Element => (

@@ -24,6 +24,7 @@ import { ShoppingBagOpen as ShoppingBagOpenIcon } from '@phosphor-icons/react/di
 import { ShoppingCartSimple as ShoppingCartSimpleIcon } from '@phosphor-icons/react/dist/ssr/ShoppingCartSimple';
 import { SignOut as SignOutIcon } from '@phosphor-icons/react/dist/ssr/SignOut';
 import { TextAlignLeft as TextAlignLeftIcon } from '@phosphor-icons/react/dist/ssr/TextAlignLeft';
+import { Translate as TranslateIcon } from '@phosphor-icons/react/dist/ssr/Translate';
 import { Truck as TruckIcon } from '@phosphor-icons/react/dist/ssr/Truck';
 import { Upload as UploadIcon } from '@phosphor-icons/react/dist/ssr/Upload';
 import { Users as UsersIcon } from '@phosphor-icons/react/dist/ssr/Users';
@@ -50,13 +51,14 @@ export const icons = {
   'warning-diamond': WarningDiamondIcon,
   cube: CubeIcon,
   file: FileIcon,
+  gear: GearIcon,
   house: HouseIcon,
   kanban: KanbanIcon,
   link: LinkIcon,
   lock: LockIcon,
   receipt: ReceiptIcon,
+  translate: TranslateIcon,
   truck: TruckIcon,
   upload: UploadIcon,
-  gear: GearIcon,
   users: UsersIcon,
 } as Record<string, Icon>;

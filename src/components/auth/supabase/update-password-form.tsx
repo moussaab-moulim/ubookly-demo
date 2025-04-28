@@ -13,11 +13,12 @@ import InputLabel from '@mui/material/InputLabel';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
+import type { SupabaseClient } from '@supabase/supabase-js';
 import { Controller, useForm } from 'react-hook-form';
 import { z as zod } from 'zod';
 
 import { paths } from '@/paths';
-import { createClient as createSupabaseClient } from '@/lib/supabase/client';
+import { createClient as createSupabaseClient } from '@/lib/supabase/browser';
 import { DynamicLogo } from '@/components/core/logo';
 
 const schema = zod
@@ -35,7 +36,7 @@ type Values = zod.infer<typeof schema>;
 const defaultValues = { password: '', confirmPassword: '' } satisfies Values;
 
 export function UpdatePasswordForm(): React.JSX.Element {
-  const [supabaseClient] = React.useState(createSupabaseClient());
+  const [supabaseClient] = React.useState<SupabaseClient>(createSupabaseClient());
 
   const router = useRouter();
 

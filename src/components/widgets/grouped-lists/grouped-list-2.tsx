@@ -1,4 +1,4 @@
-import * as React from 'react';
+import type * as React from 'react';
 import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
@@ -21,10 +21,10 @@ interface Referral {
 }
 
 const referrals = [
-  { color: '#455A64', initials: 'GT', name: 'GitHub', value: 53032 },
-  { color: '#00BCD4', initials: 'TW', name: 'Twitter', value: 39551 },
-  { color: '#3949AB', initials: 'HN', name: 'Hacker News', value: 23150 },
-  { color: '#F44336', initials: 'SO', name: 'Stack Overflow', value: 14093 },
+  { color: '#455A64', initials: 'GT', name: 'GitHub', value: 53_032 },
+  { color: '#00BCD4', initials: 'TW', name: 'Twitter', value: 39_551 },
+  { color: '#3949AB', initials: 'HN', name: 'Hacker News', value: 23_150 },
+  { color: '#F44336', initials: 'SO', name: 'Stack Overflow', value: 14_093 },
   { color: '#E65100', initials: 'RD', name: 'Reddit.com', value: 7251 },
   { color: '#263238', initials: 'DE', name: 'Dev.to', value: 5694 },
   { color: '#0D47A1', initials: 'FB', name: 'Facebook', value: 3643 },

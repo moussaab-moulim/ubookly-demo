@@ -1,4 +1,4 @@
-import * as React from 'react';
+import type * as React from 'react';
 import Stack from '@mui/material/Stack';
 import type { SxProps } from '@mui/system/styleFunctionSx';
 

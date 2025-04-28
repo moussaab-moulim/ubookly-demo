@@ -1,4 +1,4 @@
-import * as React from 'react';
+import type * as React from 'react';
 import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
@@ -77,7 +77,7 @@ export function GroupedList1(): React.JSX.Element {
           <Divider />
           <Box sx={{ display: 'flex' }}>
             <Box sx={{ flex: '1 1 auto', p: 3, textAlign: 'center' }}>
-              <Typography variant="h5">{new Intl.NumberFormat('en-US').format(15245)}</Typography>
+              <Typography variant="h5">{new Intl.NumberFormat('en-US').format(15_245)}</Typography>
               <Typography color="text.secondary" component="h4" variant="overline">
                 Registered
               </Typography>

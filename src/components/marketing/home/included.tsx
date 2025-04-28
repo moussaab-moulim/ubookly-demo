@@ -1,12 +1,12 @@
-import * as React from 'react';
+import type * as React from 'react';
 import RouterLink from 'next/link';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Chip from '@mui/material/Chip';
 import Container from '@mui/material/Container';
+import Grid from '@mui/material/Grid2';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
-import Grid from '@mui/material/Unstable_Grid2';
 import { Lightning as LightningIcon } from '@phosphor-icons/react/dist/ssr/Lightning';
 
 import { paths } from '@/paths';
@@ -50,7 +50,12 @@ export function Included(): React.JSX.Element {
         </Container>
         <Container maxWidth="lg">
           <Grid alignItems="center" container spacing={3}>
-            <Grid md={4} xs={12}>
+            <Grid
+              size={{
+                md: 4,
+                xs: 12,
+              }}
+            >
               <Stack spacing={2}>
                 <div>
                   <Chip color="success" icon={<LightningIcon />} label="Quality widgets" variant="soft" />
@@ -69,7 +74,12 @@ export function Included(): React.JSX.Element {
                 </div>
               </Stack>
             </Grid>
-            <Grid md={8} xs={12}>
+            <Grid
+              size={{
+                md: 8,
+                xs: 12,
+              }}
+            >
               <Box sx={{ margin: '0 auto', maxWidth: '100%', position: 'relative', width: '390px' }}>
                 <Box
                   sx={{

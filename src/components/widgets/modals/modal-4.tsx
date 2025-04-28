@@ -1,4 +1,4 @@
-import * as React from 'react';
+import type * as React from 'react';
 import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box';
 import List from '@mui/material/List';
@@ -118,7 +118,7 @@ export function Modal4(): React.JSX.Element {
                       </Typography>
                     }
                   />
-                  {contact.status !== 'offline' ? <Presence size="small" status={contact.status} /> : null}
+                  {contact.status === 'offline' ? null : <Presence size="small" status={contact.status} />}
                   {contact.status === 'offline' && Boolean(contact.lastActivity) ? (
                     <Typography color="text.secondary" sx={{ whiteSpace: 'nowrap' }} variant="caption">
                       {dayjs(contact.lastActivity).fromNow()}

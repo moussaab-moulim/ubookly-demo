@@ -14,6 +14,7 @@ import Divider from '@mui/material/Divider';
 import FormControl from '@mui/material/FormControl';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormHelperText from '@mui/material/FormHelperText';
+import Grid from '@mui/material/Grid2';
 import IconButton from '@mui/material/IconButton';
 import InputAdornment from '@mui/material/InputAdornment';
 import InputLabel from '@mui/material/InputLabel';
@@ -22,7 +23,6 @@ import Select from '@mui/material/Select';
 import Stack from '@mui/material/Stack';
 import Tooltip from '@mui/material/Tooltip';
 import Typography from '@mui/material/Typography';
-import Grid from '@mui/material/Unstable_Grid2';
 import { Image as ImageIcon } from '@phosphor-icons/react/dist/ssr/Image';
 import { Info as InfoIcon } from '@phosphor-icons/react/dist/ssr/Info';
 import { Trash as TrashIcon } from '@phosphor-icons/react/dist/ssr/Trash';
@@ -71,12 +71,12 @@ function fileToBase64(file: Blob): Promise<string> {
   return new Promise((resolve, reject) => {
     const reader = new FileReader();
     reader.readAsDataURL(file);
-    reader.onload = () => {
+    reader.addEventListener('load', () => {
       resolve(reader.result as string);
-    };
-    reader.onerror = () => {
+    });
+    reader.addEventListener('error', () => {
       reject(new Error('Error converting file to base64'));
-    };
+    });
   });
 }
 
@@ -188,8 +188,8 @@ export function ProductEditForm({ product }: ProductEditFormProps): React.JSX.El
         // Make API request
         toast.success('Product updated');
         router.push(paths.dashboard.products.list);
-      } catch (err) {
-        logger.error(err);
+      } catch (error) {
+        logger.error(error);
         toast.error('Something went wrong!');
       }
     },
@@ -234,14 +234,24 @@ export function ProductEditForm({ product }: ProductEditFormProps): React.JSX.El
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <Grid container spacing={4}>
-        <Grid md={8} xs={12}>
+        <Grid
+          size={{
+            md: 8,
+            xs: 12,
+          }}
+        >
           <Card>
             <CardContent>
               <Stack divider={<Divider />} spacing={4}>
                 <Stack spacing={3}>
                   <Typography variant="h6">Basic information</Typography>
                   <Grid container spacing={3}>
-                    <Grid md={6} xs={12}>
+                    <Grid
+                      size={{
+                        md: 6,
+                        xs: 12,
+                      }}
+                    >
                       <Controller
                         control={control}
                         name="name"
@@ -254,7 +264,12 @@ export function ProductEditForm({ product }: ProductEditFormProps): React.JSX.El
                         )}
                       />
                     </Grid>
-                    <Grid md={6} xs={12}>
+                    <Grid
+                      size={{
+                        md: 6,
+                        xs: 12,
+                      }}
+                    >
                       <Controller
                         control={control}
                         name="handle"
@@ -267,7 +282,12 @@ export function ProductEditForm({ product }: ProductEditFormProps): React.JSX.El
                         )}
                       />
                     </Grid>
-                    <Grid md={6} xs={12}>
+                    <Grid
+                      size={{
+                        md: 6,
+                        xs: 12,
+                      }}
+                    >
                       <Controller
                         control={control}
                         name="category"
@@ -285,7 +305,12 @@ export function ProductEditForm({ product }: ProductEditFormProps): React.JSX.El
                         )}
                       />
                     </Grid>
-                    <Grid md={6} xs={12}>
+                    <Grid
+                      size={{
+                        md: 6,
+                        xs: 12,
+                      }}
+                    >
                       <Controller
                         control={control}
                         name="type"
@@ -302,7 +327,7 @@ export function ProductEditForm({ product }: ProductEditFormProps): React.JSX.El
                         )}
                       />
                     </Grid>
-                    <Grid xs={12}>
+                    <Grid size={12}>
                       <Controller
                         control={control}
                         name="description"
@@ -325,16 +350,16 @@ export function ProductEditForm({ product }: ProductEditFormProps): React.JSX.El
                         )}
                       />
                     </Grid>
-                    <Grid xs={12}>
+                    <Grid size={12}>
                       <Controller
                         control={control}
                         name="tags"
                         render={({ field }) => (
-                          <FormControl error={Boolean(errors.name)} fullWidth>
+                          <FormControl error={Boolean(errors.tags)} fullWidth>
                             <InputLabel>Tags</InputLabel>
                             <OutlinedInput {...field} placeholder="e.g Modern, Clean, etc" />
-                            {errors.name ? (
-                              <FormHelperText>{errors.name.message}</FormHelperText>
+                            {errors.tags ? (
+                              <FormHelperText>{errors.tags.message}</FormHelperText>
                             ) : (
                               <FormHelperText>Tags must be separated by comma</FormHelperText>
                             )}
@@ -375,12 +400,12 @@ export function ProductEditForm({ product }: ProductEditFormProps): React.JSX.El
                             onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
                               const value = event.target.valueAsNumber;
 
-                              if (isNaN(value)) {
+                              if (Number.isNaN(value)) {
                                 field.onChange('');
                                 return;
                               }
 
-                              field.onChange(parseFloat(value.toFixed(2)));
+                              field.onChange(Number.parseFloat(value.toFixed(2)));
                             }}
                             sx={{ width: '140px' }}
                             type="number"
@@ -412,7 +437,12 @@ export function ProductEditForm({ product }: ProductEditFormProps): React.JSX.El
                 <Stack spacing={3}>
                   <Typography variant="h6">Stock & inventory</Typography>
                   <Grid container spacing={3}>
-                    <Grid md={6} xs={12}>
+                    <Grid
+                      size={{
+                        md: 6,
+                        xs: 12,
+                      }}
+                    >
                       <Controller
                         control={control}
                         name="sku"
@@ -429,7 +459,12 @@ export function ProductEditForm({ product }: ProductEditFormProps): React.JSX.El
                         )}
                       />
                     </Grid>
-                    <Grid md={6} xs={12}>
+                    <Grid
+                      size={{
+                        md: 6,
+                        xs: 12,
+                      }}
+                    >
                       <Controller
                         control={control}
                         name="barcode"
@@ -442,7 +477,12 @@ export function ProductEditForm({ product }: ProductEditFormProps): React.JSX.El
                         )}
                       />
                     </Grid>
-                    <Grid md={6} xs={12}>
+                    <Grid
+                      size={{
+                        md: 6,
+                        xs: 12,
+                      }}
+                    >
                       <Controller
                         control={control}
                         name="quantity"
@@ -455,12 +495,12 @@ export function ProductEditForm({ product }: ProductEditFormProps): React.JSX.El
                               onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
                                 const value = event.target.valueAsNumber;
 
-                                if (isNaN(value)) {
+                                if (Number.isNaN(value)) {
                                   field.onChange('');
                                   return;
                                 }
 
-                                field.onChange(parseInt(event.target.value));
+                                field.onChange(Number.parseInt(event.target.value));
                               }}
                               type="number"
                             />
@@ -469,7 +509,7 @@ export function ProductEditForm({ product }: ProductEditFormProps): React.JSX.El
                         )}
                       />
                     </Grid>
-                    <Grid xs={12}>
+                    <Grid size={12}>
                       <Controller
                         control={control}
                         name="backorder"
@@ -492,7 +532,12 @@ export function ProductEditForm({ product }: ProductEditFormProps): React.JSX.El
                         )}
                       />
                     </Grid>
-                    <Grid md={6} xs={12}>
+                    <Grid
+                      size={{
+                        md: 6,
+                        xs: 12,
+                      }}
+                    >
                       <Controller
                         control={control}
                         name="height"
@@ -509,7 +554,7 @@ export function ProductEditForm({ product }: ProductEditFormProps): React.JSX.El
                               onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
                                 const value = event.target.valueAsNumber;
 
-                                if (isNaN(value)) {
+                                if (Number.isNaN(value)) {
                                   field.onChange('');
                                   return;
                                 }
@@ -523,7 +568,12 @@ export function ProductEditForm({ product }: ProductEditFormProps): React.JSX.El
                         )}
                       />
                     </Grid>
-                    <Grid md={6} xs={12}>
+                    <Grid
+                      size={{
+                        md: 6,
+                        xs: 12,
+                      }}
+                    >
                       <Controller
                         control={control}
                         name="width"
@@ -540,7 +590,7 @@ export function ProductEditForm({ product }: ProductEditFormProps): React.JSX.El
                               onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
                                 const value = event.target.valueAsNumber;
 
-                                if (isNaN(value)) {
+                                if (Number.isNaN(value)) {
                                   field.onChange('');
                                   return;
                                 }
@@ -554,11 +604,17 @@ export function ProductEditForm({ product }: ProductEditFormProps): React.JSX.El
                         )}
                       />
                     </Grid>
-                    <Grid md={6} xs={12}>
+                    <Grid
+                      size={{
+                        md: 6,
+                        xs: 12,
+                      }}
+                    >
                       <Controller
                         control={control}
                         name="length"
                         render={({ field }) => (
+                          // eslint-disable-next-line unicorn/explicit-length-check
                           <FormControl error={Boolean(errors.length)} fullWidth>
                             <InputLabel>Length</InputLabel>
                             <OutlinedInput
@@ -571,7 +627,7 @@ export function ProductEditForm({ product }: ProductEditFormProps): React.JSX.El
                               onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
                                 const value = event.target.valueAsNumber;
 
-                                if (isNaN(value)) {
+                                if (Number.isNaN(value)) {
                                   field.onChange('');
                                   return;
                                 }
@@ -580,12 +636,18 @@ export function ProductEditForm({ product }: ProductEditFormProps): React.JSX.El
                               }}
                               type="number"
                             />
+                            {/* eslint-disable-next-line unicorn/explicit-length-check */}
                             {errors.length ? <FormHelperText>{errors.length.message}</FormHelperText> : null}
                           </FormControl>
                         )}
                       />
                     </Grid>
-                    <Grid md={6} xs={12}>
+                    <Grid
+                      size={{
+                        md: 6,
+                        xs: 12,
+                      }}
+                    >
                       <Controller
                         control={control}
                         name="weight"
@@ -602,7 +664,7 @@ export function ProductEditForm({ product }: ProductEditFormProps): React.JSX.El
                               onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
                                 const value = event.target.valueAsNumber;
 
-                                if (isNaN(value)) {
+                                if (Number.isNaN(value)) {
                                   field.onChange('');
                                   return;
                                 }
@@ -630,12 +692,17 @@ export function ProductEditForm({ product }: ProductEditFormProps): React.JSX.El
             </CardActions>
           </Card>
         </Grid>
-        <Grid md={4} xs={12}>
+        <Grid
+          size={{
+            md: 4,
+            xs: 12,
+          }}
+        >
           <Stack spacing={3}>
             <Card>
               <CardContent>
                 <Stack spacing={2}>
-                  {images.length ? (
+                  {images.length > 0 ? (
                     <Box
                       sx={{
                         backgroundImage: `url(${images[0].url})`,

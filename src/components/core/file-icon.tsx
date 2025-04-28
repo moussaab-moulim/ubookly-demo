@@ -1,4 +1,4 @@
-import * as React from 'react';
+import type * as React from 'react';
 import Box from '@mui/material/Box';
 
 const icons: Record<string, string> = {
@@ -15,13 +15,7 @@ export interface FileIconProps {
 }
 
 export function FileIcon({ extension }: FileIconProps): React.JSX.Element {
-  let icon: string;
-
-  if (!extension) {
-    icon = '/assets/icon-other.svg';
-  } else {
-    icon = icons[extension] ?? '/assets/icon-other.svg';
-  }
+  const icon = extension ? (icons[extension] ?? '/assets/icon-other.svg') : '/assets/icon-other.svg';
 
   return (
     <Box

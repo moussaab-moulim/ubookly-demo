@@ -5,7 +5,7 @@ import * as React from 'react';
 import type { Event, EventPriority } from './types';
 
 function noop(): void {
-  return undefined;
+  // No operation
 }
 
 interface EventCreateParams {

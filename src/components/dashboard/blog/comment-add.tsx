@@ -1,4 +1,4 @@
-import * as React from 'react';
+import type * as React from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
@@ -9,14 +9,12 @@ import { Paperclip as PaperclipIcon } from '@phosphor-icons/react/dist/ssr/Paper
 import { Plus as PlusIcon } from '@phosphor-icons/react/dist/ssr/Plus';
 import { Smiley as SmileyIcon } from '@phosphor-icons/react/dist/ssr/Smiley';
 
-import type { User } from '@/types/user';
-
 const user = {
   id: 'USR-000',
   name: 'Sofia Rivers',
   avatar: '/assets/avatar.png',
   email: 'sofia@devias.io',
-} satisfies User;
+} as const;
 
 export function CommentAdd(): React.JSX.Element {
   return (

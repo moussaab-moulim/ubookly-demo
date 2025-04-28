@@ -1,17 +1,17 @@
-import * as React from 'react';
+import type * as React from 'react';
 import type { Metadata } from 'next';
 
-import { config } from '@/config';
+import { appConfig } from '@/config/app';
 import { ThreadView } from '@/components/dashboard/mail/thread-view';
 
-export const metadata = { title: `Thread | Mail | Dashboard | ${config.site.name}` } satisfies Metadata;
+export const metadata = { title: `Thread | Mail | Dashboard | ${appConfig.name}` } satisfies Metadata;
 
 interface PageProps {
-  params: { threadId: string };
+  params: Promise<{ threadId: string }>;
 }
 
-export default function Page({ params }: PageProps): React.JSX.Element {
-  const { threadId } = params;
+export default async function Page({ params }: PageProps): Promise<React.JSX.Element> {
+  const { threadId } = await params;
 
   return <ThreadView threadId={threadId} />;
 }

@@ -1,20 +1,20 @@
-import * as React from 'react';
+import type * as React from 'react';
 import type { Metadata } from 'next';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
+import Grid from '@mui/material/Grid2';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
-import Grid from '@mui/material/Unstable_Grid2';
 import { Plus as PlusIcon } from '@phosphor-icons/react/dist/ssr/Plus';
 
-import { config } from '@/config';
+import { appConfig } from '@/config/app';
 import { Conversions } from '@/components/dashboard/e-commerce/conversions';
 import { CostBreakdown } from '@/components/dashboard/e-commerce/cost-breakdown';
 import { SalesByCountry } from '@/components/dashboard/e-commerce/sales-by-country';
 import { Stats } from '@/components/dashboard/e-commerce/stats';
 import { TopProducts } from '@/components/dashboard/e-commerce/top-products';
 
-export const metadata = { title: `E-commerce | Dashboard | ${config.site.name}` } satisfies Metadata;
+export const metadata = { title: `E-commerce | Dashboard | ${appConfig.name}` } satisfies Metadata;
 
 export default function Page(): React.JSX.Element {
   return (
@@ -38,7 +38,7 @@ export default function Page(): React.JSX.Element {
           </div>
         </Stack>
         <Grid container spacing={4}>
-          <Grid xs={12}>
+          <Grid size={12}>
             <Stats
               data={[
                 { name: 'Jan 1', v1: 35, v2: 3350 },
@@ -76,29 +76,44 @@ export default function Page(): React.JSX.Element {
               ]}
             />
           </Grid>
-          <Grid lg={8} xs={12}>
+          <Grid
+            size={{
+              lg: 8,
+              xs: 12,
+            }}
+          >
             <Conversions
               data={[
-                { name: 'Direct calls', value: 35690 },
-                { name: 'Quote requests', value: 14859 },
-                { name: 'Ads', value: 45120 },
+                { name: 'Direct calls', value: 35_690 },
+                { name: 'Quote requests', value: 14_859 },
+                { name: 'Ads', value: 45_120 },
                 { name: 'Affiliate links', value: 3950 },
-                { name: 'Email campaigns', value: 12011 },
+                { name: 'Email campaigns', value: 12_011 },
                 { name: 'Other', value: 5486 },
               ]}
             />
           </Grid>
-          <Grid lg={4} xs={12}>
+          <Grid
+            size={{
+              lg: 4,
+              xs: 12,
+            }}
+          >
             <CostBreakdown
               data={[
-                { name: 'Strategy', value: 14859, color: 'var(--mui-palette-success-main)' },
-                { name: 'Outsourcing', value: 35690, color: 'var(--mui-palette-warning-main)' },
-                { name: 'Marketing', value: 45120, color: 'var(--mui-palette-primary-main)' },
-                { name: 'Other', value: 25486, color: 'var(--mui-palette-background-level2)' },
+                { name: 'Strategy', value: 14_859, color: 'var(--mui-palette-success-main)' },
+                { name: 'Outsourcing', value: 35_690, color: 'var(--mui-palette-warning-main)' },
+                { name: 'Marketing', value: 45_120, color: 'var(--mui-palette-primary-main)' },
+                { name: 'Other', value: 25_486, color: 'var(--mui-palette-background-level2)' },
               ]}
             />
           </Grid>
-          <Grid lg={8} xs={12}>
+          <Grid
+            size={{
+              lg: 8,
+              xs: 12,
+            }}
+          >
             <SalesByCountry
               sales={[
                 { countryCode: 'us', countryName: 'United States', value: 60 },
@@ -109,7 +124,12 @@ export default function Page(): React.JSX.Element {
               ]}
             />
           </Grid>
-          <Grid lg={4} xs={12}>
+          <Grid
+            size={{
+              lg: 4,
+              xs: 12,
+            }}
+          >
             <TopProducts
               products={[
                 {
@@ -117,14 +137,14 @@ export default function Page(): React.JSX.Element {
                   name: 'Erbology Aloe Vera',
                   image: '/assets/product-1.png',
                   category: 'Healthcare',
-                  sales: 13153,
+                  sales: 13_153,
                 },
                 {
                   id: 'PRD-002',
                   name: 'Lancome Rouge',
                   image: '/assets/product-2.png',
                   category: 'Makeup',
-                  sales: 10300,
+                  sales: 10_300,
                 },
                 {
                   id: 'PRD-003',

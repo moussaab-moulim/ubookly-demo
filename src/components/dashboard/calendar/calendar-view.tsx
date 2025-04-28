@@ -146,9 +146,10 @@ export function CalendarView({ view = 'dayGridMonth' }: CalendarViewProps): Reac
               eventContent={EventContent}
               eventDisplay="block"
               eventDrop={handleEventDrop}
+              eventMinHeight={25}
               eventResizableFromStart
               eventResize={handleEventResize}
-              events={Array.from(events.values())}
+              events={[...events.values()]}
               headerToolbar={false}
               height={800}
               initialDate={date}

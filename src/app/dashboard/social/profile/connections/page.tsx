@@ -1,11 +1,11 @@
-import * as React from 'react';
+import type * as React from 'react';
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import CardHeader from '@mui/material/CardHeader';
 import Divider from '@mui/material/Divider';
+import Grid from '@mui/material/Grid2';
 import Input from '@mui/material/Input';
 import InputAdornment from '@mui/material/InputAdornment';
-import Grid from '@mui/material/Unstable_Grid2';
 import { MagnifyingGlass as MagnifyingGlassIcon } from '@phosphor-icons/react/dist/ssr/MagnifyingGlass';
 
 import { ConnectionCard } from '@/components/dashboard/social/connection-card';
@@ -44,7 +44,13 @@ export default function Page(): React.JSX.Element {
         <Box sx={{ p: 3 }}>
           <Grid container spacing={3}>
             {connections.map((connection) => (
-              <Grid key={connection.id} md={6} xs={12}>
+              <Grid
+                key={connection.id}
+                size={{
+                  md: 6,
+                  xs: 12,
+                }}
+              >
                 <ConnectionCard connection={connection} />
               </Grid>
             ))}

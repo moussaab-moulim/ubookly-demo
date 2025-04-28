@@ -1,6 +1,6 @@
 'use client';
 
-import * as React from 'react';
+import type * as React from 'react';
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import CardHeader from '@mui/material/CardHeader';
@@ -26,7 +26,7 @@ const transactions = [
     type: 'receive',
     sender: 'Devias',
     currency: 'USD',
-    amount: 25000,
+    amount: 25_000,
     createdAt: dayjs().subtract(5, 'minute').toDate(),
   },
   {
@@ -42,7 +42,7 @@ const transactions = [
     type: 'send',
     sender: 'Lotru',
     currency: 'USD',
-    amount: 91823,
+    amount: 91_823,
     createdAt: dayjs().subtract(1, 'day').toDate(),
   },
   {
@@ -50,7 +50,7 @@ const transactions = [
     type: 'receive',
     sender: 'Devias',
     currency: 'USD',
-    amount: 49550,
+    amount: 49_550,
     createdAt: dayjs().subtract(3, 'day').toDate(),
   },
 ] satisfies Transaction[];

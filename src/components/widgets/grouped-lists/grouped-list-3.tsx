@@ -1,4 +1,4 @@
-import * as React from 'react';
+import type * as React from 'react';
 import Avatar from '@mui/material/Avatar';
 import AvatarGroup from '@mui/material/AvatarGroup';
 import Box from '@mui/material/Box';
@@ -76,13 +76,11 @@ const tasks = [
 function getDeadline(task: Task): string {
   let deadline = '';
 
-  if (task.dueDate) {
-    if (dayjs(task.dueDate).isAfter(Date.now())) {
-      const daysLeft = dayjs(task.dueDate).diff(Date.now(), 'day');
+  if (task.dueDate && dayjs(task.dueDate).isAfter(Date.now())) {
+    const daysLeft = dayjs(task.dueDate).diff(Date.now(), 'day');
 
-      if (daysLeft < 3) {
-        deadline = `${daysLeft} days remaining`;
-      }
+    if (daysLeft < 3) {
+      deadline = `${daysLeft} days remaining`;
     }
   }
 

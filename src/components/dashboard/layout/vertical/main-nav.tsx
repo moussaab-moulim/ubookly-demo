@@ -12,10 +12,9 @@ import { Bell as BellIcon } from '@phosphor-icons/react/dist/ssr/Bell';
 import { List as ListIcon } from '@phosphor-icons/react/dist/ssr/List';
 import { MagnifyingGlass as MagnifyingGlassIcon } from '@phosphor-icons/react/dist/ssr/MagnifyingGlass';
 import { Users as UsersIcon } from '@phosphor-icons/react/dist/ssr/Users';
-import { useTranslation } from 'next-i18next';
+import { useTranslation } from 'react-i18next';
 
 import type { NavItemConfig } from '@/types/nav';
-import type { User } from '@/types/user';
 import { useDialog } from '@/hooks/use-dialog';
 import { usePopover } from '@/hooks/use-popover';
 
@@ -25,7 +24,7 @@ import type { Language } from '../language-popover';
 import { MobileNav } from '../mobile-nav';
 import { NotificationsPopover } from '../notifications-popover';
 import { SearchDialog } from '../search-dialog';
-import { UserPopover } from '../user-popover/user-popover';
+import { UserPopover } from '../user-popover';
 
 export interface MainNavProps {
   items: NavItemConfig[];
@@ -179,7 +178,7 @@ const user = {
   name: 'Sofia Rivers',
   avatar: '/assets/avatar.png',
   email: 'sofia@devias.io',
-} satisfies User;
+} as const;
 
 function UserButton(): React.JSX.Element {
   const popover = usePopover<HTMLButtonElement>();

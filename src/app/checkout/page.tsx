@@ -1,23 +1,23 @@
-import * as React from 'react';
+import type * as React from 'react';
 import type { Metadata } from 'next';
 import RouterLink from 'next/link';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
+import Grid from '@mui/material/Grid2';
 import Link from '@mui/material/Link';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
-import Grid from '@mui/material/Unstable_Grid2';
 import { ArrowLeft as ArrowLeftIcon } from '@phosphor-icons/react/dist/ssr/ArrowLeft';
 import { ArrowRight as ArrowRightIcon } from '@phosphor-icons/react/dist/ssr/ArrowRight';
 import { Lock as LockIcon } from '@phosphor-icons/react/dist/ssr/Lock';
 
-import { config } from '@/config';
+import { appConfig } from '@/config/app';
 import { paths } from '@/paths';
 import { CheckoutForm } from '@/components/marketing/checkout/checkout-form';
 import { OrderSummary } from '@/components/marketing/checkout/order-summary';
 
-export const metadata = { title: `Checkout | ${config.site.name}` } satisfies Metadata;
+export const metadata = { title: `Checkout | ${appConfig.name}` } satisfies Metadata;
 
 export default function Page(): React.JSX.Element {
   return (
@@ -40,10 +40,20 @@ export default function Page(): React.JSX.Element {
             <Typography variant="h3">Checkout</Typography>
           </Stack>
           <Grid container spacing={4}>
-            <Grid md={7} xs={12}>
+            <Grid
+              size={{
+                md: 7,
+                xs: 12,
+              }}
+            >
               <CheckoutForm />
             </Grid>
-            <Grid md={5} xs={12}>
+            <Grid
+              size={{
+                md: 5,
+                xs: 12,
+              }}
+            >
               <OrderSummary />
             </Grid>
           </Grid>

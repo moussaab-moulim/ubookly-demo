@@ -1,4 +1,4 @@
-import * as React from 'react';
+import type * as React from 'react';
 import type { Metadata } from 'next';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
@@ -8,7 +8,7 @@ import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import { Plus as PlusIcon } from '@phosphor-icons/react/dist/ssr/Plus';
 
-import { config } from '@/config';
+import { appConfig } from '@/config/app';
 import { dayjs } from '@/lib/dayjs';
 import { CustomersFilters } from '@/components/dashboard/customer/customers-filters';
 import type { Filters } from '@/components/dashboard/customer/customers-filters';
@@ -17,7 +17,7 @@ import { CustomersSelectionProvider } from '@/components/dashboard/customer/cust
 import { CustomersTable } from '@/components/dashboard/customer/customers-table';
 import type { Customer } from '@/components/dashboard/customer/customers-table';
 
-export const metadata = { title: `List | Customers | Dashboard | ${config.site.name}` } satisfies Metadata;
+export const metadata = { title: `List | Customers | Dashboard | ${appConfig.name}` } satisfies Metadata;
 
 const customers = [
   {
@@ -73,11 +73,11 @@ const customers = [
 ] satisfies Customer[];
 
 interface PageProps {
-  searchParams: { email?: string; phone?: string; sortDir?: 'asc' | 'desc'; status?: string };
+  searchParams: Promise<{ email?: string; phone?: string; sortDir?: 'asc' | 'desc'; status?: string }>;
 }
 
-export default function Page({ searchParams }: PageProps): React.JSX.Element {
-  const { email, phone, sortDir, status } = searchParams;
+export default async function Page({ searchParams }: PageProps): Promise<React.JSX.Element> {
+  const { email, phone, sortDir, status } = await searchParams;
 
   const sortedCustomers = applySort(customers, sortDir);
   const filteredCustomers = applyFilters(sortedCustomers, { email, phone, status });
@@ -132,22 +132,16 @@ function applySort(row: Customer[], sortDir: 'asc' | 'desc' | undefined): Custom
 
 function applyFilters(row: Customer[], { email, phone, status }: Filters): Customer[] {
   return row.filter((item) => {
-    if (email) {
-      if (!item.email?.toLowerCase().includes(email.toLowerCase())) {
-        return false;
-      }
+    if (email && !item.email?.toLowerCase().includes(email.toLowerCase())) {
+      return false;
     }
 
-    if (phone) {
-      if (!item.phone?.toLowerCase().includes(phone.toLowerCase())) {
-        return false;
-      }
+    if (phone && !item.phone?.toLowerCase().includes(phone.toLowerCase())) {
+      return false;
     }
 
-    if (status) {
-      if (item.status !== status) {
-        return false;
-      }
+    if (status && item.status !== status) {
+      return false;
     }
 
     return true;

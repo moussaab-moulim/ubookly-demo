@@ -1,4 +1,4 @@
-import * as React from 'react';
+import type * as React from 'react';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Card from '@mui/material/Card';
@@ -18,8 +18,8 @@ interface Asset {
 }
 
 const assets = [
-  { name: 'US Dollars', value: 21500, color: '#6C76C4' },
-  { name: 'Bitcoin', value: 15300, color: '#33BB78' },
+  { name: 'US Dollars', value: 21_500, color: '#6C76C4' },
+  { name: 'Bitcoin', value: 15_300, color: '#33BB78' },
   { name: 'XRP Ripple', value: 1076.81, color: '#FF4081' },
 ] satisfies Asset[];
 

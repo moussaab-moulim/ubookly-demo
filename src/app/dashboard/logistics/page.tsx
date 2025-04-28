@@ -1,13 +1,13 @@
-import * as React from 'react';
+import type * as React from 'react';
 import type { Metadata } from 'next';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
+import Grid from '@mui/material/Grid2';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
-import Grid from '@mui/material/Unstable_Grid2';
 import { Plus as PlusIcon } from '@phosphor-icons/react/dist/ssr/Plus';
 
-import { config } from '@/config';
+import { appConfig } from '@/config/app';
 import { DeviatedVehicles } from '@/components/dashboard/logistics/deviated-vehicles';
 import { LateVehicles } from '@/components/dashboard/logistics/late-vehicles';
 import { OnRouteVehicles } from '@/components/dashboard/logistics/on-route-vehicles';
@@ -16,7 +16,7 @@ import { VehiclesOverview } from '@/components/dashboard/logistics/vehicles-over
 import { VehiclesTable } from '@/components/dashboard/logistics/vehicles-table';
 import { VehiclesWithErrors } from '@/components/dashboard/logistics/vehicles-with-errors';
 
-export const metadata = { title: `Metrics | Logistics | Dashboard | ${config.site.name}` } satisfies Metadata;
+export const metadata = { title: `Metrics | Logistics | Dashboard | ${appConfig.name}` } satisfies Metadata;
 
 export default function Page(): React.JSX.Element {
   return (
@@ -40,19 +40,44 @@ export default function Page(): React.JSX.Element {
           </div>
         </Stack>
         <Grid container spacing={4}>
-          <Grid md={3} xs={12}>
+          <Grid
+            size={{
+              md: 3,
+              xs: 12,
+            }}
+          >
             <OnRouteVehicles amount={38} />
           </Grid>
-          <Grid md={3} xs={12}>
+          <Grid
+            size={{
+              md: 3,
+              xs: 12,
+            }}
+          >
             <VehiclesWithErrors amount={2} />
           </Grid>
-          <Grid md={3} xs={12}>
+          <Grid
+            size={{
+              md: 3,
+              xs: 12,
+            }}
+          >
             <DeviatedVehicles amount={1} />
           </Grid>
-          <Grid md={3} xs={12}>
+          <Grid
+            size={{
+              md: 3,
+              xs: 12,
+            }}
+          >
             <LateVehicles amount={2} />
           </Grid>
-          <Grid lg={6} xs={12}>
+          <Grid
+            size={{
+              lg: 6,
+              xs: 12,
+            }}
+          >
             <VehiclesOverview
               data={[
                 { name: 'Available', value: 38, fill: 'var(--mui-palette-primary-main)' },
@@ -61,10 +86,15 @@ export default function Page(): React.JSX.Element {
               ]}
             />
           </Grid>
-          <Grid lg={6} xs={12}>
+          <Grid
+            size={{
+              lg: 6,
+              xs: 12,
+            }}
+          >
             <VehiclesCondition bad={12} excellent={181} good={24} />
           </Grid>
-          <Grid xs={12}>
+          <Grid size={12}>
             <VehiclesTable
               rows={[
                 {

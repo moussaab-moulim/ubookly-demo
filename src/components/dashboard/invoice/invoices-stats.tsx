@@ -1,10 +1,10 @@
-import * as React from 'react';
+import type * as React from 'react';
 import Avatar from '@mui/material/Avatar';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
+import Grid from '@mui/material/Grid2';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
-import Grid from '@mui/material/Unstable_Grid2';
 import { Check as CheckIcon } from '@phosphor-icons/react/dist/ssr/Check';
 import { Clock as ClockIcon } from '@phosphor-icons/react/dist/ssr/Clock';
 import { Receipt as ReceiptIcon } from '@phosphor-icons/react/dist/ssr/Receipt';
@@ -12,7 +12,13 @@ import { Receipt as ReceiptIcon } from '@phosphor-icons/react/dist/ssr/Receipt';
 export function InvoicesStats(): React.JSX.Element {
   return (
     <Grid container spacing={4}>
-      <Grid md={6} xl={4} xs={12}>
+      <Grid
+        size={{
+          md: 6,
+          xl: 4,
+          xs: 12,
+        }}
+      >
         <Card>
           <CardContent>
             <Stack direction="row" spacing={2} sx={{ alignItems: 'center' }}>
@@ -41,7 +47,13 @@ export function InvoicesStats(): React.JSX.Element {
           </CardContent>
         </Card>
       </Grid>
-      <Grid md={6} xl={4} xs={12}>
+      <Grid
+        size={{
+          md: 6,
+          xl: 4,
+          xs: 12,
+        }}
+      >
         <Card>
           <CardContent>
             <Stack direction="row" spacing={2} sx={{ alignItems: 'center' }}>
@@ -70,7 +82,13 @@ export function InvoicesStats(): React.JSX.Element {
           </CardContent>
         </Card>
       </Grid>
-      <Grid md={6} xl={4} xs={12}>
+      <Grid
+        size={{
+          md: 6,
+          xl: 4,
+          xs: 12,
+        }}
+      >
         <Card>
           <CardContent>
             <Stack direction="row" spacing={2} sx={{ alignItems: 'center' }}>

@@ -1,4 +1,4 @@
-import * as React from 'react';
+import type * as React from 'react';
 import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
@@ -37,7 +37,7 @@ export function DetailList6(): React.JSX.Element {
             <ListItem divider>
               <Typography variant="subtitle2">Budget</Typography>
               <Typography color="text.secondary" variant="body2">
-                {new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(12500)}
+                {new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(12_500)}
               </Typography>
             </ListItem>
             <ListItem>

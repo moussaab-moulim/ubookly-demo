@@ -1,4 +1,4 @@
-import * as React from 'react';
+import type * as React from 'react';
 import MenuItem from '@mui/material/MenuItem';
 
 export interface OptionProps {
